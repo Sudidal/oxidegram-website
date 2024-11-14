@@ -1,3 +1,40 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
 body {
-  background-color: rgb(2, 17, 39);
+  height: 100vh;
+  margin: 0;
+  background-color: black;
+  color: white;
+}
+
+#root,
+.container {
+  height: 100%;
+}
+
+.unstyled-list {
+  padding: 0;
+}
+.unstyled-list li::marker {
+  content: "";
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 2fr 5fr 3fr;
+}
+
+.aside {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #262626;
+}
+.main {
+}
+.right-side {
+  background-color: rgb(44, 44, 44);
 }

@@ -1,4 +1,16 @@
+import { useState, useEffect } from "react";
+import api from "../../api.js";
+import PostsList from "../components/postsList/postsList.jsx";
+
 function Home() {
+  const [posts, setPosts] = useState(null);
+
+  useEffect(() => {
+    api.getTopPosts().then((res) => {
+      setPosts(res.posts);
+    });
+  }, []);
+
   return (
     <div className="container">
       <aside className="aside">
@@ -13,11 +25,9 @@ function Home() {
         </ul>
       </aside>
       <main className="main">
-
+        <PostsList posts={posts} />
       </main>
-      <div className="right-side">
-        
-      </div>
+      <div className="right-side"></div>
     </div>
   );
 }

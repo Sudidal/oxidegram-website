@@ -34,6 +34,7 @@ body {
   border-right: 1px solid #262626;
 }
 .main {
+  padding: 20px;
 }
 .right-side {
   background-color: rgb(44, 44, 44);

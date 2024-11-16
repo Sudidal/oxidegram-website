@@ -1,6 +1,44 @@
 .card {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
   max-width: 100%;
   width: min(470px, 100vw);
-  height: 200px;
-  background-color: rgb(51, 51, 51);
+  height: min-content;
+  border-bottom: 1px solid var(--seperator-color);
+}
+
+.card p {
+  margin: 0;
+}
+
+.img {
+  width: 100%;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 4px;
+  padding-bottom: 12px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  border-radius: 50%;
+}
+
+.bottom, .leftSide, .rightSide {
+  display: flex;
+  gap: 10px;
+}
+
+.bottom {
+  justify-content: space-between;
+}
+
+.details > *, .details > p {
+  margin-top: 8px;
 }

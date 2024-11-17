@@ -1,0 +1,16 @@
+.card,
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card {
+  padding: 8px 0 8px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left p {
+  margin: 0;
+}

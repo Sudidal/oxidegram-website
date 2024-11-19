@@ -55,6 +55,10 @@ function Home() {
             <p>Explore</p>
           </div>
           <div className="inline-icon-text">
+            <SvgFileToInline path={"/icons/reels.svg"} />
+            <p>Reels</p>
+          </div>
+          <div className="inline-icon-text">
             <SvgFileToInline path={"/icons/messenger.svg"} />
             <p>Messages</p>
           </div>
@@ -67,7 +71,11 @@ function Home() {
             <p>Create</p>
           </div>
           <div className="inline-icon-text">
-            <AvatarImg url={profile.avatarUrl} width={30} />
+            <SvgFileToInline path={"/icons/dashboard.svg"} />
+            <p>Dashboard</p>
+          </div>
+          <div className="inline-icon-text">
+            {profile && <AvatarImg url={profile.avatarUrl} width={30} />}
             <p>Profile</p>
           </div>
           <div className="inline-icon-text">

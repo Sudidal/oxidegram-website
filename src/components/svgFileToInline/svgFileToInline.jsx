@@ -11,7 +11,13 @@ function SvgFileToInline({ path }) {
     });
   }, [path]);
 
-  return <div className="inline-svg" dangerouslySetInnerHTML={{ __html: markup }}></div>;
+  return (
+    <div
+      style={{ display: "flex", alignItems: "center" }}
+      className="inline-svg"
+      dangerouslySetInnerHTML={{ __html: markup }}
+    ></div>
+  );
 }
 
 SvgFileToInline.propTypes = {

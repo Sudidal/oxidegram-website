@@ -36,7 +36,9 @@
 }
 
 .bottom {
+  margin: 12px 0 12px 0;
   justify-content: space-between;
+  align-items: center;
 }
 
 .details > *, .details > p {

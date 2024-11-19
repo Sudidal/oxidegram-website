@@ -31,7 +31,7 @@ function Home() {
           <div className="content">
             {profile && <ProfileCard profile={profile} />}
             <div className="suggested">
-              <p className="secon-text text">Suggested for you</p>
+              <p className="secon-text-semibold">Suggested for you</p>
               <div className="list">
                 {profiles &&
                   profiles.map((profile) => {

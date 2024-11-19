@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import profileContext from "../contexts/userContext.js";
 import api from "../../api.js";
 import SidePanel from "../components/sidePanel/sidePanel.jsx";
+import Footer from "../components/footer/footer.jsx";
 import PostsList from "../components/postsList/postsList.jsx";
 import ProfileCard from "../components/profileCard/profileCard.jsx";
 
@@ -32,30 +33,13 @@ function Home() {
             <div className="suggested">
               <p className="secon-text text">Suggested for you</p>
               <div className="list">
-                {
-                  profiles &&
-                    profiles.map((profile) => {
-                      return <ProfileCard key={profile.id} profile={profile} />;
-                    })
-                }
+                {profiles &&
+                  profiles.map((profile) => {
+                    return <ProfileCard key={profile.id} profile={profile} />;
+                  })}
               </div>
             </div>
-            <nav className="nav">
-              <ul>
-                <li className="tertiary-text">About</li>
-                <li className="tertiary-text">Help</li>
-                <li className="tertiary-text">Press</li>
-                <li className="tertiary-text">API</li>
-                <li className="tertiary-text">Jobs</li>
-                <li className="tertiary-text">Privacy</li>
-                <li className="tertiary-text">Terms</li>
-                <li className="tertiary-text">Locations</li>
-                <li className="tertiary-text">Language</li>
-                <li className="tertiary-text">Oxide</li>
-                <li className="tertiary-text">Verified</li>
-              </ul>
-            </nav>
-            <p className="tertiary-text">© 2024 OXIDEGRAM FROM OXIDE</p>
+            <Footer />
           </div>
         </div>
       </main>

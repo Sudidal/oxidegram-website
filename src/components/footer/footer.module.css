@@ -1,0 +1,15 @@
+.nav > ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 0;
+  gap: 5px;
+}
+.nav > ul > li {
+  display: inline;
+  margin-bottom: 16px;
+  &::after {
+    content: " .";
+  }
+}

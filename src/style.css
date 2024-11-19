@@ -25,6 +25,13 @@ body {
   height: 100%;
 }
 
+.unstyled-list {
+  padding: 0;
+}
+.unstyled-list li {
+  display: block;
+}
+
 .secon-text {
   color: var(--secondary-text-color);
 }
@@ -81,20 +88,4 @@ body {
 .text {
   margin: 0;
   font-weight: var(--font-semibold);
-}
-
-.nav > ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  line-height: 0;
-  gap: 5px;
-}
-.nav > ul > li {
-  display: inline;
-  margin-bottom: 16px;
-  &::after {
-    content: " .";
-  }
 }

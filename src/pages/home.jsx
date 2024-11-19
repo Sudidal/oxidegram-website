@@ -3,6 +3,8 @@ import profileContext from "../contexts/userContext.js";
 import api from "../../api.js";
 import PostsList from "../components/postsList/postsList.jsx";
 import ProfileCard from "../components/profileCard/profileCard.jsx";
+import SvgFileToInline from "../components/svgFileToInline/svgFileToInline.jsx";
+import AvatarImg from "../components/avatarImg/avatarImg.jsx";
 
 function Home() {
   const [posts, setPosts] = useState(null);
@@ -40,14 +42,38 @@ function Home() {
           </svg>
         </div>
         <div className="nav-btns">
-          <div>Home</div>
-          <div>Search</div>
-          <div>Explore</div>
-          <div>Messages</div>
-          <div>Notifications</div>
-          <div>Create</div>
-          <div>Profile</div>
-          <div>More</div>
+          <div className="inline-icon-text">
+            <SvgFileToInline path={"/icons/home.svg"} />
+            <p>Home</p>
+          </div>
+          <div className="inline-icon-text">
+            <SvgFileToInline path={"/icons/search.svg"} />
+            <p>Search</p>
+          </div>
+          <div className="inline-icon-text">
+            <SvgFileToInline path={"/icons/explore.svg"} />
+            <p>Explore</p>
+          </div>
+          <div className="inline-icon-text">
+            <SvgFileToInline path={"/icons/messenger.svg"} />
+            <p>Messages</p>
+          </div>
+          <div className="inline-icon-text">
+            <SvgFileToInline path={"/icons/heart.svg"} />
+            <p>Notifications</p>
+          </div>
+          <div className="inline-icon-text">
+            <SvgFileToInline path={"/icons/create.svg"} />
+            <p>Create</p>
+          </div>
+          <div className="inline-icon-text">
+            <AvatarImg url={profile.avatarUrl} width={30} />
+            <p>Profile</p>
+          </div>
+          <div className="inline-icon-text">
+            <SvgFileToInline path={"/icons/more.svg"} />
+            <p>More</p>
+          </div>
         </div>
       </aside>
       <main className="main">

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import classes from "./postCard.module.css";
 import ageFromIsoString from "../../../utils/ageFromIsoString.js";
+import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 
 function PostCard({ post }) {
   const url = post.author.avatarUrl;
@@ -19,12 +20,12 @@ function PostCard({ post }) {
       />
       <div className={classes.bottom}>
         <div className={classes.leftSide}>
-          <p>Like</p>
-          <p>Comment</p>
-          <p>Share</p>
+          <SvgFileToInline path={"icons/heart.svg"} />
+          <SvgFileToInline path={"icons/comment.svg"} />
+          <SvgFileToInline path={"icons/share.svg"} />
         </div>
         <div className={classes.rightSide}>
-          <p>Save</p>
+        <SvgFileToInline path={"icons/save.svg"} />
         </div>
       </div>
       <div className={classes.details}>

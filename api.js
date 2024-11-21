@@ -17,6 +17,14 @@ class Api {
     const res = await fetchManager.getReq(this.#url + "/posts/top");
     return await res.json();
   }
+
+  async makePost(data) {
+    const res = await fetchManager.authPostReqMultipart(this.#url + "/posts", {
+      content: data.content,
+      image: data.image,
+    });
+    return await res.json();
+  }
 }
 
 const api = new Api();

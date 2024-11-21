@@ -1,0 +1,9 @@
+.dialog {
+  padding: 0;
+  width: fit-content;
+  height: 482px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  background-color: #262626;
+}

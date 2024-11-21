@@ -6,7 +6,7 @@ class FetchManager {
   constructor() {}
 
   fetchReq = (url, method, headers, body) => {
-    return fetch(url, { method, headers, body: JSON.stringify(body) });
+    return fetch(url, { method, headers, body: body });
   };
 
   getReq = (url) => {
@@ -31,7 +31,7 @@ class FetchManager {
         [this.#AUTH_HEADER]: this.#getAuthKey(),
         "Content-Type": "application/json",
       },
-      body
+      JSON.stringify(body)
     );
   };
   authPutReq = (url, body = {}) => {
@@ -42,7 +42,22 @@ class FetchManager {
         [this.#AUTH_HEADER]: this.#getAuthKey(),
         "Content-Type": "application/json",
       },
-      body
+      JSON.stringify(body)
+    );
+  };
+
+  authPostReqMultipart = (url, body = {}) => {
+    const formData = new FormData();
+    for (const name in body) {
+      formData.append(name, body[name]);
+    }
+    return this.fetchReq(
+      url,
+      "POST",
+      {
+        [this.#AUTH_HEADER]: this.#getAuthKey(),
+      },
+      formData
     );
   };
 

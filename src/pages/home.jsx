@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import profileContext from "../contexts/userContext.js";
+import profileContext from "../contexts/profileContext.js";
 import api from "../../api.js";
 import SidePanel from "../components/sidePanel/sidePanel.jsx";
 import Footer from "../components/footer/footer.jsx";

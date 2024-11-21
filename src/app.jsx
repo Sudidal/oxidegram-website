@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import profileContext from "./contexts/profileContext.js";
 import modalContext from "./contexts/modalContext.js";
-import Home from "./pages/home.jsx";
+import { Outlet } from "react-router-dom";
 import api from "../api.js";
 import Modal from "./components/modal/modal.jsx";
 
@@ -23,7 +23,7 @@ function App() {
     <profileContext.Provider value={profile}>
       <modalContext.Provider value={modalRef}>
         <Modal callback={modalCallback} />
-        <Home />
+        <Outlet />
       </modalContext.Provider>
     </profileContext.Provider>
   );

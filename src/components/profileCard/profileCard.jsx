@@ -13,7 +13,7 @@ function ProfileCard({ profile }) {
         </div>
       </div>
       <div>
-        <button className="no-border-btn">Follow</button>
+        <button className="no-border-btn small-text">Follow</button>
       </div>
     </div>
   );

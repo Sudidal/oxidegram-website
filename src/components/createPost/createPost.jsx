@@ -24,7 +24,7 @@ function CreatePost({ closeModal }) {
     return (
       <div className={classes.container}>
         <div className={classes.header}>
-          <h2>Create new post</h2>
+          <h2 className={classes.headerText}>Create new post</h2>
         </div>
         <div className={classes.body}>
           <SvgFileToInline path={"/icons/media.svg"} />
@@ -59,7 +59,7 @@ function CreatePost({ closeModal }) {
           <div onClick={stepBack}>
             <SvgFileToInline path={"/icons/leftArrow.svg"} />
           </div>
-          <h2>Create new post</h2>
+          <h2 className={classes.headerText}>Create new post</h2>
           <button
             className="no-border-btn"
             onClick={async () => {

@@ -5,21 +5,31 @@
 }
 
 body {
-  margin: 0;
-  background-color: black;
-  color: rgb(245, 245, 245);
-  font-size: 14px;
-
   --nav-medium-width: 244px;
   --feed-sidbar-width: 319px;
-  --secondary-text-color: rgb(168, 168, 168);
-  --tertiary-text-color: rgb(115, 115, 115);
+
   --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
-  --font-semibold: 600;
+
+  --primary-background-color: black;
+  --secondary-background-color: rgb(18, 18, 18);
+  --primary-text-color: white;
+  --secondary-text-color: rgb(168, 168, 168);
+  --tertiary-text-color: rgb(115, 115, 115);
+
   --seperator-color: rgb(38, 38, 38);
   --primary-btn-color: rgb(0, 149, 246);
-  --secondary-background-color: rgb(18, 18, 18);
+
+  --font-semibold: 600;
+  --huge-text-size: 20px;
+  --big-text-size: 16px;
+  --normal-text-size: 14px;
+  --small-text-size: 12px;
+
+  margin: 0;
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
+  font-size: var(--normal-text-size);
 }
 
 .prim-text {
@@ -32,7 +42,11 @@ body {
 
 .tertiary-text {
   color: var(--tertiary-text-color);
-  font-size: 12px;
+  font-size: var(--small-text-size);
+}
+
+.small-text {
+  font-size: var(--small-text-size);
 }
 
 .secon-text-semibold {
@@ -47,11 +61,11 @@ body {
 
 .primary-btn {
   padding: 7px 16px;
-  font-size: 14px;
+  font-size: var(--normal-text-size);
   font-weight: var(--font-semibold);
   border: none;
   border-radius: 8px;
-  color: white;
+  color: var(--primary-text-color);
   background-color: var(--primary-btn-color);
 }
 

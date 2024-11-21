@@ -11,12 +11,11 @@
   align-items: center;
   gap: 32%;
   height: 43px;
-  background-color: black;
-  font-size: 14px;
+  background-color: var(--primary-background-color);
 }
 
-.header h2 {
-  font-size: 16px;
+.header .headerText {
+  font-size: var(--big-text-size);
 }
 
 .body,
@@ -30,7 +29,7 @@
 
 .body {
   flex-direction: column;
-  font-size: 20px;
+  font-size: var(--huge-text-size);
 }
 
 .body2 {
@@ -59,7 +58,7 @@
 .contentInput {
   height: 168px;
   border: none;
-  color: white;
+  color: var(--primary-text-color);
   background-color: var(--secondary-background-color);
   resize: none;
 }

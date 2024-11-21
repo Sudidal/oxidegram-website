@@ -16,10 +16,8 @@
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
   margin-right: 12px;
-  border-radius: 50%;
+  height: 32px;
 }
 
 .img {
@@ -30,9 +28,11 @@
   margin: 0;
 }
 
-.bottom, .leftSide, .rightSide {
+.bottom,
+.leftSide,
+.rightSide {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 .bottom {
@@ -41,6 +41,7 @@
   align-items: center;
 }
 
-.details > *, .details > p {
+.details > p,
+.details > div {
   margin-top: 8px;
 }

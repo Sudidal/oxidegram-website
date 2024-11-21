@@ -2,29 +2,28 @@ import PropTypes from "prop-types";
 import classes from "./postCard.module.css";
 import ageFromIsoString from "../../../utils/ageFromIsoString.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
+import AvatarImg from "../avatarImg/avatarImg.jsx";
 
 function PostCard({ post }) {
-  const url = post.author.avatarUrl;
   return (
     <div className={classes.card}>
       <div className={classes.top}>
-        <img className={classes.avatar} src={url} alt="" />
+        <div className={classes.avatar}>
+          <AvatarImg width={32} url={post.author.avatarUrl} />
+        </div>
         <p className="prim-text">{post.author.username}</p>
         <p>•</p>
         <p className="secon-text">{ageFromIsoString(post.publishDate)}</p>
       </div>
-      <img
-        className={classes.img}
-        src="https://cdn.pixabay.com/photo/2024/03/07/10/38/simba-8618301_1280.jpg"
-      />
+      <img alt="Couldn't load image" className={classes.img} src={post.imageUrl} />
       <div className={classes.bottom}>
         <div className={classes.leftSide}>
-          <SvgFileToInline path={"icons/heart.svg"} />
-          <SvgFileToInline path={"icons/comment.svg"} />
-          <SvgFileToInline path={"icons/share.svg"} />
+          <SvgFileToInline path={"/icons/heart.svg"} />
+          <SvgFileToInline path={"/icons/comment.svg"} />
+          <SvgFileToInline path={"/icons/share.svg"} />
         </div>
         <div className={classes.rightSide}>
-        <SvgFileToInline path={"icons/save.svg"} />
+          <SvgFileToInline path={"/icons/save.svg"} />
         </div>
       </div>
       <div className={classes.details}>

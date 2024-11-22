@@ -1,0 +1,16 @@
+.frame {
+  position: absolute;
+}
+
+.shift {
+  position: absolute;
+  left: 156px;
+  top: 26px;
+  animation: shift 2s;
+}
+
+.shift > img {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 3s;
+}

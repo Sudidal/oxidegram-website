@@ -1,9 +1,8 @@
 import api from "../../../api.js";
 import { useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import SvgFileToInline from "../../components/svgFileToInline/svgFileToInline.jsx";
-import InlineImageText from "../../components/inlineImageText/inlineImageText.jsx";
-import Footer from "../../components/footer/footer.jsx";
+import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
+import InlineImageText from "../inlineImageText/inlineImageText.jsx";
 import classes from "./signup.module.css";
 
 function Signup() {
@@ -32,7 +31,7 @@ function Signup() {
               })
               .then((res) => {
                 if (res) {
-                  nav("/login");
+                  nav("/accounts/login");
                 }
               });
           }}
@@ -98,17 +97,11 @@ function Signup() {
       <div className={classes.wrapper}>
         <p className="middle-text">
           Have an account?{" "}
-          <Link to={"/login"} className="no-border-btn">
+          <Link to={"/accounts/login"} className="no-border-btn">
             Log in
           </Link>
         </p>
       </div>
-      Get the app.
-      <div className={classes.download}>
-        <img src="/icons/appStore.png" alt="" />
-        <img src="/icons/googlePlay.png" alt="" />
-      </div>
-      <Footer />
     </div>
   );
 }

@@ -1,0 +1,42 @@
+.container {
+  padding-top: 44px;
+  height: 100vh;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left {
+  position: relative;
+}
+
+.shift {
+  position: absolute;
+  left: 156px;
+  top: 26px;
+}
+
+.shift > img {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 3s;
+}
+
+.download {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.icons {
+  display: flex;
+  align-items: center;
+}
+.icons > img {
+  width: 136px;
+}

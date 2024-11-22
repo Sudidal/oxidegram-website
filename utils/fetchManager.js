@@ -12,6 +12,14 @@ class FetchManager {
   getReq = (url) => {
     return this.fetchReq(url, "GET");
   };
+  postReq = (url, body = {}) => {
+    return this.fetchReq(
+      url,
+      "POST",
+      { "content-type": "application/json" },
+      JSON.stringify(body)
+    );
+  };
 
   authGetReq = (url) => {
     return this.fetchReq(url, "GET", {

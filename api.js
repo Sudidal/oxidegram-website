@@ -5,6 +5,17 @@ class Api {
 
   #url = import.meta.env.VITE_API_URL;
 
+  async signup(data) {
+    const res = await fetchManager.postReq(this.#url + "/register", {
+      email: data.email,
+      password: data.password,
+      fullName: data.fullName,
+      username: data.username,
+    });
+    // const json = await res.json();
+    return res.ok;
+  }
+
   async getMyProfile() {
     const res = await fetchManager.authGetReq(this.#url + "/profiles/me");
     return await res.json();

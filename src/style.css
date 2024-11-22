@@ -16,9 +16,13 @@ body {
   --primary-text-color: white;
   --secondary-text-color: rgb(168, 168, 168);
   --tertiary-text-color: rgb(115, 115, 115);
+  --link-color: rgb(224, 241, 255);
 
   --seperator-color: rgb(38, 38, 38);
+  --elevated-seperator-color: rgb(54, 54, 54);
+  --stroke-color: rgb(85, 85, 85);
   --primary-btn-color: rgb(0, 149, 246);
+  --grey-5: rgb(142, 142, 142);
 
   --font-semibold: 600;
   --huge-text-size: 20px;
@@ -46,6 +50,7 @@ body {
 }
 
 .small-text {
+  margin: 0;
   font-size: var(--small-text-size);
 }
 
@@ -54,9 +59,24 @@ body {
   color: var(--secondary-text-color);
   font-weight: var(--font-semibold);
 }
+.secon-text-semibold-big {
+  margin: 0;
+  color: var(--secondary-text-color);
+  font-weight: var(--font-semibold);
+  font-size: var(--big-text-size);
+}
 
 .inline-para {
   display: inline;
+}
+
+.middle-text {
+  text-align: center;
+}
+
+.link {
+  margin: 0;
+  color: var(--link-color);
 }
 
 .primary-btn {
@@ -70,11 +90,32 @@ body {
 }
 
 .no-border-btn {
-  /* font-size: 12px; */
   font-weight: 600;
   border: none;
   background: none;
   color: var(--primary-btn-color);
+  text-decoration: none;
+}
+
+.input {
+  padding: 9px 0 7px 8px;
+  color: var(--primary-text-color);
+  background-color: var(--secondary-background-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 3px;
+}
+.input::placeholder {
+  font-size: var(--small-text-size);
+  color: var(--grey-5);
+  font-weight: 300;
+  opacity: 1;
+}
+
+.select-input {
+  font-size: var(--small-text-size);
+  color: var(--secondary-text-color);
+  background: none;
+  border: none;
 }
 
 .main {

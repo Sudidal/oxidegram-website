@@ -1,0 +1,44 @@
+.main {
+  width: calc(100% - var(--nav-medium-width));
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.middle {
+  max-width: 630px;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.rightSide {
+  box-sizing: content-box;
+  padding-left: 64px;
+  padding-top: 36px;
+  width: var(--feed-sidbar-width);
+}
+.content {
+  padding: 0 16px 0 16px;
+}
+.suggested {
+  margin: 24px 0 20px 0;
+}
+.profileList {
+  padding: 8px 0 8px 0;
+}
+
+.nav > ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 0;
+  gap: 5px;
+}
+.nav > ul > li {
+  display: inline;
+  margin-bottom: 16px;
+  &::after {
+    content: " .";
+  }
+}

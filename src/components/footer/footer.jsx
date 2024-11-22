@@ -13,7 +13,7 @@ function Footer() {
         <div className="secon-text small-text">Privacy</div>
         <div className="secon-text small-text">Terms</div>
         <div className="secon-text small-text">Locations</div>
-        <div className="secon-text small-text">Instagram Lite</div>
+        <div className="secon-text small-text">Oxidegram Lite</div>
         <div className="secon-text small-text">Threads</div>
         <div className="secon-text small-text">
           Contact Uploading & Non-Users

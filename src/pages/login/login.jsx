@@ -4,13 +4,11 @@ import { useNavigate, Link } from "react-router-dom";
 import SvgFileToInline from "../../components/svgFileToInline/svgFileToInline.jsx";
 import InlineImageText from "../../components/inlineImageText/inlineImageText.jsx";
 import Footer from "../../components/footer/footer.jsx";
-import classes from "./signup.module.css";
+import classes from "./login.module.css";
 
-function Signup() {
+function Login() {
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
-  const fullNameInput = useRef(null);
-  const usernameInput = useRef(null);
   const nav = useNavigate();
 
   return (
@@ -24,11 +22,9 @@ function Signup() {
           onSubmit={(ev) => {
             ev.preventDefault();
             api
-              .signup({
+              .login({
                 email: emailInput.current.value,
                 password: passwordInput.current.value,
-                fullName: fullNameInput.current.value,
-                username: usernameInput.current.value,
               })
               .then((res) => {
                 if (res) {
@@ -37,20 +33,6 @@ function Signup() {
               });
           }}
         >
-          <p className="secon-text-semibold-big middle-text">
-            Sign up to see photos and videos from your friends
-          </p>
-          <button className={`${classes.btn} primary-btn`}>
-            <InlineImageText
-              path={"/icons/facebook-logo.svg"}
-              text={"Log in with Facebook"}
-            />
-          </button>
-          <div className={classes.division}>
-            <hr />
-            <p className="secon-text-semibold">OR</p>
-            <hr />
-          </div>
           <div className={classes.fields}>
             <input
               ref={emailInput}
@@ -66,40 +48,29 @@ function Signup() {
               type="password"
               placeholder="Password"
             />
-            <input
-              ref={fullNameInput}
-              name="fullName"
-              className="input"
-              type="text"
-              placeholder="Full Name"
-            />
-            <input
-              ref={usernameInput}
-              name="userName"
-              className="input"
-              type="text"
-              placeholder="Username"
-            />
           </div>
-          <p className="secon-text small-text middle-text">
-            People who use our service may have uploaded your contact
-            information to Instagram. <span className="link">Learn More</span>
-          </p>
-          <p className="secon-text small-text middle-text">
-            By signing up, you agree to our <span className="link">Terms</span>{" "}
-            , <span className="link">Privacy Policy</span> and{" "}
-            <span className="link">Cookies Policy</span> .
-          </p>
           <button type="submit" className={`${classes.btn} primary-btn`}>
-            Sign up
+            Log in
           </button>
+          <div className={classes.division}>
+            <hr />
+            <p className="secon-text-semibold">OR</p>
+            <hr />
+          </div>
+          <button className={`${classes.btn} no-border-btn`}>
+            <InlineImageText
+              path={"/icons/facebook-logo.svg"}
+              text={"Log in with Facebook"}
+            />
+          </button>
+          <p className="middle-text">Forgot password?</p>
         </form>
       </div>
       <div className={classes.wrapper}>
         <p className="middle-text">
-          Have an account?{" "}
-          <Link to={"/login"} className="no-border-btn">
-            Log in
+          Don&apos;t have an account?{" "}
+          <Link to={"/signup"} className="no-border-btn">
+            Sign up
           </Link>
         </p>
       </div>
@@ -113,4 +84,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;

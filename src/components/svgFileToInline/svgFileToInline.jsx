@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import classes from "./svgFileToInline.module.css"
 
 function SvgFileToInline({ path }) {
   const [markup, setMarkup] = useState("");
@@ -14,7 +15,7 @@ function SvgFileToInline({ path }) {
   return (
     <div
       style={{ display: "flex", alignItems: "center" }}
-      className="inline-svg"
+      className={classes.container}
       dangerouslySetInnerHTML={{ __html: markup }}
     ></div>
   );

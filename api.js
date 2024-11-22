@@ -1,9 +1,20 @@
 import fetchManager from "./utils/fetchManager.js";
+import storageManager from "./utils/storageManager.js";
 
 class Api {
   constructor() {}
 
   #url = import.meta.env.VITE_API_URL;
+
+  async login(data) {
+    const res = await fetchManager.postReq(this.#url + "/login", {
+      email: data.email,
+      password: data.password,
+    });
+    const json = await res.json();
+    storageManager.setAuthToken(json.jwtToken);
+    return res.ok;
+  }
 
   async signup(data) {
     const res = await fetchManager.postReq(this.#url + "/register", {
@@ -12,7 +23,6 @@ class Api {
       fullName: data.fullName,
       username: data.username,
     });
-    // const json = await res.json();
     return res.ok;
   }
 

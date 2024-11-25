@@ -1,6 +1,4 @@
 .main {
-  width: calc(100% - var(--nav-medium-width));
-  margin-left: auto;
   display: flex;
   justify-content: center;
 }

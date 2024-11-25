@@ -23,7 +23,7 @@ function Home() {
   return (
     <div className={classes.container}>
       <SidePanel />
-      <main className={classes.main}>
+      <main className={`${classes.main} main-with-margin`}>
         <div className={classes.middle}>
           <PostsList posts={posts} />
         </div>

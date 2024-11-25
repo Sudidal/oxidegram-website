@@ -34,6 +34,13 @@ class Api {
     const res = await fetchManager.getReq(this.#url + "/profiles/top?limit=10");
     return await res.json();
   }
+  async getOneProfileWithDetails(id) {
+    const res = await fetchManager.getReq(
+      this.#url +
+        `/profiles/${id}?posts=true&savedPosts=true&follows=true&followers=true`
+    );
+    return await res.json();
+  }
   async getTopPosts() {
     const res = await fetchManager.getReq(this.#url + "/posts/top");
     return await res.json();

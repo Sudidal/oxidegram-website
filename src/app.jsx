@@ -23,7 +23,7 @@ function App() {
     <profileContext.Provider value={profile}>
       <modalContext.Provider value={modalRef}>
         <Modal callback={modalCallback} />
-        <Outlet />
+        {profile && <Outlet />}
       </modalContext.Provider>
     </profileContext.Provider>
   );

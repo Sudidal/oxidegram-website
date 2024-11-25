@@ -1,0 +1,43 @@
+.main {
+  padding: 0 100px;
+}
+
+.profileInfo,
+.right,
+.proTop,
+.proMiddle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.profileInfo {
+  margin: 38px 0 100px 50px;
+  width: min-content;
+  font-size: 16px;
+  gap: 90px;
+}
+
+.profileInfo p {
+  margin: 0;
+}
+
+.right {
+  flex-direction: column;
+  gap: 25px;
+}
+
+.proTop {
+  gap: 20px;
+}
+
+.proMiddle {
+  gap: 40px;
+}
+
+.posts {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}

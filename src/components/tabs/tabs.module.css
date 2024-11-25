@@ -1,0 +1,18 @@
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.tab {
+  padding: 15px 0;
+  color: var(--secondary-text-color) !important;
+  font-size: var(--small-text-size);
+  font-weight: var(--font-semibold);
+  letter-spacing: 1px;
+}
+
+.selected {
+  color: var(--primary-text-color) !important;
+  border-top: 1px solid white  !important;
+}

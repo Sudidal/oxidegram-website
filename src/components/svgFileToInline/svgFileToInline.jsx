@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import classes from "./svgFileToInline.module.css"
+import classes from "./svgFileToInline.module.css";
 
 function SvgFileToInline({ path }) {
   const [markup, setMarkup] = useState("");
@@ -11,6 +11,8 @@ function SvgFileToInline({ path }) {
       setMarkup(data);
     });
   }, [path]);
+
+  if (!markup) return null;
 
   return (
     <div

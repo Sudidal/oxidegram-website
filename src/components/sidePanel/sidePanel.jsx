@@ -1,111 +1,106 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
 import modalContext from "../../contexts/modalContext.js";
+import dialogContext from "../../contexts/dialogContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
+import FullSizeBtn from "../fullSizeBtn/fullSizeBtn.jsx";
 import classes from "./sidePanel.module.css";
 
 function SidePanel() {
   const profile = useContext(profileContext);
   const modal = useContext(modalContext);
+  const dialog = useContext(dialogContext);
+  const nav = useNavigate();
 
   return (
     <aside className={classes.aside}>
-      <div className={classes.logo}>
+      <div
+        className={classes.logo}
+        onClick={() => {
+          nav("/");
+        }}
+      >
         <SvgFileToInline path={"/icons/instagram-logo.svg"} />
       </div>
 
       <div className={classes.btnsList}>
-        <div
-          className={classes.btn}
+        <FullSizeBtn
+          iconUrl={"/icons/home.svg"}
+          text={"Home"}
           onClick={() => {
-            console.log("home");
+            nav("/");
           }}
-        >
-          <SvgFileToInline path={"/icons/home.svg"} />
-          <p>Home</p>
-        </div>
-        <div
-          className={classes.btn}
+        />
+        <FullSizeBtn
+          iconUrl={"/icons/search.svg"}
+          text={"Search"}
           onClick={() => {
-            console.log("search");
+            nav("/search");
           }}
-        >
-          <SvgFileToInline path={"/icons/search.svg"} />
-          <p>Search</p>
-        </div>
-        <div
-          className={classes.btn}
+        />
+        <FullSizeBtn
+          iconUrl={"/icons/explore.svg"}
+          text={"Explore"}
           onClick={() => {
-            console.log("explore");
+            nav("/explore");
           }}
-        >
-          <SvgFileToInline path={"/icons/explore.svg"} />
-          <p>Explore</p>
-        </div>
-        <div
-          className={classes.btn}
+        />
+        <FullSizeBtn
+          iconUrl={"/icons/reels.svg"}
+          text={"Reels"}
           onClick={() => {
-            console.log("reels");
+            nav("/reels");
           }}
-        >
-          <SvgFileToInline path={"/icons/reels.svg"} />
-          <p>Reels</p>
-        </div>
-        <div
-          className={classes.btn}
+        />
+        <FullSizeBtn
+          iconUrl={"/icons/messenger.svg"}
+          text={"Messeges"}
           onClick={() => {
-            console.log("messenger");
+            nav("/messeges");
           }}
-        >
-          <SvgFileToInline path={"/icons/messenger.svg"} />
-          <p>Messages</p>
-        </div>
-        <div
-          className={classes.btn}
+        />
+        <FullSizeBtn
+          iconUrl={"/icons/heart.svg"}
+          text={"Notifications"}
           onClick={() => {
-            console.log("heart");
+            nav("/notifications");
           }}
-        >
-          <SvgFileToInline path={"/icons/heart.svg"} />
-          <p>Notifications</p>
-        </div>
-        <div
-          className={classes.btn}
+        />
+        <FullSizeBtn
+          iconUrl={"/icons/create.svg"}
+          text={"Create"}
           onClick={() => {
-            modal.current.open()
+            modal.open();
           }}
-        >
-          <SvgFileToInline path={"/icons/create.svg"} />
-          <p>Create</p>
-        </div>
-        <div
-          className={classes.btn}
+        />
+        <FullSizeBtn
+          iconUrl={"/icons/dashboard.svg"}
+          text={"Dashboard"}
           onClick={() => {
-            console.log("dashboard");
+            nav("/dashboard");
           }}
-        >
-          <SvgFileToInline path={"/icons/dashboard.svg"} />
-          <p>Dashboard</p>
-        </div>
-        <div
-          className={classes.btn}
-          onClick={() => {
-            console.log("Profile");
+        />
+        {profile && (
+          <FullSizeBtn
+            icon={<AvatarImg url={profile.avatarUrl} width={30} />}
+            text={"Profile"}
+            onClick={() => {
+              nav("/profile");
+            }}
+          />
+        )}
+        <FullSizeBtn
+          iconUrl={"/icons/more.svg"}
+          text={"More"}
+          onClick={(ev) => {
+            dialog.open({
+              x: ev.currentTarget.offsetLeft,
+              y: ev.currentTarget.offsetTop,
+            });
           }}
-        >
-          {profile && <AvatarImg url={profile.avatarUrl} width={30} />}
-          <p>Profile</p>
-        </div>
-        <div
-          className={classes.btn}
-          onClick={() => {
-            console.log("more");
-          }}
-        >
-          <SvgFileToInline path={"/icons/more.svg"} />
-          <p>More</p>
-        </div>
+        />
       </div>
     </aside>
   );

@@ -1,5 +1,6 @@
 class StorageManager {
   #AUTH_TOKEN_KEY = "jwtToken";
+  #TEHME_KEY = "theme";
   #STUPID_WORD = "bearer ";
 
   constructor() {}
@@ -12,6 +13,13 @@ class StorageManager {
   }
   getAuthenticationKey() {
     return localStorage.getItem(this.#AUTH_TOKEN_KEY);
+  }
+
+  setTheme(value) {
+    return localStorage.setItem(this.#TEHME_KEY, value);
+  }
+  getTheme() {
+    return localStorage.getItem(this.#TEHME_KEY);
   }
 
   setItem(key, value) {

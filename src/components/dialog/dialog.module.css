@@ -1,0 +1,14 @@
+.dialog {
+  --height: fit-content;
+
+  position: fixed;
+  width: var(--nav-medium-width);
+  margin: 0;
+  transform: translateY(-100%);
+  z-index: 9;
+  background-color: var(--secondary-background-color);
+  color: var(--primary-text-color);
+  border: none;
+  border-radius: 16px;
+  padding: 10px;
+}

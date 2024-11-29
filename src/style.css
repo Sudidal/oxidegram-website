@@ -12,7 +12,8 @@ body {
     Helvetica, Arial, sans-serif;
 
   --primary-background-color: black;
-  --secondary-background-color: rgb(18, 18, 18);
+  --secondary-background-color: #262626;
+  --tertiary-background-color: rgb(18, 18, 18);
   --primary-text-color: white;
   --secondary-text-color: rgb(168, 168, 168);
   --tertiary-text-color: rgb(115, 115, 115);
@@ -24,6 +25,8 @@ body {
   --primary-btn-color: rgb(0, 149, 246);
   --secondary-btn-color: rgb(54, 54, 54);
   --grey-5: rgb(142, 142, 142);
+
+  --hover-overlay: rgb(255, 255, 255, .1);
 
   --font-semibold: 600;
   --huge-text-size: 20px;
@@ -37,6 +40,11 @@ body {
   background-color: var(--primary-background-color);
   color: var(--primary-text-color);
   font-size: var(--normal-text-size);
+}
+
+body.light {
+  background-color: white;
+  color: black;
 }
 
 .prim-text {

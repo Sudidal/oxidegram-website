@@ -26,6 +26,11 @@ class Api {
     return res.ok;
   }
 
+  async logout() {
+    storageManager.setAuthToken("");
+    return true;
+  }
+
   async getMyProfile() {
     const res = await fetchManager.authGetReq(this.#url + "/profiles/me");
     return await res.json();

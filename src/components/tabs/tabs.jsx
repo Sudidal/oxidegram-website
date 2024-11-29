@@ -1,15 +1,24 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import InlineImageText from "../inlineImageText/inlineImageText.jsx";
 import classes from "./tabs.module.css";
 
-function Tabs({ tabs = [] }) {
+function Tabs({ tabs = [], initTab }) {
   const [tabIndex, setTabIndex] = useState(0);
   const tabsParentRef = useRef(null);
 
   function switchTab(index) {
     setTabIndex(index);
   }
+
+  useEffect(() => {
+    setTabIndex(0)
+    tabs.forEach((tab, i) => {
+      if (tab.name === initTab) {
+        setTabIndex(i);
+      }
+    });
+  }, [initTab, tabs]);
 
   if (tabsParentRef.current) {
     tabsParentRef.current.childNodes.forEach((child) => {
@@ -43,6 +52,7 @@ function Tabs({ tabs = [] }) {
 
 Tabs.propTypes = {
   tabs: PropTypes.array,
+  initTab: PropTypes.string,
 };
 
 export default Tabs;

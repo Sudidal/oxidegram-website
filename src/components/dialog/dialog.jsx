@@ -1,0 +1,77 @@
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import FullSizeBtn from "../fullSizeBtn/fullSizeBtn.jsx";
+import api from "../../../api.js";
+import themeManager from "../../../utils/themeManager.js";
+import classes from "./dialog.module.css";
+
+function Dialog({ callback }) {
+  const [openState, setOpenState] = useState(false);
+  const ref = useRef(null);
+  const nav = useNavigate()
+
+  useEffect(() => {
+    callback({
+      open: open,
+      close: close,
+    });
+  }, [callback]);
+
+  useEffect(() => {
+    return () => {};
+  }, []);
+
+  const open = (pos) => {
+    setOpenState(true);
+    ref.current.style.left = pos.x + "px";
+    ref.current.style.top = pos.y + "px";
+    document.body.addEventListener("mousedown", click);
+  };
+  const close = () => {
+    setOpenState(false);
+    document.body.removeEventListener("mousedown", click);
+  };
+
+  function click(ev) {
+    ev.stopPropagation()
+    if (ev.currentTarget === document.body) close();
+  }
+
+  if (openState) {
+    if (ref.current) ref.current.show();
+  } else {
+    if (ref.current) ref.current.close();
+  }
+
+  return (
+    <dialog className={classes.dialog} ref={ref} onMouseDown={click}>
+      <FullSizeBtn
+        text={"Saved"}
+        iconUrl={"/icons/save.svg"}
+        onClick={() => {
+          nav("/profile/SAVED")
+        }}
+      />
+      <FullSizeBtn
+        text={"Switch appearance"}
+        iconUrl={"/icons/crescent.svg"}
+        onClick={() => {
+          themeManager.switch()
+        }}
+      />
+      <FullSizeBtn
+        text={"Log out"}
+        onClick={() => {
+          api.logout();
+        }}
+      />
+    </dialog>
+  );
+}
+
+Dialog.propTypes = {
+  callback: PropTypes.func,
+};
+
+export default Dialog;

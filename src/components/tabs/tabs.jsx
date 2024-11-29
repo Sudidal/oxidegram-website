@@ -1,39 +1,35 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import InlineImageText from "../inlineImageText/inlineImageText.jsx";
 import classes from "./tabs.module.css";
 
 function Tabs({ tabs = [], initTab }) {
   const [tabIndex, setTabIndex] = useState(0);
-  const tabsParentRef = useRef(null);
 
   function switchTab(index) {
     setTabIndex(index);
   }
 
   useEffect(() => {
-    setTabIndex(0)
-    tabs.forEach((tab, i) => {
-      if (tab.name === initTab) {
-        setTabIndex(i);
-      }
-    });
+    setTabIndex(0);
+    if (initTab) {
+      tabs.forEach((tab, i) => {
+        if (tab.name === initTab) {
+          setTabIndex(i);
+        }
+      });
+    }
   }, [initTab, tabs]);
-
-  if (tabsParentRef.current) {
-    tabsParentRef.current.childNodes.forEach((child) => {
-      child.classList.remove(classes.selected);
-    });
-    tabsParentRef.current.childNodes[tabIndex].classList.add(classes.selected);
-  }
 
   return (
     <div className={classes.container}>
-      <div ref={tabsParentRef} className={classes.tabs}>
+      <div className={classes.tabs}>
         {tabs.map((tab, i) => {
           return (
             <button
-              className={`unstyled-btn ${classes.tab}`}
+              className={`unstyled-btn ${classes.tab} ${
+                tabs[tabIndex].name === tab.name ? classes.selected : ""
+              }`}
               key={i}
               onClick={(ev) => {
                 ev.relatedTarget;

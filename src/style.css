@@ -14,6 +14,7 @@ body {
   --primary-background-color: black;
   --secondary-background-color: #262626;
   --tertiary-background-color: rgb(18, 18, 18);
+  --highlight-background-color: rgb(38, 38, 38);
   --primary-text-color: white;
   --secondary-text-color: rgb(168, 168, 168);
   --tertiary-text-color: rgb(115, 115, 115);
@@ -26,7 +27,8 @@ body {
   --secondary-btn-color: rgb(54, 54, 54);
   --grey-5: rgb(142, 142, 142);
 
-  --hover-overlay: rgb(255, 255, 255, .1);
+  --hover-overlay: rgb(255, 255, 255, 0.1);
+  --hover-overlay: rgb(255, 255, 255, 0.1);
 
   --font-semibold: 600;
   --huge-text-size: 20px;
@@ -34,9 +36,8 @@ body {
   --normal-text-size: 14px;
   --small-text-size: 12px;
 
-  --distance-from-sidepanel: 
-
   margin: 0;
+  padding: 0;
   background-color: var(--primary-background-color);
   color: var(--primary-text-color);
   font-size: var(--normal-text-size);
@@ -113,7 +114,8 @@ body.light {
   color: var(--link-color);
 }
 
-.primary-btn, .secondary-btn {
+.primary-btn,
+.secondary-btn {
   border: none;
   border-radius: 8px;
   font-size: var(--normal-text-size);
@@ -169,6 +171,21 @@ body.light {
 .flexbox {
   display: flex;
   gap: 5px;
+}
+
+.centered-flexbox-vertical {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.centered-flexbox-horizontal {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .seperator {

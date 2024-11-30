@@ -6,6 +6,7 @@ import Signup from "./components/signup/signup.jsx";
 import Login from "./components/login/login.jsx";
 import Accounts from "./pages/accounts/accounts.jsx";
 import Profile from "./pages/profile/profile.jsx";
+import Messages from "./pages/messages/messages.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/profile/:tab?",
         element: <Profile />,
+      },
+      {
+        path: "/messages",
+        element: <Messages />,
       },
       {
         path: "/accounts",

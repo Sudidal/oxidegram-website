@@ -1,7 +1,14 @@
 .tabs {
+  --border: 1px solid var(--seperator-color);
+
   display: flex;
   justify-content: center;
   gap: 40px;
+  border-top: var(--border);
+}
+.tabs.bottom {
+  border-top: none;
+  border-bottom: var(--border);
 }
 
 .tab {
@@ -13,6 +20,13 @@
 }
 
 .selected {
+  --border: 1px solid white !important;
+
   color: var(--primary-text-color) !important;
-  border-top: 1px solid white  !important;
+  border-top: var(--border) !important;
+}
+
+.tabs.bottom .selected {
+  border-top: none !important;
+  border-bottom: var(--border);
 }

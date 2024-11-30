@@ -16,7 +16,7 @@ function Profile() {
 
   useEffect(() => {
     if(profile)
-    api.getOneProfileWithDetails(profile.id).then((res) => {
+    api.getDetailsOfOneProfile(profile.id).then((res) => {
       setDetailedProfile(res.profile);
     });
   }, [profile]);
@@ -64,7 +64,6 @@ function Profile() {
               </div>
             </div>
           </div>
-          <hr className="seperator" />
           <Tabs
           initTab={params.tab}
             tabs={[

@@ -56,9 +56,9 @@ function SidePanel() {
         />
         <FullSizeBtn
           iconUrl={"/icons/messenger.svg"}
-          text={"Messeges"}
+          text={"Messages"}
           onClick={() => {
-            nav("/messeges");
+            nav("/messages");
           }}
         />
         <FullSizeBtn

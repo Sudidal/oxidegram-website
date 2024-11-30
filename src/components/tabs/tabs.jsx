@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import InlineImageText from "../inlineImageText/inlineImageText.jsx";
 import classes from "./tabs.module.css";
 
-function Tabs({ tabs = [], initTab }) {
+function Tabs({ tabs = [], initTab, bottomBorder }) {
   const [tabIndex, setTabIndex] = useState(0);
 
   function switchTab(index) {
@@ -23,7 +23,7 @@ function Tabs({ tabs = [], initTab }) {
 
   return (
     <div className={classes.container}>
-      <div className={classes.tabs}>
+      <div className={`${classes.tabs} ${bottomBorder ? classes.bottom : ""}`}>
         {tabs.map((tab, i) => {
           return (
             <button
@@ -49,6 +49,7 @@ function Tabs({ tabs = [], initTab }) {
 Tabs.propTypes = {
   tabs: PropTypes.array,
   initTab: PropTypes.string,
+  bottomBorder: PropTypes.bool,
 };
 
 export default Tabs;

@@ -1,0 +1,86 @@
+.container {
+  --space-sides: 16px;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.heading {
+  padding: 15px var(--space-sides);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--seperator-color);
+}
+
+.body {
+  flex: 1;
+  padding-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+
+.infoBox {
+  margin-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.msgsList {
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--space-sides);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.msg {
+  margin-top: auto;
+  padding: 7px 12px;
+  width: fit-content;
+  font-size: 15px;
+  border-radius: 16px;
+}
+
+.date {
+  width: 100%;
+  text-align: center;
+}
+
+.sent {
+  margin-left: auto;
+  background-color: #3797f0;
+  border-bottom-right-radius: 6px;
+}
+
+.received {
+  margin-right: auto;
+  background-color: rgb(38, 38, 38);
+  border-bottom-left-radius: 6px;
+}
+
+.bottom {
+  margin: 16px var(--space-sides);
+  padding: 10px 24px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--elevated-seperator-color);
+  border-radius: 24px;
+}
+
+.inputField {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--primary-color);
+}
+.inputField:focus {
+  outline: none;
+}

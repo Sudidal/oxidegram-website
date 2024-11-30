@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  padding: 0;
+  width: 400px;
+  border-right: 1px solid var(--seperator-color);
+  overflow: scroll;
+}
+
+.right {
+  flex: 1;
+}

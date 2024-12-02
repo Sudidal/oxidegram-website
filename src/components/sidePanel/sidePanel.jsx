@@ -87,7 +87,7 @@ function SidePanel() {
             icon={<AvatarImg url={profile.avatarUrl} width={30} />}
             text={"Profile"}
             onClick={() => {
-              nav("/profile");
+              nav("/profiles/" + profile.id);
             }}
           />
         )}

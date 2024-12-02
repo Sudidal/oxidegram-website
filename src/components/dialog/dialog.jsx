@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import profileContext from "../../contexts/profileContext.js";
 import PropTypes from "prop-types";
 import FullSizeBtn from "../fullSizeBtn/fullSizeBtn.jsx";
 import api from "../../../api.js";
@@ -8,8 +9,9 @@ import classes from "./dialog.module.css";
 
 function Dialog({ callback }) {
   const [openState, setOpenState] = useState(false);
+  const profile = useContext(profileContext);
   const ref = useRef(null);
-  const nav = useNavigate()
+  const nav = useNavigate();
 
   useEffect(() => {
     callback({
@@ -34,7 +36,7 @@ function Dialog({ callback }) {
   };
 
   function click(ev) {
-    ev.stopPropagation()
+    ev.stopPropagation();
     if (ev.currentTarget === document.body) close();
   }
 
@@ -50,14 +52,14 @@ function Dialog({ callback }) {
         text={"Saved"}
         iconUrl={"/icons/save.svg"}
         onClick={() => {
-          nav("/profile/SAVED")
+          nav(`/profiles/${profile.id}/SAVED`);
         }}
       />
       <FullSizeBtn
         text={"Switch appearance"}
         iconUrl={"/icons/crescent.svg"}
         onClick={() => {
-          themeManager.switch()
+          themeManager.switch();
         }}
       />
       <FullSizeBtn

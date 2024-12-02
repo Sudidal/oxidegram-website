@@ -35,6 +35,10 @@ class Api {
     const res = await fetchManager.authGetReq(this.#url + "/profiles/me");
     return await res.json();
   }
+  async getProfile(id) {
+    const res = await fetchManager.authGetReq(this.#url + "/profiles/" + id);
+    return await res.json();
+  }
   async getTopProfiles() {
     const res = await fetchManager.getReq(this.#url + "/profiles/top?limit=10");
     return await res.json();

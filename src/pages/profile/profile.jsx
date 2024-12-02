@@ -1,6 +1,5 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import profileContext from "../../contexts/profileContext.js";
 import api from "../../../api.js";
 import SidePanel from "../../components/sidePanel/sidePanel.jsx";
 import AvatarImg from "../../components/avatarImg/avatarImg.jsx";
@@ -10,16 +9,20 @@ import Tabs from "../../components/tabs/tabs.jsx";
 import classes from "./profile.module.css";
 
 function Profile() {
+  const [profile, setProfile] = useState(null);
   const [detailedProfile, setDetailedProfile] = useState(null);
-  const profile = useContext(profileContext);
   const params = useParams();
 
+  const profileId = params.profileId;
+
   useEffect(() => {
-    if(profile)
-    api.getDetailsOfOneProfile(profile.id).then((res) => {
-      setDetailedProfile(res.profile);
+    api.getProfile(profileId).then((res) => {
+      setProfile(res.profile);
+      api.getDetailsOfOneProfile(profileId).then((res) => {
+        setDetailedProfile(res.profile);
+      });
     });
-  }, [profile]);
+  }, [profileId]);
 
   return (
     <div>
@@ -60,12 +63,15 @@ function Profile() {
               <div className={classes.proBottom}>
                 <p className="semibold-text normal-text">{profile.fullName}</p>
                 <p>{profile.bio}</p>
-                <div className="semibold-text flexbox"><SvgFileToInline path={"/icons/link.svg"} /> {profile.websiteUrl}</div>
+                <div className="semibold-text flexbox">
+                  <SvgFileToInline path={"/icons/link.svg"} />{" "}
+                  {profile.websiteUrl}
+                </div>
               </div>
             </div>
           </div>
           <Tabs
-          initTab={params.tab}
+            initTab={params.tab}
             tabs={[
               {
                 name: "POSTS",

@@ -4,7 +4,7 @@ import profileContext from "../../contexts/profileContext.js";
 import PropTypes from "prop-types";
 import FullSizeBtn from "../fullSizeBtn/fullSizeBtn.jsx";
 import api from "../../../api.js";
-import themeManager from "../../../utils/themeManager.js";
+import themeManager from "../../utils/themeManager.js";
 import classes from "./dialog.module.css";
 
 function Dialog({ callback }) {

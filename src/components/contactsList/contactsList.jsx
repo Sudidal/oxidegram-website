@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
-import ageFromIsoString from "../../../utils/ageFromIsoString.js";
+import ageFromIsoString from "../../utils/ageFromIsoString.js";
 import classes from "./contactsList.module.css";
 
 function ContactsList({ contacts, onSelect }) {

@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 import api from "../api.js";
 import Modal from "./components/modal/modal.jsx";
 import Dialog from "./components/dialog/dialog.jsx";
-import themeManager from "../utils/themeManager.js";
+import themeManager from "./utils/themeManager.js";
 
 function App() {
   const [profile, setProfile] = useState(null);

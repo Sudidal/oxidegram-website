@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import classes from "./postCard.module.css";
-import ageFromIsoString from "../../../utils/ageFromIsoString.js";
+import ageFromIsoString from "../../utils/ageFromIsoString.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 

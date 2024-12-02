@@ -1,5 +1,5 @@
 .main {
-  padding: 0 100px;
+  padding: 38px 0 100px 100px;
 }
 
 .profileInfo,
@@ -12,7 +12,7 @@
 }
 
 .profileInfo {
-  margin: 38px 0 100px 50px;
+  margin: 0 0 100px 50px;
   width: min-content;
   font-size: 16px;
   gap: 90px;

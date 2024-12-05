@@ -22,9 +22,9 @@ class ThemeManager {
 
   updateBody() {
     if (storageManager.getTheme() === this.#DARK) {
-      document.body.classList.add(this.#LIGHT);
-    } else {
       document.body.classList.remove(this.#LIGHT);
+    } else {
+      document.body.classList.add(this.#LIGHT);
     }
   }
 }

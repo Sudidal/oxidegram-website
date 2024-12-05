@@ -1,32 +1,16 @@
 import PropTypes from "prop-types";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api.js";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
-import { sameDate } from "../../utils/sameDate.js";
-import { simpleDateAndTime } from "../../utils/simpleDateAndTime.js";
+import MessagesList from "../messagesList/messagesList.jsx";
 import classes from "./chat.module.css";
 
 function Chat({ contact }) {
-  const [messages, setMessages] = useState(null);
   const bodyRef = useRef(null);
   const msgInputRef = useRef(null);
   const nav = useNavigate();
-
-  useEffect(() => {
-    if (contact) {
-      setMessages(contact.chat.messages);
-    }
-    if (bodyRef.current) {
-      bodyRef.current.scrollBy(0, bodyRef.current.scrollHeight);
-    }
-  }, [contact]);
-
-  api.onMessageReceive((msg) => {
-    console.log(msg)
-    setMessages([...messages, msg]);
-  });
 
   function sendMessage(ev) {
     ev.preventDefault();
@@ -37,6 +21,11 @@ function Chat({ contact }) {
     );
     msgInputRef.current.value = "";
   }
+
+  setTimeout(() => {
+    if(bodyRef.current)
+    bodyRef.current.scrollBy(0, bodyRef.current.scrollHeight);
+  }, 0)
 
   if (!contact) {
     return (
@@ -74,32 +63,7 @@ function Chat({ contact }) {
             View profile
           </button>
         </div>
-        <div className={classes.msgsList}>
-          {messages &&
-            messages.map((message, i) => {
-              const prevMessage = contact.chat.messages[i - 1];
-              return (
-                <>
-                  {(!prevMessage ||
-                    !sameDate(message.sendDate, prevMessage.sendDate)) && (
-                    <p className={classes.date} key={message.id + "new"}>
-                      {simpleDateAndTime(message.sendDate)}
-                    </p>
-                  )}
-                  <div
-                    className={`${classes.msg} ${
-                      message.senderId === contact.profileId
-                        ? classes.sent
-                        : classes.received
-                    }`}
-                    key={message.id}
-                  >
-                    {message.content}
-                  </div>
-                </>
-              );
-            })}
-        </div>
+        <MessagesList msgs={contact.chat.messages} />
       </div>
       <div className={classes.bottom}>
         <form onSubmit={sendMessage}>

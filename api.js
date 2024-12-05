@@ -12,9 +12,9 @@ class Api {
   #url = import.meta.env.VITE_API_URL;
   #callback = null;
 
-  onMessageReceive(callback) {
+  onMessageReceive = (callback) => {
     this.#callback = callback;
-  }
+  };
 
   async login(data) {
     const res = await fetchManager.postReq(this.#url + "/login", {

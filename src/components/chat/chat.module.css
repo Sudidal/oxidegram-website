@@ -31,41 +31,6 @@
   gap: 10px;
 }
 
-.msgsList {
-  width: 100%;
-  height: 100%;
-  padding: 0 var(--space-sides);
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-bottom: 10px;
-}
-
-.msg {
-  margin-top: auto;
-  padding: 7px 12px;
-  width: fit-content;
-  font-size: 15px;
-  border-radius: 16px;
-}
-
-.date {
-  width: 100%;
-  text-align: center;
-}
-
-.sent {
-  margin-left: auto;
-  background-color: #3797f0;
-  border-bottom-right-radius: 6px;
-}
-
-.received {
-  margin-right: auto;
-  background-color: rgb(38, 38, 38);
-  border-bottom-left-radius: 6px;
-}
-
 .bottom {
   margin: 16px var(--space-sides);
   padding: 10px 24px;

@@ -21,6 +21,17 @@ function Messages() {
       });
   }, [profile]);
 
+  api.onMessageReceive((msg) => {
+    const contactsArr = detailedProfile.contacts;
+    contactsArr.forEach((cont) => {
+      if (cont.chat.id === msg.chatId) {
+        cont.chat.messages.push(msg);
+      }
+    });
+    
+    setDetailedProfile({ ...detailedProfile, contacts: contactsArr });
+  });
+
   function selectContact(contactId) {
     setSelectedContactId(contactId);
   }
@@ -32,6 +43,8 @@ function Messages() {
       }
     });
   }
+
+  console.log("rerender");
 
   if (!detailedProfile) return;
 

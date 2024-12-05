@@ -7,6 +7,7 @@ import dialogContext from "../../contexts/dialogContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import FullSizeBtn from "../fullSizeBtn/fullSizeBtn.jsx";
+import CreatePost from "../createPost/createPost.jsx"
 import classes from "./sidePanel.module.css";
 
 function SidePanel({ collapsed }) {
@@ -103,7 +104,7 @@ function SidePanel({ collapsed }) {
           iconUrl={"/icons/create.svg"}
           text={textItems[counter++]}
           onClick={() => {
-            modal.open();
+            modal.open(<CreatePost />);
           }}
         />
         <FullSizeBtn

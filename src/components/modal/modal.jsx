@@ -1,16 +1,16 @@
 import { useState, useRef } from "react";
 import PropTypes from "prop-types";
-import CreatePost from "../createPost/createPost.jsx";
 import classes from "./modal.module.css";
 
 function Modal({ callback }) {
+  const [content, setContent] = useState(null)
   const dialogRef = useRef(null);
   const [openState, setOpenState] = useState(false);
 
   if (dialogRef.current && !callback.open) {
     callback({
-      open: () => {
-        open();
+      open: (inputCont) => {
+        open(inputCont);
       },
       close: () => {
         close();
@@ -24,7 +24,8 @@ function Modal({ callback }) {
     if (dialogRef.current) dialogRef.current.close();
   }
 
-  function open() {
+  function open(inputCont) {
+    setContent(inputCont)
     setOpenState(true);
   }
   function close() {
@@ -41,7 +42,7 @@ function Modal({ callback }) {
         }
       }}
     >
-      {openState && <CreatePost closeModal={close} />}
+      {openState && content}
     </dialog>
   );
 }

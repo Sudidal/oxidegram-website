@@ -1,15 +1,16 @@
 import { useState, useContext, useRef } from "react";
-import PropTypes from "prop-types";
 import api from "../../../api.js";
 import profileContext from "../../contexts/profileContext.js";
+import modalContext from "../../contexts/modalContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import classes from "./createPost.module.css";
 
-function CreatePost({ closeModal }) {
+function CreatePost() {
   const [file, setFile] = useState(null);
   const [step, setStep] = useState(0);
   const profile = useContext(profileContext);
+  const modal = useContext(modalContext);
   const imageInputRef = useRef(null);
   const contentInputRef = useRef(null);
 
@@ -67,7 +68,7 @@ function CreatePost({ closeModal }) {
                 content: contentInputRef.current.value,
                 image: file,
               });
-              closeModal();
+              modal.close();
             }}
           >
             Share
@@ -89,9 +90,5 @@ function CreatePost({ closeModal }) {
     );
   }
 }
-
-CreatePost.propTypes = {
-  closeModal: PropTypes.func,
-};
 
 export default CreatePost;

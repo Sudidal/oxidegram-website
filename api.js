@@ -1,10 +1,20 @@
-import fetchManager from "./utils/fetchManager.js";
-import storageManager from "./utils/storageManager.js";
+import fetchManager from "./src/utils/fetchManager.js";
+import storageManager from "./src/utils/storageManager.js";
+import wsClient from "./src/utils/wsClient.js";
 
 class Api {
-  constructor() {}
+  constructor() {
+    wsClient.subscribe("chat msg", (msg) => {
+      this.#callback(msg);
+    });
+  }
 
   #url = import.meta.env.VITE_API_URL;
+  #callback = null;
+
+  onMessageReceive(callback) {
+    this.#callback = callback;
+  }
 
   async login(data) {
     const res = await fetchManager.postReq(this.#url + "/login", {
@@ -67,6 +77,10 @@ class Api {
       image: data.image,
     });
     return await res.json();
+  }
+
+  async sendMessage(msg, chatId, recieverId) {
+    wsClient.send("chat msg", msg, [chatId, recieverId]);
   }
 }
 

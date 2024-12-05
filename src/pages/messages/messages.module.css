@@ -1,6 +1,10 @@
 .container {
-  display: flex;
   height: 100vh;
+}
+
+.main {
+  height: 100%;
+  display: flex;
 }
 
 .left {

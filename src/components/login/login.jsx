@@ -14,7 +14,7 @@ function Login() {
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.logo}>
-          <SvgFileToInline path={"/icons/instagram-logo-large.svg"} />
+          <SvgFileToInline path={"/icons/instagram-text-logo-large.svg"} />
         </div>
         <form
           className={classes.form}

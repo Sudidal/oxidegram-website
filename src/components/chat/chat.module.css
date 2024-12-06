@@ -39,13 +39,3 @@
   border: 1px solid var(--elevated-seperator-color);
   border-radius: 24px;
 }
-
-.inputField {
-  flex: 1;
-  background: none;
-  border: none;
-  color: var(--primary-color);
-}
-.inputField:focus {
-  outline: none;
-}

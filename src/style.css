@@ -67,7 +67,7 @@ body.collapsed-panel {
 }
 
 .small-text {
-  margin: 0;
+  /* margin: 0; */
   font-size: var(--small-text-size);
 }
 .normal-text {
@@ -108,6 +108,7 @@ body.collapsed-panel {
 
 .inline-para {
   display: inline;
+  margin: 0;
 }
 
 .middle-text {
@@ -117,6 +118,10 @@ body.collapsed-panel {
 .link {
   margin: 0;
   color: var(--link-color);
+}
+
+.margin-5-px {
+  margin-right: 5px;
 }
 
 .primary-btn,
@@ -165,6 +170,17 @@ body.collapsed-panel {
   font-weight: 300;
   opacity: 1;
 }
+
+.unstyled-input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--primary-color);
+}
+.unstyled-input:focus {
+  outline: none;
+}
+
 
 .select-input {
   font-size: var(--small-text-size);

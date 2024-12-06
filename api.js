@@ -66,16 +66,31 @@ class Api {
     );
     return await res.json();
   }
+
   async getTopPosts() {
     const res = await fetchManager.getReq(this.#url + "/posts/top");
     return await res.json();
   }
-
+  async getCommentsOfPost(postId) {
+    const res = await fetchManager.getReq(
+      this.#url + `/posts/${postId}/comments`
+    );
+    return await res.json();
+  }
   async makePost(data) {
     const res = await fetchManager.authPostReqMultipart(this.#url + "/posts", {
       content: data.content,
       image: data.image,
     });
+    return await res.json();
+  }
+  async makeComment(comment, postId) {
+    const res = await fetchManager.authPostReq(
+      this.#url + `/posts/${postId}/comments`,
+      {
+        content: comment,
+      }
+    );
     return await res.json();
   }
 

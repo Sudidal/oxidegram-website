@@ -28,17 +28,8 @@
   margin: 0;
 }
 
-.bottom,
-.leftSide,
-.rightSide {
-  display: flex;
-  gap: 15px;
-}
-
 .bottom {
   margin: 12px 0 12px 0;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .details > p,

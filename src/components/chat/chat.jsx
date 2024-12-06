@@ -70,7 +70,7 @@ function Chat({ contact }) {
           <input
             ref={msgInputRef}
             type="text"
-            className={classes.inputField}
+            className="unstyled-input"
             placeholder="Message..."
           />
         </form>

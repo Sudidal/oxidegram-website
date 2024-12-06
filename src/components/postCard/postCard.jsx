@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import classes from "./postCard.module.css";
 import ageFromIsoString from "../../utils/ageFromIsoString.js";
-import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
+import PostActions from "../postActions/postActions.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 
 function PostCard({ post }) {
@@ -17,14 +17,7 @@ function PostCard({ post }) {
       </div>
       <img alt="Couldn't load image" className={classes.img} src={post.imageUrl} />
       <div className={classes.bottom}>
-        <div className={classes.leftSide}>
-          <SvgFileToInline path={"/icons/heart.svg"} />
-          <SvgFileToInline path={"/icons/comment.svg"} />
-          <SvgFileToInline path={"/icons/share.svg"} />
-        </div>
-        <div className={classes.rightSide}>
-          <SvgFileToInline path={"/icons/save.svg"} />
-        </div>
+        <PostActions />
       </div>
       <div className={classes.details}>
         <p className="prim-text">{post._count.likers} Likes</p>

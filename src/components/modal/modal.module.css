@@ -1,9 +1,12 @@
 .dialog {
   padding: 0;
   width: fit-content;
-  height: 482px;
   border: none;
   border-radius: 12px;
   color: var(--primary-text-color);
   background-color: var(--secondary-background-color);
+}
+
+.dialog::backdrop {
+  background-color: rgba(204, 204, 204, 0.068);
 }

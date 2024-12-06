@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import classes from "./postCard.module.css";
-import ageFromIsoString from "../../utils/ageFromIsoString.js";
+import dateOps from "../../utils/dateOps.js";
 import PostActions from "../postActions/postActions.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 
@@ -13,7 +13,7 @@ function PostCard({ post }) {
         </div>
         <p className="prim-text">{post.author.username}</p>
         <p>•</p>
-        <p className="secon-text">{ageFromIsoString(post.publishDate)}</p>
+        <p className="secon-text">{dateOps.getAgeFromIsoString(post.publishDate)}</p>
       </div>
       <img alt="Couldn't load image" className={classes.img} src={post.imageUrl} />
       <div className={classes.bottom}>

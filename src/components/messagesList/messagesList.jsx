@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import PropTypes from "prop-types";
 import profileContext from "../../contexts/profileContext.js";
-import { sameDate } from "../../utils/sameDate.js";
-import { simpleDateAndTime } from "../../utils/simpleDateAndTime.js";
+import dateOps from "../../utils/dateOps.js";
 import classes from "./messagesList.module.css";
 
 function MessagesList({ msgs }) {
@@ -17,9 +16,9 @@ function MessagesList({ msgs }) {
         return (
           <>
             {(!prevMessage ||
-              !sameDate(message.sendDate, prevMessage.sendDate)) && (
+              !dateOps.isSameDate(message.sendDate, prevMessage.sendDate)) && (
               <p className={classes.date} key={message.id + "new"}>
-                {simpleDateAndTime(message.sendDate)}
+                {dateOps.isoToBeautyDateAndTime(message.sendDate)}
               </p>
             )}
             <div

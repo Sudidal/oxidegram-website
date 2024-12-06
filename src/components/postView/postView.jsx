@@ -5,7 +5,7 @@ import modalContext from "../../contexts/modalContext.js";
 import PostActions from "../postActions/postActions.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import Comment from "../comment/comment.jsx";
-import ageFromIsoString from "../../utils/ageFromIsoString.js";
+import dateOps from "../../utils/dateOps.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import classes from "./postView.module.css";
 
@@ -70,7 +70,7 @@ function PostView({ post }) {
           <div className={classes.details}>
             <p className="semibold-text">{post._count.likers} Likes</p>
             <p className="small-text secon-text">
-              {ageFromIsoString(post.publishDate, false)}
+              {dateOps.getAgeFromIsoString(post.publishDate, false)}
             </p>
           </div>
           </div>

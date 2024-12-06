@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
-import ageFromIsoString from "../../utils/ageFromIsoString.js";
+import dateOps from "../../utils/dateOps.js";
 import classes from "./contactsList.module.css";
 
 function ContactsList({ contacts, onSelect }) {
@@ -34,7 +34,7 @@ function ContactsList({ contacts, onSelect }) {
                 {messages[messages.length - 1] && (
                   <div className="secon-text small-text">
                     {messages[messages.length - 1].content} .{" "}
-                    {ageFromIsoString(messages[messages.length - 1].sendDate)}
+                    {dateOps.getAgeFromIsoString(messages[messages.length - 1].sendDate)}
                   </div>
                 )}
               </div>

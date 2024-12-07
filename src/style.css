@@ -170,6 +170,10 @@ body.collapsed-panel {
   font-weight: 300;
   opacity: 1;
 }
+.hidden-round-border {
+  border: none;
+  border-radius: 4px;
+}
 
 .unstyled-input {
   flex: 1;

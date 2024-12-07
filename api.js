@@ -66,6 +66,12 @@ class Api {
     );
     return await res.json();
   }
+  async searchProfiles(query) {
+    const res = await fetchManager.getReq(
+      this.#url + `/profiles/search?query=${query}`
+    );
+    return await res.json();
+  }
 
   async getTopPosts() {
     const res = await fetchManager.getReq(this.#url + "/posts/top");

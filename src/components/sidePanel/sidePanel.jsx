@@ -8,6 +8,7 @@ import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import FullSizeBtn from "../fullSizeBtn/fullSizeBtn.jsx";
 import CreatePost from "../createPost/createPost.jsx"
+import SearchMenu from "../searchMenu/searchMenu.jsx";
 import classes from "./sidePanel.module.css";
 
 function SidePanel({ collapsed }) {
@@ -69,7 +70,7 @@ function SidePanel({ collapsed }) {
           iconUrl={"/icons/search.svg"}
           text={textItems[counter++]}
           onClick={() => {
-            nav("/search");
+            modal.open(<SearchMenu />)
           }}
         />
         <FullSizeBtn

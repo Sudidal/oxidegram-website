@@ -29,13 +29,30 @@ function Home() {
         </div>
         <div className={classes.rightSide}>
           <div className={classes.content}>
-            {profile && <ProfileCard profile={profile} />}
+            {profile && (
+              <ProfileCard
+                profile={profile}
+                sideBtn={{
+                  title: "Log out",
+                  onClick: api.logout,
+                }}
+              />
+            )}
             <div className={classes.suggested}>
               <p className="secon-text-semibold">Suggested for you</p>
               <div className={classes.profileList}>
                 {profiles &&
                   profiles.map((profile) => {
-                    return <ProfileCard key={profile.id} profile={profile} />;
+                    return (
+                      <ProfileCard
+                        key={profile.id}
+                        profile={profile}
+                        sideBtn={{
+                          title: "Follow",
+                          onClick: () => console.log("follow"),
+                        }}
+                      />
+                    );
                   })}
               </div>
             </div>

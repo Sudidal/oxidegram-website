@@ -11,7 +11,7 @@ function CreatePost() {
   const [step, setStep] = useState(0);
   const profile = useContext(profileContext);
   const modal = useContext(modalContext);
-  const imageInputRef = useRef(null);
+  const fileInputRef = useRef(null);
   const contentInputRef = useRef(null);
 
   function stepOn() {
@@ -19,6 +19,18 @@ function CreatePost() {
   }
   function stepBack() {
     setStep(0);
+  }
+
+  function share() {
+    api
+      .makePost({
+        content: contentInputRef.current.value,
+        file: file,
+      })
+      .then(() => {
+        console.log("share");
+        modal.close();
+      });
   }
 
   if (step === 0) {
@@ -32,9 +44,9 @@ function CreatePost() {
           <p className={classes.text}>Select only photos not videos</p>
           <form action="" encType="multipart/form-data">
             <input
-              ref={imageInputRef}
+              ref={fileInputRef}
               type="file"
-              accept="image/*"
+              accept="image/*, video/*"
               style={{ display: "none" }}
               onChange={(ev) => {
                 setFile(ev.target.files[0]);
@@ -45,7 +57,7 @@ function CreatePost() {
           <button
             className="primary-btn"
             onClick={() => {
-              imageInputRef.current.click();
+              fileInputRef.current.click();
             }}
           >
             Select from computer
@@ -61,16 +73,7 @@ function CreatePost() {
             <SvgFileToInline path={"/icons/leftArrow.svg"} />
           </div>
           <h2 className={classes.headerText}>Create new post</h2>
-          <button
-            className="no-border-btn"
-            onClick={async () => {
-              await api.makePost({
-                content: contentInputRef.current.value,
-                image: file,
-              });
-              modal.close();
-            }}
-          >
+          <button className="no-border-btn" onClick={share}>
             Share
           </button>
         </div>

@@ -86,7 +86,7 @@ class Api {
   async makePost(data) {
     const res = await fetchManager.authPostReqMultipart(this.#url + "/posts", {
       content: data.content,
-      image: data.image,
+      file: data.file,
     });
     return await res.json();
   }

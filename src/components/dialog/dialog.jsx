@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
 import PropTypes from "prop-types";
@@ -13,27 +13,22 @@ function Dialog({ callback }) {
   const ref = useRef(null);
   const nav = useNavigate();
 
-  useEffect(() => {
-    callback({
-      open: open,
-      close: close,
-    });
-  }, [callback]);
+  callback({
+    open: open,
+    close: close,
+  });
 
-  useEffect(() => {
-    return () => {};
-  }, []);
-
-  const open = (pos) => {
+  function open(pos) {
     setOpenState(true);
     ref.current.style.left = pos.x + "px";
     ref.current.style.top = pos.y + "px";
     document.body.addEventListener("mousedown", click);
-  };
-  const close = () => {
+  }
+
+  function close() {
     setOpenState(false);
     document.body.removeEventListener("mousedown", click);
-  };
+  }
 
   function click(ev) {
     ev.stopPropagation();

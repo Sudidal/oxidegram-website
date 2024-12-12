@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import classes from "./postCard.module.css";
 import dateOps from "../../utils/dateOps.js";
@@ -5,6 +6,12 @@ import PostActions from "../postActions/postActions.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 
 function PostCard({ post }) {
+  const [isVideo, setIsVideo] = useState(false);
+
+  function loadFail() {
+    setIsVideo(true);
+  }
+
   return (
     <div className={classes.card}>
       <div className={classes.top}>
@@ -13,9 +20,19 @@ function PostCard({ post }) {
         </div>
         <p className="prim-text">{post.author.username}</p>
         <p>•</p>
-        <p className="secon-text">{dateOps.getAgeFromIsoString(post.publishDate)}</p>
+        <p className="secon-text">
+          {dateOps.getAgeFromIsoString(post.publishDate)}
+        </p>
       </div>
-      <img alt="Couldn't load image" className={classes.img} src={post.imageUrl} />
+      {isVideo ? (
+        <video src={post.imageUrl} className={classes.img} autoPlay />
+      ) : (
+        <img
+          className={classes.img}
+          src={post.imageUrl}
+          onError={loadFail}
+        />
+      )}
       <div className={classes.bottom}>
         <PostActions />
       </div>

@@ -1,17 +1,31 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
-import classes from "./loopingVideo.module.css";
+import { isInViewPort } from "../../utils/isInViewPort.js";
+import classes from "./coolVideo.module.css";
 
-function LoopingVideo({ src, className }) {
+function CoolVideo({ src, className }) {
+  const [stopped, setStopped] = useState(false);
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef(null);
 
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (stopped) return;
+      setPlaying(isInViewPort(videoRef.current));
+    }, 1000);
+    return () => {
+      clearInterval(id);
+    };
+  }, [stopped]);
+
   function play() {
     setPlaying(true);
+    setStopped(false);
   }
   function stop() {
     setPlaying(false);
+    setStopped(true);
   }
   function toggle() {
     if (playing) {
@@ -36,10 +50,9 @@ function LoopingVideo({ src, className }) {
         onEnded={play}
         onCanPlay={play}
         className={className}
-        // controls={controls}
         src={src}
       ></video>
-      {!playing && (
+      {stopped && (
         <div className={classes.pauseIcon}>
           <SvgFileToInline path={"/icons/play.svg"} />
         </div>
@@ -48,9 +61,9 @@ function LoopingVideo({ src, className }) {
   );
 }
 
-LoopingVideo.propTypes = {
+CoolVideo.propTypes = {
   src: PropTypes.string,
   className: PropTypes.string,
 };
 
-export default LoopingVideo;
+export default CoolVideo;

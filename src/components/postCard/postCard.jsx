@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classes from "./postCard.module.css";
 import dateOps from "../../utils/dateOps.js";
 import PostActions from "../postActions/postActions.jsx";
+import LoopingVideo from "../loopingVideo/loopingVideo.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 
 function PostCard({ post }) {
@@ -25,7 +26,7 @@ function PostCard({ post }) {
         </p>
       </div>
       {isVideo ? (
-        <video src={post.imageUrl} className={classes.img} autoPlay />
+        <LoopingVideo src={post.imageUrl} className={classes.img} />
       ) : (
         <img
           className={classes.img}

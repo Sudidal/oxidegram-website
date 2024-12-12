@@ -7,6 +7,7 @@ import AvatarImg from "../avatarImg/avatarImg.jsx";
 import Comment from "../comment/comment.jsx";
 import dateOps from "../../utils/dateOps.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
+import LoopingVideo from "../loopingVideo/loopingVideo.jsx";
 import classes from "./postView.module.css";
 
 function PostView({ post }) {
@@ -51,12 +52,7 @@ function PostView({ post }) {
       </div>
       <div className={classes.left}>
         {isVideo ? (
-          <video
-            src={post.imageUrl}
-            className={classes.img}
-            autoPlay
-            controls
-          ></video>
+          <LoopingVideo className={classes.img} src={post.imageUrl} controls />
         ) : (
           <img className={classes.img} src={post.imageUrl} alt="" />
         )}

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import classes from "./postCard.module.css";
 import dateOps from "../../utils/dateOps.js";
@@ -7,11 +6,7 @@ import CoolVideo from "../coolVideo/coolVideo.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 
 function PostCard({ post }) {
-  const [isVideo, setIsVideo] = useState(false);
-
-  function loadFail() {
-    setIsVideo(true);
-  }
+  const isVideo = post.fileType === "VIDEO"
 
   return (
     <div className={classes.card}>
@@ -31,7 +26,6 @@ function PostCard({ post }) {
         <img
           className={classes.img}
           src={post.imageUrl}
-          onError={loadFail}
         />
       )}
       <div className={classes.bottom}>

@@ -13,7 +13,6 @@ import classes from "./postView.module.css";
 function PostView({ post }) {
   const [update, setUpdate] = useState(null);
   const [comments, setComments] = useState(null);
-  const [isVideo, setIsVideo] = useState(false);
   const modal = useContext(modalContext);
   const commentInputRef = useRef(null);
 
@@ -21,12 +20,6 @@ function PostView({ post }) {
     api.getCommentsOfPost(post.id).then((res) => {
       setComments(res.comments);
     });
-
-    const img = new Image();
-    img.src = post.imageUrl;
-    img.onerror = () => {
-      setIsVideo(true);
-    };
   }, [post, update]);
 
   function postComment() {
@@ -37,6 +30,8 @@ function PostView({ post }) {
       setUpdate(!update);
     });
   }
+
+  const isVideo = post.fileType === "VIDEO"
 
   return (
     <div className={classes.container}>

@@ -1,14 +1,14 @@
-import api from "../../../api.js";
-import { useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useContext, useRef } from "react";
+import { Link } from "react-router-dom";
+import profileContext from "../../contexts/profileContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import InlineImageText from "../inlineImageText/inlineImageText.jsx";
 import classes from "./login.module.css";
 
 function Login() {
+  const profile = useContext(profileContext)
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
-  const nav = useNavigate();
 
   return (
     <div className={classes.container}>
@@ -20,16 +20,11 @@ function Login() {
           className={classes.form}
           onSubmit={(ev) => {
             ev.preventDefault();
-            api
+            profile
               .login({
                 email: emailInput.current.value,
                 password: passwordInput.current.value,
               })
-              .then((res) => {
-                if (res) {
-                  nav("/");
-                }
-              });
           }}
         >
           <div className={classes.fields}>

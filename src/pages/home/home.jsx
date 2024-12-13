@@ -34,7 +34,7 @@ function Home() {
                 profile={profile}
                 sideBtn={{
                   title: "Log out",
-                  onClick: api.logout,
+                  onClick: profile.logout,
                 }}
               />
             )}

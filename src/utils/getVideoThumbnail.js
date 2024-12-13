@@ -7,14 +7,26 @@ function getVideoThumbnail(src, callback) {
   video.crossOrigin = "anonymous";
   video.play();
 
-  video.requestVideoFrameCallback(() => {
+  video.onloadeddata = () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
     context.drawImage(video, 0, 0);
-    video.src = "";
+
+    cleanUp();
+
     callback(canvas.toDataURL("image/png"));
-  });
+  };
+  video.onerror = () => {
+    cleanUp();
+  };
+
+  function cleanUp() {
+    video.src = "";
+    video.load();
+    video.onloadeddata = null;
+    video.onerror = null;
+  }
 }
 
 export { getVideoThumbnail };

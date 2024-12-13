@@ -60,7 +60,7 @@ class Api {
     );
     return await res.json();
   }
-  async getContactsOfOneProfile(id) {
+  async getContacts(id) {
     const res = await fetchManager.getReq(
       this.#url + `/profiles/details/${id}?contacts=true`
     );
@@ -100,6 +100,30 @@ class Api {
       {
         content: comment,
       }
+    );
+    return await res.json();
+  }
+  async likePost(postId) {
+    const res = await fetchManager.authPostReq(
+      this.#url + `/posts/${postId}/like`
+    );
+    return await res.json();
+  }
+  async unlikePost(postId) {
+    const res = await fetchManager.authPostReq(
+      this.#url + `/posts/${postId}/unlike`
+    );
+    return await res.json();
+  }
+  async save(postId) {
+    const res = await fetchManager.authPostReq(
+      this.#url + `/posts/${postId}/save`
+    );
+    return await res.json();
+  }
+  async unsave(postId) {
+    const res = await fetchManager.authPostReq(
+      this.#url + `/posts/${postId}/unsave`
     );
     return await res.json();
   }

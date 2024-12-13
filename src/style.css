@@ -28,6 +28,7 @@ body {
   --primary-btn-color: rgb(0, 149, 246);
   --secondary-btn-color: rgb(54, 54, 54);
   --grey-5: rgb(142, 142, 142);
+  --badge-color: rgb(255, 48, 64);
 
   --hover-overlay: rgb(255, 255, 255, 0.1);
   --hover-overlay: rgb(255, 255, 255, 0.1);
@@ -184,7 +185,6 @@ body.collapsed-panel {
 .unstyled-input:focus {
   outline: none;
 }
-
 
 .select-input {
   font-size: var(--small-text-size);

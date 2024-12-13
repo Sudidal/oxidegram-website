@@ -1,6 +1,8 @@
 .dialog {
   padding: 0;
   width: fit-content;
+  min-width: 30px;
+  min-height: 30px;
   border: none;
   border-radius: 12px;
   color: var(--primary-text-color);

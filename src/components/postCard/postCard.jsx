@@ -1,12 +1,27 @@
+import { useState, useContext } from "react";
+import modalContext from "../../contexts/modalContext.js";
 import PropTypes from "prop-types";
-import classes from "./postCard.module.css";
 import dateOps from "../../utils/dateOps.js";
 import PostActions from "../postActions/postActions.jsx";
 import CoolVideo from "../coolVideo/coolVideo.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
+import PostView from "../postView/postView.jsx";
+import classes from "./postCard.module.css";
 
 function PostCard({ post }) {
-  const isVideo = post.fileType === "VIDEO"
+  const [likes, setLikes] = useState(post._count.likers);
+  const modal = useContext(modalContext)
+  const isVideo = post.fileType === "VIDEO";
+
+  function change(ev) {
+    switch (ev) {
+      case "like":
+        setLikes(likes + 1);
+        break;
+      case "unlike":
+        setLikes(likes - 1);
+    }
+  }
 
   return (
     <div className={classes.card}>
@@ -23,21 +38,20 @@ function PostCard({ post }) {
       {isVideo ? (
         <CoolVideo src={post.imageUrl} className={classes.img} />
       ) : (
-        <img
-          className={classes.img}
-          src={post.imageUrl}
-        />
+        <img className={classes.img} src={post.imageUrl} />
       )}
       <div className={classes.bottom}>
-        <PostActions />
+        <PostActions post={post} onChange={change} />
       </div>
       <div className={classes.details}>
-        <p className="prim-text">{post._count.likers} Likes</p>
+        <p className="prim-text">{likes} Likes</p>
         <div>
           <p className="prim-text inline-para">{post.author.username} </p>
           <p className="inline-para">{post.content}</p>
         </div>
-        <p className="secon-text">View all {post._count.comments} comments</p>
+        <div onClick={() => {
+          modal.open(<PostView post={post} />)
+        }} className="secon-text">View all {post._count.comments} comments</div>
       </div>
     </div>
   );

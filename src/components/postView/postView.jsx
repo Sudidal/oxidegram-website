@@ -13,6 +13,7 @@ import classes from "./postView.module.css";
 function PostView({ post }) {
   const [update, setUpdate] = useState(null);
   const [comments, setComments] = useState(null);
+  const [likes, setLikes] = useState(post._count.likers);
   const modal = useContext(modalContext);
   const commentInputRef = useRef(null);
 
@@ -26,12 +27,22 @@ function PostView({ post }) {
     const content = commentInputRef.current.value;
     api.makeComment(content, post.id).then(() => {
       console.log("made a comment");
-      commentInputRef.current.value = ""
+      commentInputRef.current.value = "";
       setUpdate(!update);
     });
   }
 
-  const isVideo = post.fileType === "VIDEO"
+  function action(ev) {
+    switch (ev) {
+      case "like":
+        setLikes(likes + 1);
+        break;
+      case "unlike":
+        setLikes(likes - 1);
+    }
+  }
+
+  const isVideo = post.fileType === "VIDEO";
 
   return (
     <div className={classes.container}>
@@ -73,13 +84,13 @@ function PostView({ post }) {
         </div>
         <div className={classes.bottom}>
           <div className={classes.bottomUpper}>
-          <PostActions />
-          <div className={classes.details}>
-            <p className="semibold-text">{post._count.likers} Likes</p>
-            <p className="small-text secon-text">
-              {dateOps.getAgeFromIsoString(post.publishDate, false)}
-            </p>
-          </div>
+            <PostActions post={post} onChange={action} />
+            <div className={classes.details}>
+              <p className="semibold-text">{likes} Likes</p>
+              <p className="small-text secon-text">
+                {dateOps.getAgeFromIsoString(post.publishDate, false)}
+              </p>
+            </div>
           </div>
           <form
             className={classes.form}

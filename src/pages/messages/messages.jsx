@@ -16,7 +16,7 @@ function Messages() {
 
   useEffect(() => {
     if (profile)
-      api.getContactsOfOneProfile(profile.id).then((res) => {
+      api.getContacts(profile.id).then((res) => {
         setDetailedProfile(res.profile);
       });
   }, [profile]);

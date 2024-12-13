@@ -27,6 +27,12 @@ function CoolVideo({ src, className }) {
     setPlaying(false);
     setStopped(true);
   }
+  function reset() {
+    // Setting playing to true won't rerender
+    // so video wont do a play()
+    videoRef.current.play();
+  }
+
   function toggle() {
     if (playing) {
       stop();
@@ -47,7 +53,7 @@ function CoolVideo({ src, className }) {
     <div onClick={toggle} className={classes.container}>
       <video
         ref={videoRef}
-        onEnded={play}
+        onEnded={reset}
         onCanPlay={play}
         className={className}
         src={src}

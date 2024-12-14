@@ -125,6 +125,9 @@ body.collapsed-panel {
 .margin-5-px {
   margin-right: 5px;
 }
+.no-margin {
+  margin: 0;
+}
 
 .primary-btn,
 .secondary-btn {

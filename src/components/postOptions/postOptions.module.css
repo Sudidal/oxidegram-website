@@ -4,12 +4,3 @@
   flex-direction: column;
   background-color: var(--secondary-background-color);
 }
-
-.btn:first-child {
-  border-top: none !important;
-}
-
-.btn {
-  height: 48px;
-  border-top: 1px solid var(--elevated-seperator-color) !important;
-}

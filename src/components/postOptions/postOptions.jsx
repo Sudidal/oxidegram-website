@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import profileContext from "../../contexts/profileContext.js";
 import modalContext from "../../contexts/modalContext.js";
 import ShareMenu from "../shareMenu/shareMenu.jsx";
+import ConfirmPopup from "../confirmPopup/confirmPopup.jsx";
+import StackingBtn from "../stackingBtn/stackingBtn.jsx";
 import api from "../../../api.js";
 import classes from "./postOptions.module.css";
 
@@ -18,36 +20,43 @@ function PostOptions({ post }) {
   return (
     <div className={classes.container}>
       {deletable && (
-        <button className={`unstyled-btn danger ${classes.btn}`} onClick={() => {
-          api.deletePost(post.id)
-        }}>Delete</button>
+        <StackingBtn
+          content={"Delete"}
+          danger={true}
+          onClick={() => {
+            modal.open(
+              <ConfirmPopup
+                title="Delete Post"
+                para={"Are you sure you want to delete this post"}
+                actionTitle="Delete"
+                action={() => {
+                  api.deletePost(post.id);
+                }}
+              />
+            );
+          }}
+        />
       )}
-      <button
-        className={`unstyled-btn ${classes.btn}`}
-        onClick={() => [nav(postUrl)]}
-      >
-        Go to post
-      </button>
-      <button
-        className={`unstyled-btn ${classes.btn}`}
+      <StackingBtn
+        content={"Go to post"}
+        onClick={() => {
+          nav(postUrl);
+        }}
+      />
+      <StackingBtn
+        content={"Share"}
         onClick={() => {
           modal.open(<ShareMenu post={post} />);
         }}
-      >
-        Share
-      </button>
-      <button
-        className={`unstyled-btn ${classes.btn}`}
+      />
+      <StackingBtn
+        content={"Copy link"}
         onClick={() => {
           navigator.clipboard.writeText(postUrl);
           modal.close();
         }}
-      >
-        Copy link
-      </button>
-      <button className={`unstyled-btn ${classes.btn}`} onClick={modal.close}>
-        Cancel
-      </button>
+      />
+      <StackingBtn content={"Cancel"} onClick={modal.close} />
     </div>
   );
 }

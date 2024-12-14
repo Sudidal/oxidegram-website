@@ -8,6 +8,7 @@ import Comment from "../comment/comment.jsx";
 import dateOps from "../../utils/dateOps.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import CoolVideo from "../coolVideo/coolVideo.jsx";
+import PostOptions from "../postOptions/postOptions.jsx";
 import classes from "./postView.module.css";
 
 function PostView({ post }) {
@@ -65,8 +66,17 @@ function PostView({ post }) {
       </div>
       <div className={classes.right}>
         <div className={classes.top}>
+          <div className={classes.topLeft}>
           <AvatarImg url={post.author.avatarUrl} width={32} />
           <p className="semibol-text">{post.author.username}</p>
+          </div>
+          <div className={classes.topRight}>
+            <button className="unstyled-btn" onClick={() => {
+              modal.open(<PostOptions post={post} />)
+            }}>
+              <SvgFileToInline path={"/icons/three-dots.svg"} />
+            </button>
+          </div>
         </div>
         <div className={classes.body}>
           <div className={classes.commentsList}>

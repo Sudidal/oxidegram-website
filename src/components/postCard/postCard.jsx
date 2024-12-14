@@ -6,11 +6,13 @@ import PostActions from "../postActions/postActions.jsx";
 import CoolVideo from "../coolVideo/coolVideo.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import PostView from "../postView/postView.jsx";
+import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
+import PostOptions from "../postOptions/postOptions.jsx";
 import classes from "./postCard.module.css";
 
 function PostCard({ post }) {
   const [likes, setLikes] = useState(post._count.likers);
-  const modal = useContext(modalContext)
+  const modal = useContext(modalContext);
   const isVideo = post.fileType === "VIDEO";
 
   function change(ev) {
@@ -26,14 +28,26 @@ function PostCard({ post }) {
   return (
     <div className={classes.card}>
       <div className={classes.top}>
-        <div className={classes.avatar}>
-          <AvatarImg width={32} url={post.author.avatarUrl} />
+        <div className={classes.left}>
+          <div className={classes.avatar}>
+            <AvatarImg width={32} url={post.author.avatarUrl} />
+          </div>
+          <p className="prim-text">{post.author.username}</p>
+          <div className="secon-text">•</div>
+          <p className="secon-text">
+            {dateOps.getAgeFromIsoString(post.publishDate)}
+          </p>
         </div>
-        <p className="prim-text">{post.author.username}</p>
-        <p>•</p>
-        <p className="secon-text">
-          {dateOps.getAgeFromIsoString(post.publishDate)}
-        </p>
+        <div className={classes.right}>
+          <button
+            className="unstyled-btn"
+            onClick={() => {
+              modal.open(<PostOptions post={post} />);
+            }}
+          >
+            <SvgFileToInline path={"/icons/three-dots.svg"} />
+          </button>
+        </div>
       </div>
       {isVideo ? (
         <CoolVideo src={post.imageUrl} className={classes.img} />
@@ -49,9 +63,14 @@ function PostCard({ post }) {
           <p className="prim-text inline-para">{post.author.username} </p>
           <p className="inline-para">{post.content}</p>
         </div>
-        <div onClick={() => {
-          modal.open(<PostView post={post} />)
-        }} className="secon-text">View all {post._count.comments} comments</div>
+        <div
+          onClick={() => {
+            modal.open(<PostView post={post} />);
+          }}
+          className="secon-text"
+        >
+          View all {post._count.comments} comments
+        </div>
       </div>
     </div>
   );

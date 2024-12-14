@@ -35,12 +35,19 @@
   display: flex;
   flex-direction: column;
 }
-.top {
-  padding: 0 var(--padding-sides);
-  height: 60px;
+
+.top,
+.topRight,
+.topLeft {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.top {
+  justify-content: space-between;
+  padding: 0 var(--padding-sides);
+  height: 60px;
   border-bottom: 1px solid var(--seperator-color);
 }
 

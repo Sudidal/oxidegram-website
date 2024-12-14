@@ -103,6 +103,12 @@ class Api {
     );
     return await res.json();
   }
+  async deletePost(postId) {
+    const res = await fetchManager.authDeleteReq(
+      this.#url + `/posts/${postId}`
+    );
+    return await res.json();
+  }
   async likePost(postId) {
     const res = await fetchManager.authPostReq(
       this.#url + `/posts/${postId}/like`
@@ -130,6 +136,10 @@ class Api {
 
   async sendMessage(msg, chatId, recieverId) {
     wsClient.send("chat msg", msg, [chatId, recieverId]);
+  }
+
+  getUrlOfPost(postId) {
+    return window.location + "posts/" + postId;
   }
 }
 

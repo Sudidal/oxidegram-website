@@ -29,6 +29,7 @@ body {
   --secondary-btn-color: rgb(54, 54, 54);
   --grey-5: rgb(142, 142, 142);
   --badge-color: rgb(255, 48, 64);
+  --danger-color: rgb(237, 73, 86);
 
   --hover-overlay: rgb(255, 255, 255, 0.1);
   --hover-overlay: rgb(255, 255, 255, 0.1);
@@ -142,6 +143,11 @@ body.collapsed-panel {
   height: 32px;
   padding: 0 16px;
   background-color: var(--secondary-btn-color);
+}
+
+.danger {
+  color: var(--danger-color) !important;
+  font-weight: 600 !important;
 }
 
 .no-border-btn {

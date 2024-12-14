@@ -7,6 +7,7 @@ import Login from "./components/login/login.jsx";
 import Accounts from "./pages/accounts/accounts.jsx";
 import Profile from "./pages/profile/profile.jsx";
 import Reels from "./pages/reels/reels.jsx";
+import Posts from "./pages/posts/posts.jsx";
 import Messages from "./pages/messages/messages.jsx";
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/messages",
         element: <Messages />,
+      },
+      {
+        path: "/posts/:postId",
+        element: <Posts />,
       },
       {
         path: "/accounts",

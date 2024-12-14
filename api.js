@@ -77,6 +77,10 @@ class Api {
     const res = await fetchManager.getReq(this.#url + "/posts/top");
     return await res.json();
   }
+  async getOnePost(postId) {
+    const res = await fetchManager.getReq(this.#url + "/posts/" + postId);
+    return await res.json();
+  }
   async getTopVideos() {
     const res = await fetchManager.getReq(this.#url + "/posts/top?videos=true");
     return await res.json();

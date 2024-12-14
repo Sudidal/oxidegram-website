@@ -11,7 +11,7 @@ import CoolVideo from "../coolVideo/coolVideo.jsx";
 import PostOptions from "../postOptions/postOptions.jsx";
 import classes from "./postView.module.css";
 
-function PostView({ post }) {
+function PostView({ post, fullScreen = false }) {
   const [update, setUpdate] = useState(null);
   const [comments, setComments] = useState(null);
   const [likes, setLikes] = useState(post._count.likers);
@@ -47,7 +47,7 @@ function PostView({ post }) {
 
   return (
     <div className={classes.container}>
-      <div className={classes.closeBtn}>
+      {!fullScreen && <div className={classes.closeBtn}>
         <button
           className="unstyled-btn"
           onClick={() => {
@@ -56,7 +56,7 @@ function PostView({ post }) {
         >
           <SvgFileToInline path={"/icons/cross.svg"} />
         </button>
-      </div>
+      </div>}
       <div className={classes.left}>
         {isVideo ? (
           <CoolVideo className={classes.img} src={post.imageUrl} controls />
@@ -127,6 +127,7 @@ function PostView({ post }) {
 
 PostView.propTypes = {
   post: PropTypes.object,
+  fullScreen: PropTypes.bool,
 };
 
 export default PostView;

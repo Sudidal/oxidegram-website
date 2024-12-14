@@ -1,0 +1,7 @@
+.container {
+  padding: 4vh 20px 16px;
+}
+
+.wrapper {
+  border: 1px solid var(--elevated-seperator-color);
+}

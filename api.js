@@ -139,7 +139,10 @@ class Api {
   }
 
   getUrlOfPost(postId) {
-    return window.location + "posts/" + postId;
+    return {
+      relativeUrl: "/posts/" + postId,
+      absoluteUrl: window.location + "posts/" + postId,
+    };
   }
 }
 

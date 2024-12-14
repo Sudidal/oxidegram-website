@@ -15,7 +15,7 @@ function PostOptions({ post }) {
   const nav = useNavigate();
 
   const deletable = profile.id === post.author.id;
-  const postUrl = api.getUrlOfPost(post.id);
+  const {relativeUrl, absoluteUrl} = api.getUrlOfPost(post.id);
 
   return (
     <div className={classes.container}>
@@ -40,7 +40,7 @@ function PostOptions({ post }) {
       <StackingBtn
         content={"Go to post"}
         onClick={() => {
-          nav(postUrl);
+          nav(relativeUrl);
         }}
       />
       <StackingBtn
@@ -52,7 +52,7 @@ function PostOptions({ post }) {
       <StackingBtn
         content={"Copy link"}
         onClick={() => {
-          navigator.clipboard.writeText(postUrl);
+          navigator.clipboard.writeText(absoluteUrl);
           modal.close();
         }}
       />

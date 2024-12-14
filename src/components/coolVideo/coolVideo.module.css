@@ -5,12 +5,12 @@
 }
 
 .pauseIcon {
-  --size: 20px;
+  --size: 40px;
 
   position: absolute;
   top: calc(50% - var(--size));
   left: calc(50% - var(--size));
-  padding: var(--size);
+  padding: calc(var(--size) / 2);
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
 }

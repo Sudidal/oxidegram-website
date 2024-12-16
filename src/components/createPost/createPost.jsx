@@ -84,7 +84,7 @@ function CreatePost() {
           <div className={classes.right}>
             <div className={classes.profileInfo}>
               <AvatarImg url={profile.avatarUrl} width={28} />
-              <p className="prim-text">{profile.username}</p>
+              <p className="semibold-text">{profile.username}</p>
             </div>
             <textarea ref={contentInputRef} className={classes.contentInput} />
           </div>

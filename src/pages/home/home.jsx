@@ -8,7 +8,7 @@ import classes from "./home.module.css";
 
 function Home() {
   const [posts, setPosts] = useState(null);
-  const [profiles, setProfiles] = useState(null);
+  const [topProfiles, setTopProfiles] = useState(null);
   const profile = useContext(profileContext);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function Home() {
       setPosts(res.posts);
     });
     api.getTopProfiles().then((res) => {
-      setProfiles(res.profiles);
+      setTopProfiles(res.profiles);
     });
   }, []);
 
@@ -41,18 +41,19 @@ function Home() {
             <div className={classes.suggested}>
               <p className="secon-text-semibold">Suggested for you</p>
               <div className={classes.profileList}>
-                {profiles &&
-                  profiles.map((profile) => {
-                    return (
-                      <ProfileCard
-                        key={profile.id}
-                        profile={profile}
-                        sideBtn={{
-                          title: "Follow",
-                          onClick: () => console.log("follow"),
-                        }}
-                      />
-                    );
+                {topProfiles &&
+                  topProfiles.map((prof) => {
+                    if (prof.id !== profile.id)
+                      return (
+                        <ProfileCard
+                          key={prof.id}
+                          profile={prof}
+                          sideBtn={{
+                            title: "Follow",
+                            onClick: () => console.log("follow"),
+                          }}
+                        />
+                      );
                   })}
               </div>
             </div>

@@ -19,9 +19,8 @@
   padding-bottom: 12px;
 }
 
-.avatar {
-  margin-right: 12px;
-  height: 32px;
+.profileCard {
+  margin-right: -12px;
 }
 
 .img {

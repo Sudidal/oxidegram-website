@@ -5,6 +5,7 @@ import api from "../../../api.js";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import MessagesList from "../messagesList/messagesList.jsx";
+import ProfileCard from "../profileCard/profileCard.jsx";
 import classes from "./chat.module.css";
 
 function Chat({ contact }) {
@@ -23,9 +24,9 @@ function Chat({ contact }) {
   }
 
   setTimeout(() => {
-    if(bodyRef.current)
-    bodyRef.current.scrollBy(0, bodyRef.current.scrollHeight);
-  }, 0)
+    if (bodyRef.current)
+      bodyRef.current.scrollBy(0, bodyRef.current.scrollHeight);
+  }, 0);
 
   if (!contact) {
     return (
@@ -40,9 +41,8 @@ function Chat({ contact }) {
   return (
     <div className={classes.container}>
       <div className={classes.heading}>
-        <AvatarImg width={44} url={contact.contacted.avatarUrl} />
-        <div className="big-text semibold-text">
-          {contact.contacted.fullName}
+        <div className="big-text prim-text">
+          <ProfileCard profile={contact.contacted} username={false} primFullName={true} />
         </div>
       </div>
       <div ref={bodyRef} className={classes.body}>

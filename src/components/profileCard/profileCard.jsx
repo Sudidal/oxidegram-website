@@ -3,7 +3,14 @@ import PropTypes from "prop-types";
 import classes from "./profileCard.module.css";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 
-function ProfileCard({ profile, sideBtn }) {
+function ProfileCard({
+  profile,
+  sideBtn,
+  imgSize = 44,
+  username = true,
+  fullName = true,
+  primFullName = false,
+}) {
   const nav = useNavigate();
 
   return (
@@ -14,10 +21,14 @@ function ProfileCard({ profile, sideBtn }) {
       }}
     >
       <div className={classes.left}>
-        <AvatarImg url={profile.avatarUrl} width={44} />
+        <AvatarImg url={profile.avatarUrl} width={imgSize} />
         <div>
-          <p className="prim-text">{profile.username}</p>
-          <p className="secon-text">{profile.fullName}</p>
+          {username && <p className="semibold-text">{profile.username}</p>}
+          {fullName && (
+            <p className={primFullName ? "prim-text semibold-text" : "secon-text"}>
+              {profile.fullName}
+            </p>
+          )}
         </div>
       </div>
       <div>
@@ -40,6 +51,10 @@ function ProfileCard({ profile, sideBtn }) {
 ProfileCard.propTypes = {
   profile: PropTypes.object,
   sideBtn: PropTypes.object,
+  imgSize: PropTypes.number,
+  username: PropTypes.bool,
+  fullName: PropTypes.bool,
+  primFullName: PropTypes.bool
 };
 
 export default ProfileCard;

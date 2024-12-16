@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import dateOps from "../../utils/dateOps.js";
 import PostActions from "../postActions/postActions.jsx";
 import CoolVideo from "../coolVideo/coolVideo.jsx";
-import AvatarImg from "../avatarImg/avatarImg.jsx";
 import PostView from "../postView/postView.jsx";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import PostOptions from "../postOptions/postOptions.jsx";
+import ProfileCard from "../profileCard/profileCard.jsx";
 import classes from "./postCard.module.css";
 
 function PostCard({ post }) {
@@ -29,10 +29,9 @@ function PostCard({ post }) {
     <div className={classes.card}>
       <div className={classes.top}>
         <div className={classes.left}>
-          <div className={classes.avatar}>
-            <AvatarImg width={32} url={post.author.avatarUrl} />
+          <div className={classes.profileCard}>
+            <ProfileCard profile={post.author} imgSize={32} fullName={false} />
           </div>
-          <p className="prim-text">{post.author.username}</p>
           <div className="secon-text">•</div>
           <p className="secon-text">
             {dateOps.getAgeFromIsoString(post.publishDate)}
@@ -58,9 +57,9 @@ function PostCard({ post }) {
         <PostActions post={post} onChange={change} />
       </div>
       <div className={classes.details}>
-        <p className="prim-text">{likes} Likes</p>
+        <p className="semibold-text">{likes} Likes</p>
         <div>
-          <p className="prim-text inline-para">{post.author.username} </p>
+          <p className="semibold-text inline-para">{post.author.username} </p>
           <p className="inline-para">{post.content}</p>
         </div>
         <div

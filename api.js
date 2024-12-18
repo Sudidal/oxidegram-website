@@ -179,6 +179,20 @@ class Api {
         return this.#extractMsg(input[field]);
       }
     }
+
+    if (input.status) {
+      switch (input.status) {
+        case 404:
+          return "Not Found";
+        case 401:
+          return "You are not allowed to do this action";
+        case 500:
+          return "Internal server error";
+        case 400:
+          return "Incorrect input";
+      }
+    }
+
     return "";
   }
 }

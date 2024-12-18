@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import profileContext from "../../contexts/profileContext.js";
 import modalContext from "../../contexts/modalContext.js";
+import alertContext from "../../contexts/alertContext.js";
 import ShareMenu from "../shareMenu/shareMenu.jsx";
 import ConfirmPopup from "../confirmPopup/confirmPopup.jsx";
 import StackingBtn from "../stackingBtn/stackingBtn.jsx";
@@ -12,10 +13,18 @@ import classes from "./postOptions.module.css";
 function PostOptions({ post }) {
   const profile = useContext(profileContext);
   const modal = useContext(modalContext);
+  const alert = useContext(alertContext);
   const nav = useNavigate();
 
   const deletable = profile.id === post.author.id;
-  const {relativeUrl, absoluteUrl} = api.getUrlOfPost(post.id);
+  const { relativeUrl, absoluteUrl } = api.getUrlOfPost(post.id);
+
+  function deletePost() {
+    modal.close();
+    api.deletePost(post.id).then((res) => {
+      alert.show(res.msg)
+    });
+  }
 
   return (
     <div className={classes.container}>
@@ -29,9 +38,7 @@ function PostOptions({ post }) {
                 title="Delete Post"
                 para={"Are you sure you want to delete this post"}
                 actionTitle="Delete"
-                action={() => {
-                  api.deletePost(post.id);
-                }}
+                action={deletePost}
               />
             );
           }}

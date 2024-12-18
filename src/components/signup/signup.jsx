@@ -1,11 +1,13 @@
 import api from "../../../api.js";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import alertContext from "../../contexts/alertContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import InlineImageText from "../inlineImageText/inlineImageText.jsx";
 import classes from "./signup.module.css";
 
 function Signup() {
+  const alert = useContext(alertContext)
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
   const fullNameInput = useRef(null);
@@ -30,7 +32,8 @@ function Signup() {
                 username: usernameInput.current.value,
               })
               .then((res) => {
-                if (res) {
+                alert.show(res.msg)
+                if (res.ok) {
                   nav("/accounts/login");
                 }
               });

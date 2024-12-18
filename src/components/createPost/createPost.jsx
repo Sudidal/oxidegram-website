@@ -2,6 +2,7 @@ import { useState, useContext, useRef } from "react";
 import api from "../../../api.js";
 import profileContext from "../../contexts/profileContext.js";
 import modalContext from "../../contexts/modalContext.js";
+import alertContext from "../../contexts/alertContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import classes from "./createPost.module.css";
@@ -11,6 +12,7 @@ function CreatePost() {
   const [step, setStep] = useState(0);
   const profile = useContext(profileContext);
   const modal = useContext(modalContext);
+  const alert = useContext(alertContext);
   const fileInputRef = useRef(null);
   const contentInputRef = useRef(null);
 
@@ -27,8 +29,9 @@ function CreatePost() {
         content: contentInputRef.current.value,
         file: file,
       })
-      .then(() => {
-        console.log("share");
+      .then((res) => {
+        alert.show(res.msg)
+        if(res.ok)
         modal.close();
       });
   }

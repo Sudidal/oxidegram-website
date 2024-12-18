@@ -27,7 +27,6 @@ function PostView({ post, fullScreen = false }) {
   function postComment() {
     const content = commentInputRef.current.value;
     api.makeComment(content, post.id).then(() => {
-      console.log("made a comment");
       commentInputRef.current.value = "";
       setUpdate(!update);
     });

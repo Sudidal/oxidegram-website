@@ -1,12 +1,14 @@
 import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
+import alertContext from "../../contexts/alertContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import InlineImageText from "../inlineImageText/inlineImageText.jsx";
 import classes from "./login.module.css";
 
 function Login() {
   const profile = useContext(profileContext)
+  const alert = useContext(alertContext)
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
 

@@ -1,6 +1,7 @@
 import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
+import dialogContext from "../../contexts/dialogContext.js";
 import PropTypes from "prop-types";
 import FullSizeBtn from "../fullSizeBtn/fullSizeBtn.jsx";
 import themeManager from "../../utils/themeManager.js";
@@ -9,6 +10,7 @@ import classes from "./dialog.module.css";
 function Dialog({ callback }) {
   const [openState, setOpenState] = useState(false);
   const profile = useContext(profileContext);
+  const dialog = useContext(dialogContext)
   const ref = useRef(null);
   const nav = useNavigate();
 
@@ -47,6 +49,7 @@ function Dialog({ callback }) {
         iconUrl={"/icons/save.svg"}
         onClick={() => {
           nav(`/profiles/${profile.id}/SAVED`);
+          dialog.close()
         }}
       />
       <FullSizeBtn
@@ -60,6 +63,7 @@ function Dialog({ callback }) {
         text={"Log out"}
         onClick={() => {
           profile.logout()
+          dialog.close()
         }}
       />
     </dialog>

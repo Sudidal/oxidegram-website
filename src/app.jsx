@@ -3,16 +3,19 @@ import { useNavigate } from "react-router-dom";
 import profileContext from "./contexts/profileContext.js";
 import modalContext from "./contexts/modalContext.js";
 import dialogContext from "./contexts/dialogContext.js";
+import alertContext from "./contexts/alertContext.js";
 import { Outlet } from "react-router-dom";
 import api from "../api.js";
 import Modal from "./components/modal/modal.jsx";
 import Dialog from "./components/dialog/dialog.jsx";
+import Alert from "./components/alert/alert.jsx";
 import themeManager from "./utils/themeManager.js";
 
 function App() {
   const [profile, setProfile] = useState(null);
   const modalRef = useRef(null);
   const dialogRef = useRef(null);
+  const alertRef = useRef(null);
   const nav = useNavigate();
 
   themeManager.updateBody();
@@ -23,8 +26,11 @@ function App() {
 
   function login(data) {
     api.login(data).then((res) => {
-      reqProfile();
-      nav("/");
+      alertRef.current.show(res.msg);
+      if (res.ok) {
+        reqProfile();
+        nav("/");
+      }
     });
   }
   function logout() {
@@ -36,7 +42,10 @@ function App() {
 
   function reqProfile() {
     api.getMyProfile().then((res) => {
-      setProfile(res.profile);
+      alertRef.current.show(res.msg);
+      if (res.ok) {
+        setProfile(res.profile);
+      }
     });
   }
 
@@ -46,14 +55,20 @@ function App() {
   const dialogCallback = (controls) => {
     dialogRef.current = controls;
   };
+  const alertCallback = (controls) => {
+    alertRef.current = controls;
+  };
 
   return (
     <profileContext.Provider value={{ ...profile, login, logout }}>
       <modalContext.Provider value={modalRef.current}>
         <dialogContext.Provider value={dialogRef.current}>
-          <Modal callback={modalCallback} />
-          <Dialog callback={dialogCallback} />
-          {<Outlet />}
+          <alertContext.Provider value={alertRef.current}>
+            <Modal callback={modalCallback} />
+            <Dialog callback={dialogCallback} />
+            <Alert callback={alertCallback} />
+            <Outlet />
+          </alertContext.Provider>
         </dialogContext.Provider>
       </modalContext.Provider>
     </profileContext.Provider>

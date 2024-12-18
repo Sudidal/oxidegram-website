@@ -1,0 +1,16 @@
+.container {
+  --height: 8vh;
+  padding: 0 20px;
+  width: 100%;
+  height: var(--height);
+  position: fixed;
+  bottom: calc(0px - var(--height));
+  background-color: var(--secondary-background-color);
+  z-index: 50;
+  font-size: 16px;
+  transition: transform 0.5s;
+}
+
+.show {
+  transform: translateY(calc(0px - var(--height)));
+}

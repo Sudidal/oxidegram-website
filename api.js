@@ -166,8 +166,14 @@ class Api {
   }
 
   async #result(res) {
-    const data = await res.json();
+    let data = {};
+    try {
+      data = await res.json();
+    } catch (err) {
+      data = {};
+    }
     data.ok = res.ok;
+    data.status = res.status;
     data.msg = this.#extractMsg(data);
     return data;
   }

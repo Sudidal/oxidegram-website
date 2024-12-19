@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../../../api.js";
 import profileContext from "../../contexts/profileContext.js";
 import SidePanel from "../../components/sidePanel/sidePanel.jsx";
@@ -14,6 +14,7 @@ function Profile() {
   const [detailedProfile, setDetailedProfile] = useState(null);
   const profile = useContext(profileContext);
   const params = useParams();
+  const nav = useNavigate()
 
   const profileId = params.profileId;
 
@@ -45,9 +46,10 @@ function Profile() {
                   <button className="secondary-btn">Message</button>
                 )}
                 {reqProfile.id === profile.id && (
-                  <button className="secondary-btn">Edit profile</button>
+                  <button className="secondary-btn" onClick={() => {
+                    nav("/settings")
+                  }}>Edit profile</button>
                 )}
-                <SvgFileToInline path={"/icons/gear.svg"} />
               </div>
               <div className={`big-text ${classes.proMiddle}`}>
                 <p>

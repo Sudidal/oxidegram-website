@@ -184,6 +184,10 @@ body.collapsed-panel {
   border: none;
   border-radius: 4px;
 }
+.shown-round-border {
+  border: 1px solid var(--seperator-color) !important;
+  border-radius: 4px;
+}
 
 .unstyled-input {
   flex: 1;
@@ -205,6 +209,10 @@ body.collapsed-panel {
 .flexbox {
   display: flex;
   gap: 5px;
+}
+
+.full-width {
+  width: 100%;
 }
 
 .centered-flexbox-vertical {

@@ -8,6 +8,7 @@ import Accounts from "./pages/accounts/accounts.jsx";
 import Profile from "./pages/profile/profile.jsx";
 import Reels from "./pages/reels/reels.jsx";
 import Posts from "./pages/posts/posts.jsx";
+import Settings from "./pages/settings/settings.jsx";
 import Messages from "./pages/messages/messages.jsx";
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/messages",
         element: <Messages />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
       {
         path: "/posts/:postId",

@@ -36,6 +36,22 @@ class Api {
     return await this.#result(res);
   }
 
+  async updateProfile(data) {
+    const res = await fetchManager.authPutReqMultipart(
+      this.#url + "/profiles/update",
+      {
+        username: data.username,
+        fullName: data.fullName,
+        bio: data.bio,
+        country: data.country,
+        websiteUrl: data.websiteUrl,
+        gender: data.gender,
+        avatar: data.avatar,
+      }
+    );
+    return await this.#result(res);
+  }
+
   async logout() {
     storageManager.setAuthToken("");
     return true;

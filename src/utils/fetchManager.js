@@ -68,6 +68,20 @@ class FetchManager {
       formData
     );
   };
+  authPutReqMultipart = (url, body = {}) => {
+    const formData = new FormData();
+    for (const name in body) {
+      formData.append(name, body[name]);
+    }
+    return this.fetchReq(
+      url,
+      "PUT",
+      {
+        [this.#AUTH_HEADER]: this.#getAuthKey(),
+      },
+      formData
+    );
+  };
 
   #getAuthKey = () => storageManager.getAuthenticationKey();
 }

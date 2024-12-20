@@ -15,7 +15,7 @@ function Messages() {
   let selectedContact = null;
 
   useEffect(() => {
-    if (profile)
+    if (profile.id)
       api.getContacts(profile.id).then((res) => {
         setDetailedProfile(res.profile);
       });

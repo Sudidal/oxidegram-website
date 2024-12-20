@@ -37,7 +37,7 @@ class Api {
   }
 
   async updateProfile(data) {
-    const res = await fetchManager.authPutReqMultipart(
+    const res = await fetchManager.putReqMultipart(
       this.#url + "/profiles/update",
       {
         username: data.username,
@@ -58,11 +58,11 @@ class Api {
   }
 
   async getMyProfile() {
-    const res = await fetchManager.authGetReq(this.#url + "/profiles/me");
+    const res = await fetchManager.getReq(this.#url + "/profiles/me");
     return await this.#result(res);
   }
   async getProfile(id) {
-    const res = await fetchManager.authGetReq(this.#url + "/profiles/" + id);
+    const res = await fetchManager.getReq(this.#url + "/profiles/" + id);
     return await this.#result(res);
   }
   async getTopProfiles() {
@@ -108,14 +108,14 @@ class Api {
     return await this.#result(res);
   }
   async makePost(data) {
-    const res = await fetchManager.authPostReqMultipart(this.#url + "/posts", {
+    const res = await fetchManager.postReqMultipart(this.#url + "/posts", {
       content: data.content,
       file: data.file,
     });
     return await this.#result(res);
   }
   async makeComment(comment, postId) {
-    const res = await fetchManager.authPostReq(
+    const res = await fetchManager.postReq(
       this.#url + `/posts/${postId}/comments`,
       {
         content: comment,
@@ -124,32 +124,45 @@ class Api {
     return await this.#result(res);
   }
   async deletePost(postId) {
-    const res = await fetchManager.authDeleteReq(
-      this.#url + `/posts/${postId}`
-    );
+    const res = await fetchManager.deleteReq(this.#url + `/posts/${postId}`);
     return await this.#result(res);
   }
   async likePost(postId) {
-    const res = await fetchManager.authPostReq(
-      this.#url + `/posts/${postId}/like`
-    );
+    const res = await fetchManager.postReq(this.#url + `/posts/${postId}/like`);
     return await this.#result(res);
   }
   async unlikePost(postId) {
-    const res = await fetchManager.authPostReq(
+    const res = await fetchManager.postReq(
       this.#url + `/posts/${postId}/unlike`
     );
     return await this.#result(res);
   }
   async save(postId) {
-    const res = await fetchManager.authPostReq(
-      this.#url + `/posts/${postId}/save`
-    );
+    const res = await fetchManager.postReq(this.#url + `/posts/${postId}/save`);
     return await this.#result(res);
   }
   async unsave(postId) {
-    const res = await fetchManager.authPostReq(
+    const res = await fetchManager.postReq(
       this.#url + `/posts/${postId}/unsave`
+    );
+    return await this.#result(res);
+  }
+
+  async follow(profileId) {
+    const res = await fetchManager.postReq(
+      this.#url + `/profiles/follow/${profileId}`
+    );
+    return await this.#result(res);
+  }
+  async unfollow(profileId) {
+    const res = await fetchManager.postReq(
+      this.#url + `/profiles/unfollow/${profileId}`
+    );
+    return await this.#result(res);
+  }
+  async addContact(profileId) {
+    const res = await fetchManager.postReq(
+      this.#url + `/contacts/${profileId}`
     );
     return await this.#result(res);
   }

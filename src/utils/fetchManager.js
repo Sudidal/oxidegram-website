@@ -10,28 +10,16 @@ class FetchManager {
   };
 
   getReq = (url) => {
-    return this.fetchReq(url, "GET");
-  };
-  postReq = (url, body = {}) => {
-    return this.fetchReq(
-      url,
-      "POST",
-      { "content-type": "application/json" },
-      JSON.stringify(body)
-    );
-  };
-
-  authGetReq = (url) => {
     return this.fetchReq(url, "GET", {
       [this.#AUTH_HEADER]: this.#getAuthKey(),
     });
   };
-  authDeleteReq = (url) => {
+  deleteReq = (url) => {
     return this.fetchReq(url, "DELETE", {
       [this.#AUTH_HEADER]: this.#getAuthKey(),
     });
   };
-  authPostReq = (url, body = {}) => {
+  postReq = (url, body = {}) => {
     return this.fetchReq(
       url,
       "POST",
@@ -42,7 +30,7 @@ class FetchManager {
       JSON.stringify(body)
     );
   };
-  authPutReq = (url, body = {}) => {
+  putReq = (url, body = {}) => {
     return this.fetchReq(
       url,
       "PUT",
@@ -54,7 +42,7 @@ class FetchManager {
     );
   };
 
-  authPostReqMultipart = (url, body = {}) => {
+  postReqMultipart = (url, body = {}) => {
     const formData = new FormData();
     for (const name in body) {
       formData.append(name, body[name]);
@@ -68,7 +56,7 @@ class FetchManager {
       formData
     );
   };
-  authPutReqMultipart = (url, body = {}) => {
+  putReqMultipart = (url, body = {}) => {
     const formData = new FormData();
     for (const name in body) {
       formData.append(name, body[name]);

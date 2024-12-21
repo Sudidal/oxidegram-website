@@ -66,7 +66,9 @@ class Api {
     return await this.#result(res);
   }
   async getTopProfiles() {
-    const res = await fetchManager.getReq(this.#url + "/profiles/top?limit=10");
+    const res = await fetchManager.getReq(
+      this.#url + "/profiles?sortByFollowers=true&limit=10"
+    );
     return await this.#result(res);
   }
   async getDetailsOfOneProfile(id) {
@@ -84,13 +86,15 @@ class Api {
   }
   async searchProfiles(query) {
     const res = await fetchManager.getReq(
-      this.#url + `/profiles/search?query=${query}`
+      this.#url + `/profiles/search?searchQuery=${query}`
     );
     return await this.#result(res);
   }
 
   async getTopPosts() {
-    const res = await fetchManager.getReq(this.#url + "/posts/top");
+    const res = await fetchManager.getReq(
+      this.#url + "/posts?sortByLikes=true?"
+    );
     return await this.#result(res);
   }
   async getOnePost(postId) {
@@ -98,7 +102,9 @@ class Api {
     return await this.#result(res);
   }
   async getTopVideos() {
-    const res = await fetchManager.getReq(this.#url + "/posts/top?videos=true");
+    const res = await fetchManager.getReq(
+      this.#url + "/posts?sortByLikes=true&filter=videos"
+    );
     return await this.#result(res);
   }
   async getCommentsOfPost(postId) {
@@ -138,12 +144,14 @@ class Api {
     return await this.#result(res);
   }
   async save(postId) {
-    const res = await fetchManager.postReq(this.#url + `/posts/${postId}/save`);
+    const res = await fetchManager.postReq(
+      this.#url + `/profiles/savepost/${postId}`
+    );
     return await this.#result(res);
   }
   async unsave(postId) {
     const res = await fetchManager.postReq(
-      this.#url + `/posts/${postId}/unsave`
+      this.#url + `/profiles/unsavepost/${postId}`
     );
     return await this.#result(res);
   }

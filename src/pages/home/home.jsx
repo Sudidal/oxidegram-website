@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
+import { useOutletContext } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
 import api from "../../../api.js";
-import SidePanel from "../../components/sidePanel/sidePanel.jsx";
 import PostsList from "../../components/postsList/postsList.jsx";
 import ProfileCard from "../../components/profileCard/profileCard.jsx";
 import classes from "./home.module.css";
@@ -10,6 +10,9 @@ function Home() {
   const [posts, setPosts] = useState(null);
   const [topProfiles, setTopProfiles] = useState(null);
   const profile = useContext(profileContext);
+  const onRender = useOutletContext()
+
+  onRender()
 
   useEffect(() => {
     api.getTopPosts().then((res) => {
@@ -22,7 +25,6 @@ function Home() {
 
   return (
     <div className={classes.container}>
-      <SidePanel />
       <main className={`${classes.main} main-with-margin`}>
         <div className={classes.middle}>
           <PostsList posts={posts} />

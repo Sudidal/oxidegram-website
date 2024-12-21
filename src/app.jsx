@@ -5,6 +5,7 @@ import modalContext from "./contexts/modalContext.js";
 import dialogContext from "./contexts/dialogContext.js";
 import alertContext from "./contexts/alertContext.js";
 import { Outlet } from "react-router-dom";
+import SidePanel from "./components/sidePanel/sidePanel.jsx";
 import api from "../api.js";
 import Modal from "./components/modal/modal.jsx";
 import Dialog from "./components/dialog/dialog.jsx";
@@ -13,6 +14,7 @@ import themeManager from "./utils/themeManager.js";
 
 function App() {
   const [profile, setProfile] = useState(null);
+  const [panelState, setPanelState] = useState("");
   const modalRef = useRef(null);
   const dialogRef = useRef(null);
   const alertRef = useRef(null);
@@ -49,6 +51,16 @@ function App() {
     });
   }
 
+  function outletRenderCallback(mode) {
+    if (mode === "collapse-panel") {
+      setPanelState("collapse");
+    } else if (mode === "no-panel") {
+      setPanelState("hide");
+    } else {
+      setPanelState("shrink");
+    }
+  }
+
   const modalCallback = (controls) => {
     modalRef.current = controls;
   };
@@ -67,7 +79,8 @@ function App() {
             <Modal callback={modalCallback} />
             <Dialog callback={dialogCallback} />
             <Alert callback={alertCallback} />
-            <Outlet />
+            <SidePanel state={panelState} />
+            <Outlet context={outletRenderCallback} />
           </alertContext.Provider>
         </dialogContext.Provider>
       </modalContext.Provider>

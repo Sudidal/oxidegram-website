@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
+import { useOutletContext } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
-import SidePanel from "../../components/sidePanel/sidePanel.jsx";
 import Tabs from "../../components/tabs/tabs.jsx";
 import api from "../../../api.js";
 import ContactsList from "../../components/contactsList/contactsList.jsx";
@@ -11,8 +11,11 @@ function Messages() {
   const [detailedProfile, setDetailedProfile] = useState(null);
   const [selectedContactId, setSelectedContactId] = useState(null);
   const profile = useContext(profileContext);
+  const onRender = useOutletContext()
 
   let selectedContact = null;
+
+  onRender("collapse-panel")
 
   useEffect(() => {
     if (profile.id)
@@ -44,13 +47,10 @@ function Messages() {
     });
   }
 
-  console.log("rerender");
-
   if (!detailedProfile) return;
 
   return (
     <div className={classes.container}>
-      <SidePanel collapsed={true} />
       <div className={`${classes.main} main-with-margin`}>
         <div className={classes.left}>
           <Tabs

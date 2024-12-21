@@ -1,9 +1,8 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import api from "../../../api.js";
 import profileContext from "../../contexts/profileContext.js";
 import alertContext from "../../contexts/alertContext.js";
-import SidePanel from "../../components/sidePanel/sidePanel.jsx";
 import AvatarImg from "../../components/avatarImg/avatarImg.jsx";
 import SvgFileToInline from "../../components/svgFileToInline/svgFileToInline.jsx";
 import PostOverview from "../../components/postOverview/postOverview.jsx";
@@ -18,6 +17,9 @@ function Profile() {
   const alert = useContext(alertContext);
   const params = useParams();
   const nav = useNavigate();
+  const onRender = useOutletContext()
+
+  onRender()
 
   const profileId = params.profileId;
   console.log(followed);
@@ -34,7 +36,6 @@ function Profile() {
 
   return (
     <div>
-      <SidePanel />
       {profileDetails && (
         <main className={`${classes.main} main-with-margin`}>
           <div className={classes.profileInfo}>

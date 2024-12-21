@@ -7,15 +7,18 @@ import dialogContext from "../../contexts/dialogContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import FullSizeBtn from "../fullSizeBtn/fullSizeBtn.jsx";
-import CreatePost from "../createPost/createPost.jsx"
+import CreatePost from "../createPost/createPost.jsx";
 import SearchMenu from "../searchMenu/searchMenu.jsx";
 import classes from "./sidePanel.module.css";
 
-function SidePanel({ collapsed }) {
+function SidePanel({ state }) {
   const profile = useContext(profileContext);
   const modal = useContext(modalContext);
   const dialog = useContext(dialogContext);
   const nav = useNavigate();
+
+  const collapsed = state === "collapse";
+  const hidden = state === "hide";
 
   const textItems = [
     "Home",
@@ -29,17 +32,19 @@ function SidePanel({ collapsed }) {
     "Profile",
     "More",
   ];
+
   if (collapsed) {
-    document.body.classList.add("collapsed-panel")
-    
+    document.body.classList.add("collapsed-panel");
+
     for (let i = 0; i < textItems.length; i++) {
       textItems[i] = "";
     }
-  }
-  else {
-    document.body.classList.remove("collapsed-panel")
+  } else {
+    document.body.classList.remove("collapsed-panel");
   }
   let counter = 0;
+
+  if (hidden) return;
 
   return (
     <aside className={`${classes.aside} ${collapsed ? classes.collapsed : ""}`}>
@@ -70,7 +75,7 @@ function SidePanel({ collapsed }) {
           iconUrl={"/icons/search.svg"}
           text={textItems[counter++]}
           onClick={() => {
-            modal.open(<SearchMenu />)
+            modal.open(<SearchMenu />);
           }}
         />
         <FullSizeBtn
@@ -140,7 +145,7 @@ function SidePanel({ collapsed }) {
 }
 
 SidePanel.propTypes = {
-  collapsed: PropTypes.bool,
+  state: PropTypes.string,
 };
 
 export default SidePanel;

@@ -1,11 +1,14 @@
 import { useRef, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 import Footer from "../../components/footer/footer.jsx";
 import classes from "./accounts.module.css";
 
 function Accounts() {
   const shiftRef = useRef(null);
   const count = useRef(0);
+  const onRender = useOutletContext()
+
+  onRender("no-panel")
 
   useEffect(() => {
     if (shiftRef.current) {

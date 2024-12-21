@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import PostsList from "../../components/postsList/postsList.jsx";
-import SidePanel from "../../components/sidePanel/sidePanel.jsx";
 import api from "../../../api.js";
 import classes from "./reels.module.css";
 
 function Reels() {
   const [posts, setPosts] = useState(null);
+  const onRender = useOutletContext()
+
+  onRender()
 
   useEffect(() => {
     api.getTopVideos().then((res) => {
@@ -15,7 +18,6 @@ function Reels() {
 
   return (
     <main className={`main-with-margin ${classes.container}`}>
-      <SidePanel />
       <PostsList posts={posts} />
     </main>
   );

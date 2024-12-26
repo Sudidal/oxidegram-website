@@ -1,0 +1,14 @@
+.container {
+  padding: 50px 100px;
+}
+
+.postsList {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.postCard {
+  width: calc(100% / 3);
+}

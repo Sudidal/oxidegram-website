@@ -97,6 +97,10 @@ class Api {
     );
     return await this.#result(res);
   }
+  async getRandomPosts() {
+    const res = await fetchManager.getReq(this.#url + "/posts");
+    return await this.#result(res);
+  }
   async getOnePost(postId) {
     const res = await fetchManager.getReq(this.#url + "/posts/" + postId);
     return await this.#result(res);

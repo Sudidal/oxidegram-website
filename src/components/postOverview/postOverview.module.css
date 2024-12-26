@@ -1,5 +1,4 @@
 .container {
   padding: 2px;
-  width: calc(100% / 3);
   aspect-ratio: 1 / 1;
 }

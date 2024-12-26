@@ -17,9 +17,9 @@ function Profile() {
   const alert = useContext(alertContext);
   const params = useParams();
   const nav = useNavigate();
-  const onRender = useOutletContext()
+  const onRender = useOutletContext();
 
-  onRender()
+  onRender();
 
   const profileId = params.profileId;
   console.log(followed);
@@ -143,7 +143,11 @@ function Profile() {
                 content: (
                   <div className={classes.posts}>
                     {profileDetails.posts.map((post) => {
-                      return <PostOverview key={post.id} post={post} />;
+                      return (
+                        <div key={post.id} className={classes.postCard}>
+                          <PostOverview post={post} />
+                        </div>
+                      );
                     })}
                   </div>
                 ),
@@ -154,7 +158,11 @@ function Profile() {
                 content: (
                   <div className={classes.posts}>
                     {profileDetails.savedPosts.map((post) => {
-                      return <PostOverview key={post.id} post={post} />;
+                      return (
+                        <div key={post.id} className={classes.postCard}>
+                          <PostOverview post={post} />
+                        </div>
+                      );
                     })}
                   </div>
                 ),

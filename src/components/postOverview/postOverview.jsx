@@ -1,19 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 import modalContext from "../../contexts/modalContext.js";
 import PostView from "../postView/postView.jsx";
-import { getVideoThumbnail } from "../../utils/getVideoThumbnail.js";
+import PostThumbnail from "../postThumbnail/postThumbnail.jsx";
 import classes from "./postOverview.module.css";
 
 function PostOverview({ post }) {
   const modal = useContext(modalContext);
-  const [thumbnail, setThumbnail] = useState(post.imageUrl);
-
-  function loadFail() {
-    getVideoThumbnail(post.imageUrl, (image) => {
-      setThumbnail(image);
-    });
-  }
 
   return (
     <div
@@ -22,12 +15,7 @@ function PostOverview({ post }) {
         modal.open(<PostView post={post} />);
       }}
     >
-      <img
-        className={classes.image}
-        src={thumbnail}
-        onError={loadFail}
-        alt=""
-      />
+      <PostThumbnail post={post} />
     </div>
   );
 }

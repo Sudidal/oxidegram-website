@@ -12,14 +12,22 @@ function Chat({ contact }) {
   const msgInputRef = useRef(null);
   const nav = useNavigate();
 
-  function sendMessage(ev) {
-    ev.preventDefault();
+  function sendMessage(text) {
     api.sendMessage(
-      msgInputRef.current.value,
+      text,
       contact.chat.id,
       contact.contactedId
     );
+  }
+
+  function submit(ev) {
+    ev.preventDefault();
+    sendMessage(msgInputRef.current.value);
     msgInputRef.current.value = "";
+  }
+
+  function sendHeart() {
+    sendMessage("❤️");
   }
 
   if (!contact) {
@@ -64,15 +72,22 @@ function Chat({ contact }) {
         </div>
       </div>
       <div className={classes.bottom}>
-        <form onSubmit={sendMessage}>
+        <form onSubmit={submit} className="full-width">
           <input
             ref={msgInputRef}
             type="text"
-            className="unstyled-input"
+            className="unstyled-input full-width"
             placeholder="Message..."
           />
         </form>
-        <SvgFileToInline path={"/icons/heart.svg"} />
+        <button
+          className="unstyled-btn"
+          onClick={() => {
+            sendHeart();
+          }}
+        >
+          <SvgFileToInline path={"/icons/heart.svg"} />
+        </button>
       </div>
     </div>
   );

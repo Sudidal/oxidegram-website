@@ -2,6 +2,7 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 import profileContext from "../../contexts/profileContext.js";
 import dateOps from "../../utils/dateOps.js";
+import PostMsg from "../postMsg/postMsg.jsx";
 import classes from "./messagesList.module.css";
 
 function MessagesList({ msgs }) {
@@ -13,24 +14,43 @@ function MessagesList({ msgs }) {
     <div className={classes.msgsList}>
       {msgs.map((message, i) => {
         const prevMessage = msgs[i - 1];
+        const post = message.content.match(/^POST_ID_*/);
+        const postId = parseInt(message.content.split("_")[2]);
+        const date = dateOps.isoToBeautyDateAndTime(message.sendDate);
+        const sameDate = dateOps.isSameDate(
+          message.sendDate,
+          prevMessage?.sendDate
+        );
+
         return (
           <>
-            {(!prevMessage ||
-              !dateOps.isSameDate(message.sendDate, prevMessage.sendDate)) && (
-              <p className={classes.date} key={message.id + "new"}>
-                {dateOps.isoToBeautyDateAndTime(message.sendDate)}
+            {(!prevMessage || !sameDate) && (
+              <p className={classes.date} key={message.id}>
+                {date}
               </p>
             )}
-            <div
-              className={`${classes.msg} ${
-                message.senderId === profile.id
-                  ? classes.sent
-                  : classes.received
-              }`}
-              key={message.id}
-            >
-              {message.content}
-            </div>
+            {post ? (
+              <div
+                className={`${classes.postMsg} ${
+                  message.senderId === profile.id
+                    ? classes.sent
+                    : classes.received
+                }`}
+              >
+                <PostMsg postId={postId} />
+              </div>
+            ) : (
+              <div
+                className={`${classes.msg} ${
+                  message.senderId === profile.id
+                    ? classes.sent
+                    : classes.received
+                }`}
+                key={message.id}
+              >
+                {message.content}
+              </div>
+            )}
           </>
         );
       })}

@@ -19,7 +19,11 @@ function ContactsList({ contacts, onSelect }) {
     <div ref={parentRef} className={classes.container}>
       {contacts.length > 0 ? (
         contacts.map((contact) => {
-          const messages = contact.chat.messages;
+          const lastMessage =
+            contact.chat.messages[contact.chat.messages.length - 1];
+          const content = lastMessage.content.match(/^POST_ID_*/)
+            ? "Sent an attachment"
+            : lastMessage.content;
           return (
             <div
               key={contact.id}
@@ -31,10 +35,10 @@ function ContactsList({ contacts, onSelect }) {
               <AvatarImg url={contact.contacted.avatarUrl} width={56} />
               <div>
                 <div>{contact.contacted.fullName}</div>
-                {messages[messages.length - 1] && (
+                {lastMessage && (
                   <div className="secon-text small-text">
-                    {messages[messages.length - 1].content} .{" "}
-                    {dateOps.getAgeFromIsoString(messages[messages.length - 1].sendDate)}
+                    {content} .{" "}
+                    {dateOps.getAgeFromIsoString(lastMessage.sendDate)}
                   </div>
                 )}
               </div>

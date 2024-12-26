@@ -1,0 +1,16 @@
+.container {
+  background-color: var(--secondary-background-color);
+  border-radius: 18px;
+}
+
+.top {
+  padding: 10px;
+}
+
+.image {
+  background-color: var(--tertiary-background-color);
+}
+
+.details {
+  padding: 10px;
+}

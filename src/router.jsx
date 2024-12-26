@@ -10,6 +10,7 @@ import Reels from "./pages/reels/reels.jsx";
 import Posts from "./pages/posts/posts.jsx";
 import Settings from "./pages/settings/settings.jsx";
 import Explore from "./pages/explore/explore.jsx";
+import Dashboard from "./pages/dashboard/dashboard.jsx";
 import Messages from "./pages/messages/messages.jsx";
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/explore",
         element: <Explore />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
       },
       {
         path: "/reels",

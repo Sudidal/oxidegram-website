@@ -10,9 +10,9 @@ function Home() {
   const [posts, setPosts] = useState(null);
   const [topProfiles, setTopProfiles] = useState(null);
   const profile = useContext(profileContext);
-  const onRender = useOutletContext()
+  const onRender = useOutletContext();
 
-  onRender()
+  onRender();
 
   useEffect(() => {
     api.getTopPosts().then((res) => {
@@ -45,17 +45,25 @@ function Home() {
               <div className={classes.profileList}>
                 {topProfiles &&
                   topProfiles.map((prof) => {
-                    if (prof.id !== profile.id)
+                    let btn = null;
+                    if (!prof.followed) {
+                      btn = {
+                        title: "Follow",
+                        onClick: (ev) => {
+                          api.follow(prof.id);
+                          ev.target.remove()
+                        },
+                      };
+                    }
+                    if (prof.id !== profile.id) {
                       return (
                         <ProfileCard
                           key={prof.id}
                           profile={prof}
-                          sideBtn={{
-                            title: "Follow",
-                            onClick: () => console.log("follow"),
-                          }}
+                          sideBtn={btn}
                         />
                       );
+                    }
                   })}
               </div>
             </div>

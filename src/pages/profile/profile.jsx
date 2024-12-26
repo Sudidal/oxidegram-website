@@ -27,9 +27,9 @@ function Profile() {
   useEffect(() => {
     api.getProfile(profileId).then((res) => {
       setReqProfile(res.profile);
-      api.getDetailsOfOneProfile(profileId).then((res) => {
-        setProfileDetails(res.profile);
-        setFollowed(res.profile.followed);
+      setFollowed(res.profile.followed);
+      api.getDetailsOfOneProfile(profileId).then((detailRes) => {
+        setProfileDetails(detailRes.profile);
       });
     });
   }, [profileId]);

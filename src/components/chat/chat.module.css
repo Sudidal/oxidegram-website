@@ -15,7 +15,7 @@
   flex: 1;
   padding-top: 35px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   overflow: scroll;
 }

@@ -9,7 +9,6 @@ import ProfileCard from "../profileCard/profileCard.jsx";
 import classes from "./chat.module.css";
 
 function Chat({ contact }) {
-  const bodyRef = useRef(null);
   const msgInputRef = useRef(null);
   const nav = useNavigate();
 
@@ -22,11 +21,6 @@ function Chat({ contact }) {
     );
     msgInputRef.current.value = "";
   }
-
-  setTimeout(() => {
-    if (bodyRef.current)
-      bodyRef.current.scrollBy(0, bodyRef.current.scrollHeight);
-  }, 0);
 
   if (!contact) {
     return (
@@ -42,10 +36,15 @@ function Chat({ contact }) {
     <div className={classes.container}>
       <div className={classes.heading}>
         <div className="big-text prim-text">
-          <ProfileCard profile={contact.contacted} username={false} primFullName={true} />
+          <ProfileCard
+            profile={contact.contacted}
+            username={false}
+            primFullName={true}
+          />
         </div>
       </div>
-      <div ref={bodyRef} className={classes.body}>
+      <div className={classes.body}>
+        <MessagesList msgs={contact.chat.messages} />
         <div className={classes.infoBox}>
           <AvatarImg width={96} url={contact.contacted.avatarUrl} />
           <div className="huge-text semibold-text">
@@ -63,7 +62,6 @@ function Chat({ contact }) {
             View profile
           </button>
         </div>
-        <MessagesList msgs={contact.chat.messages} />
       </div>
       <div className={classes.bottom}>
         <form onSubmit={sendMessage}>

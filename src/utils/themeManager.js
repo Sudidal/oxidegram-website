@@ -11,20 +11,20 @@ class ThemeManager {
   }
 
   switch() {
-    if (storageManager.getTheme() === this.#DARK) {
-      storageManager.setTheme(this.#LIGHT);
-    } else {
+    if (storageManager.getTheme() === this.#LIGHT) {
       storageManager.setTheme(this.#DARK);
+    } else {
+      storageManager.setTheme(this.#LIGHT);
     }
 
     this.updateBody();
   }
 
   updateBody() {
-    if (storageManager.getTheme() === this.#DARK) {
-      document.body.classList.remove(this.#LIGHT);
-    } else {
+    if (storageManager.getTheme() === this.#LIGHT) {
       document.body.classList.add(this.#LIGHT);
+    } else {
+      document.body.classList.remove(this.#LIGHT);
     }
   }
 }

@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
 import alertContext from "../../contexts/alertContext.js";
@@ -8,6 +8,8 @@ import api from "../../../api.js";
 import classes from "./settings.module.css";
 
 function Settings() {
+  const [avatar, setAvatar] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
   const profile = useContext(profileContext);
   const alert = useContext(alertContext);
   const fileInputRef = useRef(null);
@@ -18,12 +20,18 @@ function Settings() {
   const countryRef = useRef(null);
   const genderRef = useRef(null);
   const nav = useNavigate();
-  const onRender = useOutletContext()
+  const onRender = useOutletContext();
 
-  onRender()  
+  onRender();
 
   function chooseFile() {
     fileInputRef.current.click();
+  }
+
+  function selectAvatar(ev) {
+    const file = ev.target.files[0];
+    setAvatarUrl(URL.createObjectURL(file));
+    setAvatar(file);
   }
 
   function submit() {
@@ -35,9 +43,7 @@ function Settings() {
         bio: bioRef.current.value,
         country: countryRef.current.value,
         gender: genderRef.current.value,
-        avatar: fileInputRef.current.files
-          ? fileInputRef.current.files[0]
-          : undefined,
+        avatar: fileInputRef.current.files ? avatar : undefined,
       })
       .then((res) => {
         alert.show(res.msg);
@@ -57,6 +63,7 @@ function Settings() {
         }}
       >
         <input
+          onChange={selectAvatar}
           type="file"
           ref={fileInputRef}
           accept="image/*, video/*"
@@ -65,7 +72,10 @@ function Settings() {
         />
         <section className={classes.avatarSection}>
           <div className={classes.info}>
-            <AvatarImg url={profile.avatarUrl} width={130} />
+            <AvatarImg
+              url={avatarUrl ? avatarUrl : profile.avatarUrl}
+              width={130}
+            />
             <div className={classes.names}>
               <input
                 ref={usernameRef}

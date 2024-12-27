@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import api from "../../../api.js";
@@ -7,6 +8,7 @@ import classes from "./notifications.module.css";
 function Notifications() {
   const [notifs, setNotifs] = useState(null);
   const profile = useContext(profileContext);
+  const nav = useNavigate();
 
   useEffect(() => {
     api.getNotifications(profile.id).then((res) => {
@@ -22,12 +24,13 @@ function Notifications() {
     for (let i = 0; i < input.length; i++) {
       const notif = input[i].notification;
       if (notif.type === "POST") {
-        const { _postId, authorId } = JSON.parse(notif.title);
+        const { postId, authorId } = JSON.parse(notif.title);
         const author = (await api.getProfile(authorId)).profile;
         result.push({
           id: notif.id,
           icon: author.avatarUrl,
           content: "New post by " + author.username,
+          link: api.getUrlOfPost(postId).relativeUrl
         });
       }
     }
@@ -45,7 +48,9 @@ function Notifications() {
         <div className={classes.list}>
           {notifs.map((notif) => {
             return (
-              <div className={classes.card}>
+              <div className={classes.card} onClick={() => {
+                nav(notif.link)
+              }}>
                 <AvatarImg url={notif.icon} width={46} />
                 <p className="semibold-text">{notif.content}</p>
               </div>

@@ -9,6 +9,8 @@ import classes from "./createPost.module.css";
 
 function CreatePost() {
   const [file, setFile] = useState(null);
+  const [demoUrl, setDemoUrl] = useState(null);
+  const [isVideo, setIsVideo] = useState(null);
   const [step, setStep] = useState(0);
   const profile = useContext(profileContext);
   const modal = useContext(modalContext);
@@ -30,10 +32,21 @@ function CreatePost() {
         file: file,
       })
       .then((res) => {
-        alert.show(res.msg)
-        if(res.ok)
-        modal.close();
+        alert.show(res.msg);
+        if (res.ok) modal.close();
       });
+  }
+
+  function upload(ev) {
+    const file = ev.target.files[0];
+    const url = URL.createObjectURL(file);
+    setDemoUrl(url);
+    setFile(file);
+    stepOn();
+  }
+
+  function demoFail() {
+    setIsVideo(true);
   }
 
   if (step === 0) {
@@ -51,10 +64,7 @@ function CreatePost() {
               type="file"
               accept="image/*, video/*"
               style={{ display: "none" }}
-              onChange={(ev) => {
-                setFile(ev.target.files[0]);
-                stepOn();
-              }}
+              onChange={upload}
             />
           </form>
           <button
@@ -82,7 +92,16 @@ function CreatePost() {
         </div>
         <div className={classes.body2}>
           <div className={classes.left}>
-            <img src="" alt="" />
+            {isVideo ? (
+              <video className={classes.demo} src={demoUrl} controls></video>
+            ) : (
+              <img
+                className={classes.demo}
+                src={demoUrl}
+                onError={demoFail}
+                alt=""
+              />
+            )}
           </div>
           <div className={classes.right}>
             <div className={classes.profileInfo}>

@@ -5,7 +5,7 @@ import profileContext from "../../contexts/profileContext.js";
 import alertContext from "../../contexts/alertContext.js";
 import AvatarImg from "../../components/avatarImg/avatarImg.jsx";
 import SvgFileToInline from "../../components/svgFileToInline/svgFileToInline.jsx";
-import PostOverview from "../../components/postOverview/postOverview.jsx";
+import PostOverViewList from "../../components/postOverViewList/postOverViewList.jsx";
 import Tabs from "../../components/tabs/tabs.jsx";
 import classes from "./profile.module.css";
 
@@ -21,22 +21,40 @@ function Profile() {
 
   onRender();
 
-  const profileId = params.profileId;
-  console.log(followed);
+  const reqProfileId = parseInt(params.profileId);
+  const isMine = profile.id === reqProfileId;
 
   useEffect(() => {
-    api.getProfile(profileId).then((res) => {
+    api.getProfile(reqProfileId).then((res) => {
       setReqProfile(res.profile);
       setFollowed(res.profile.followed);
-      api.getDetailsOfOneProfile(profileId).then((detailRes) => {
+      api.getDetailsOfOneProfile(reqProfileId).then((detailRes) => {
         setProfileDetails(detailRes.profile);
       });
     });
-  }, [profileId]);
+  }, [reqProfileId]);
+
+  if (!profileDetails) return;
+
+  const tabs = [
+    {
+      name: "POSTS",
+      iconPath: "/icons/grid.svg",
+      content: <PostOverViewList posts={profileDetails.posts} />,
+    },
+  ];
+
+  if (isMine) {
+    tabs.push({
+      name: "SAVED",
+      iconPath: "/icons/save-small.svg",
+      content: <PostOverViewList posts={profileDetails.savedPosts} />,
+    });
+  }
 
   return (
     <div>
-      {profileDetails && (
+      {
         <main className={`${classes.main} main-with-margin`}>
           <div className={classes.profileInfo}>
             <div>
@@ -134,57 +152,9 @@ function Profile() {
               </div>
             </div>
           </div>
-          <Tabs
-            initTab={params.tab}
-            tabs={[
-              {
-                name: "POSTS",
-                iconPath: "/icons/grid.svg",
-                content: (
-                  <div className={classes.posts}>
-                    {profileDetails.savedPosts.length > 0 ? (
-                      profileDetails.posts.map((post) => {
-                        return (
-                          <div key={post.id} className={classes.postCard}>
-                            <PostOverview post={post} />
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className={classes.empty}>
-                        <SvgFileToInline path={"/icons/camera.svg"} />
-                        <p className="semibold-text giga-text">No Posts Yet</p>
-                      </div>
-                    )}
-                  </div>
-                ),
-              },
-              {
-                name: "SAVED",
-                iconPath: "/icons/save-small.svg",
-                content: (
-                  <div className={classes.posts}>
-                    {profileDetails.savedPosts.length > 0 ? (
-                      profileDetails.savedPosts.map((post) => {
-                        return (
-                          <div key={post.id} className={classes.postCard}>
-                            <PostOverview post={post} />
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className={classes.empty}>
-                        <SvgFileToInline path={"/icons/camera.svg"} />
-                        <p className="semibold-text giga-text">No Posts Yet</p>
-                      </div>
-                    )}
-                  </div>
-                ),
-              },
-            ]}
-          />
+          <Tabs initTab={params.tab} tabs={tabs} />
         </main>
-      )}
+      }
     </div>
   );
 }

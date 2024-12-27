@@ -38,24 +38,3 @@
 .proBottom {
   width: 100%;
 }
-
-.posts {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  line-height: 0;
-}
-
-.postCard {
-  width: calc(100% / 3);
-}
-
-.empty {
-  padding-top: 60px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}

@@ -5,6 +5,7 @@ import wsClient from "./src/utils/wsClient.js";
 class Api {
   constructor() {
     wsClient.subscribe("chat msg", (msg) => {
+      if(this.#callback)
       this.#callback(msg);
     });
   }

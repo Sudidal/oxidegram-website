@@ -20,7 +20,7 @@
 }
 
 .selected {
-  --border: 1px solid white !important;
+  --border: 1px solid var(--primary-text-color) !important;
 
   color: var(--primary-text-color) !important;
   border-top: var(--border) !important;

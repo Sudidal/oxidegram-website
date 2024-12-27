@@ -14,12 +14,13 @@ body {
     Helvetica, Arial, sans-serif;
 
   --primary-background-color: black;
-  --secondary-background-color: #262626;
+  --secondary-background-color: rgb(38, 38, 38);
   --tertiary-background-color: rgb(18, 18, 18);
-  --highlight-background-color: rgb(38, 38, 38);
+  --highlight-background-color: var(--secondary-background-color);
   --primary-text-color: white;
   --secondary-text-color: rgb(168, 168, 168);
   --tertiary-text-color: rgb(115, 115, 115);
+  --reverse-text-color: black;
   --link-color: rgb(224, 241, 255);
 
   --seperator-color: rgb(38, 38, 38);
@@ -48,8 +49,18 @@ body {
   font-size: var(--normal-text-size);
 }
 body.light {
-  background-color: white;
-  color: black;
+  --primary-background-color: white;
+  --secondary-background-color: white;
+  --tertiary-background-color: rgb(230, 230, 230);
+  --tertiary-background-color: rgb(230, 230, 230);
+  --highlight-background-color: rgb(239, 239, 239);
+  --primary-text-color: black;
+  --secondary-text-color: rgb(115, 115, 115);
+  --reverse-text-color: white;
+  --secondary-btn-color: rgba(239, 239, 239);
+
+  --hover-overlay: rgba(0, 0, 0, 0.05);
+  --seperator-color: rgb(219, 219, 219);
 }
 body.collapsed-panel {
   --nav-width: var(--nav-collapsed-width);
@@ -140,6 +151,7 @@ body.collapsed-panel {
 
 .primary-btn {
   padding: 7px 16px;
+  color: white;
   background-color: var(--primary-btn-color);
 }
 .secondary-btn {

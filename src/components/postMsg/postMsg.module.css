@@ -1,5 +1,5 @@
 .container {
-  background-color: var(--secondary-background-color);
+  background-color: var(--highlight-background-color);
   border-radius: 18px;
 }
 

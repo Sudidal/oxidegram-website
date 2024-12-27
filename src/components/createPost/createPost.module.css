@@ -12,6 +12,7 @@
   gap: 32%;
   height: 43px;
   background-color: var(--primary-background-color);
+  border-bottom: 1px solid var(--seperator-color);
 }
 
 .header .headerText {
@@ -59,7 +60,7 @@
   height: 168px;
   border: none;
   color: var(--primary-text-color);
-  background-color: var(--secondary-background-color);
+  background-color: var(--tertiary-background-color);
   resize: none;
 }
 

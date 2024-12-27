@@ -14,6 +14,7 @@
   width: fit-content;
   font-size: 15px;
   border-radius: 16px;
+  color: white;
 }
 
 .date {
@@ -33,8 +34,9 @@
   border-bottom-right-radius: 6px;
 }
 .msg.received {
-  background-color: rgb(38, 38, 38);
+  background-color: var(--highlight-background-color);
   border-bottom-left-radius: 6px;
+  color: var(--primary-text-color);
 }
 
 .postMsg {

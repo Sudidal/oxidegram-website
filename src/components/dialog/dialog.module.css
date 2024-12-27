@@ -6,7 +6,7 @@
   margin: 0;
   transform: translateY(-100%);
   z-index: 9;
-  background-color: var(--secondary-background-color);
+  background-color: var(--highlight-background-color);
   color: var(--primary-text-color);
   border: none;
   border-radius: 16px;

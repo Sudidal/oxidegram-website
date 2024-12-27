@@ -84,6 +84,12 @@ class Api {
     );
     return await this.#result(res);
   }
+  async getNotifications(id) {
+    const res = await fetchManager.getReq(
+      this.#url + `/profiles/details/${id}?notifications=true`
+    );
+    return await this.#result(res);
+  }
   async searchProfiles(query) {
     const res = await fetchManager.getReq(
       this.#url + `/profiles/search?searchQuery=${query}`

@@ -9,6 +9,7 @@ import AvatarImg from "../avatarImg/avatarImg.jsx";
 import FullSizeBtn from "../fullSizeBtn/fullSizeBtn.jsx";
 import CreatePost from "../createPost/createPost.jsx";
 import SearchMenu from "../searchMenu/searchMenu.jsx";
+import Notifications from "../notifications/notifications.jsx";
 import classes from "./sidePanel.module.css";
 
 function SidePanel({ state }) {
@@ -103,7 +104,7 @@ function SidePanel({ state }) {
           iconUrl={"/icons/heart.svg"}
           text={textItems[counter++]}
           onClick={() => {
-            nav("/notifications");
+            modal.open(<Notifications />);
           }}
         />
         <FullSizeBtn

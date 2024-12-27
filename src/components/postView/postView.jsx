@@ -26,8 +26,8 @@ function PostView({ post, fullScreen = false }) {
 
   function postComment() {
     const content = commentInputRef.current.value;
+    commentInputRef.current.value = "";
     api.makeComment(content, post.id).then(() => {
-      commentInputRef.current.value = "";
       setUpdate(!update);
     });
   }
@@ -46,16 +46,18 @@ function PostView({ post, fullScreen = false }) {
 
   return (
     <div className={classes.container}>
-      {!fullScreen && <div className={classes.closeBtn}>
-        <button
-          className="unstyled-btn"
-          onClick={() => {
-            modal.close();
-          }}
-        >
-          <SvgFileToInline path={"/icons/cross.svg"} />
-        </button>
-      </div>}
+      {!fullScreen && (
+        <div className={classes.closeBtn}>
+          <button
+            className="unstyled-btn"
+            onClick={() => {
+              modal.close();
+            }}
+          >
+            <SvgFileToInline path={"/icons/cross.svg"} />
+          </button>
+        </div>
+      )}
       <div className={classes.left}>
         {isVideo ? (
           <CoolVideo className={classes.img} src={post.imageUrl} controls />
@@ -66,13 +68,16 @@ function PostView({ post, fullScreen = false }) {
       <div className={classes.right}>
         <div className={classes.top}>
           <div className={classes.topLeft}>
-          <AvatarImg url={post.author.avatarUrl} width={32} />
-          <p className="semibol-text">{post.author.username}</p>
+            <AvatarImg url={post.author.avatarUrl} width={32} />
+            <p className="semibol-text">{post.author.username}</p>
           </div>
           <div className={classes.topRight}>
-            <button className="unstyled-btn" onClick={() => {
-              modal.open(<PostOptions post={post} />)
-            }}>
+            <button
+              className="unstyled-btn"
+              onClick={() => {
+                modal.open(<PostOptions post={post} />);
+              }}
+            >
               <SvgFileToInline path={"/icons/three-dots.svg"} />
             </button>
           </div>

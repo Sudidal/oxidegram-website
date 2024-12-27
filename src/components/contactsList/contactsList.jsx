@@ -46,7 +46,7 @@ function ContactsList({ contacts, onSelect }) {
           );
         })
       ) : (
-        <p>You don&apos;t have contacts yet.</p>
+        <p className="semibold-text">You don&apos;t have any contacts yet.</p>
       )}
     </div>
   );

@@ -36,6 +36,7 @@ body {
   --hover-overlay: rgb(255, 255, 255, 0.1);
 
   --font-semibold: 600;
+  --giga-text-size: 30px;
   --huge-text-size: 20px;
   --big-text-size: 16px;
   --normal-text-size: 14px;
@@ -88,6 +89,9 @@ body.collapsed-panel {
 }
 .huge-text {
   font-size: var(--huge-text-size);
+}
+.giga-text {
+  font-size: var(--giga-text-size);
 }
 .big-text {
   font-size: var(--big-text-size);

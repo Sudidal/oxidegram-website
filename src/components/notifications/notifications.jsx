@@ -30,7 +30,7 @@ function Notifications() {
           id: notif.id,
           icon: author.avatarUrl,
           content: "New post by " + author.username,
-          link: api.getUrlOfPost(postId).relativeUrl
+          link: api.getUrlOfPost(postId).relativeUrl,
         });
       }
     }
@@ -48,9 +48,13 @@ function Notifications() {
         <div className={classes.list}>
           {notifs.map((notif) => {
             return (
-              <div className={classes.card} onClick={() => {
-                nav(notif.link)
-              }}>
+              <div
+                key={notif.id}
+                className={classes.card}
+                onClick={() => {
+                  nav(notif.link);
+                }}
+              >
                 <AvatarImg url={notif.icon} width={46} />
                 <p className="semibold-text">{notif.content}</p>
               </div>
@@ -58,7 +62,7 @@ function Notifications() {
           })}
         </div>
       ) : (
-        <p>No notifications</p>
+        <p className="semibold-text">Nothing new.</p>
       )}
     </div>
   );

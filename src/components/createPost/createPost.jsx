@@ -8,10 +8,10 @@ import AvatarImg from "../avatarImg/avatarImg.jsx";
 import classes from "./createPost.module.css";
 
 function CreatePost() {
+  const [step, setStep] = useState(0);
   const [file, setFile] = useState(null);
   const [demoUrl, setDemoUrl] = useState(null);
   const [isVideo, setIsVideo] = useState(null);
-  const [step, setStep] = useState(0);
   const profile = useContext(profileContext);
   const modal = useContext(modalContext);
   const alert = useContext(alertContext);
@@ -19,13 +19,14 @@ function CreatePost() {
   const contentInputRef = useRef(null);
 
   function stepOn() {
-    setStep(1);
+    setStep(step + 1);
   }
   function stepBack() {
-    setStep(0);
+    setStep(step - 1);
   }
 
   function share() {
+    stepOn();
     api
       .makePost({
         content: contentInputRef.current.value,

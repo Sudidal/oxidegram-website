@@ -142,13 +142,20 @@ function Profile() {
                 iconPath: "/icons/grid.svg",
                 content: (
                   <div className={classes.posts}>
-                    {profileDetails.posts.map((post) => {
-                      return (
-                        <div key={post.id} className={classes.postCard}>
-                          <PostOverview post={post} />
-                        </div>
-                      );
-                    })}
+                    {profileDetails.savedPosts.length > 0 ? (
+                      profileDetails.posts.map((post) => {
+                        return (
+                          <div key={post.id} className={classes.postCard}>
+                            <PostOverview post={post} />
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className={classes.empty}>
+                        <SvgFileToInline path={"/icons/camera.svg"} />
+                        <p className="semibold-text giga-text">No Posts Yet</p>
+                      </div>
+                    )}
                   </div>
                 ),
               },
@@ -157,13 +164,20 @@ function Profile() {
                 iconPath: "/icons/save-small.svg",
                 content: (
                   <div className={classes.posts}>
-                    {profileDetails.savedPosts.map((post) => {
-                      return (
-                        <div key={post.id} className={classes.postCard}>
-                          <PostOverview post={post} />
-                        </div>
-                      );
-                    })}
+                    {profileDetails.savedPosts.length > 0 ? (
+                      profileDetails.savedPosts.map((post) => {
+                        return (
+                          <div key={post.id} className={classes.postCard}>
+                            <PostOverview post={post} />
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className={classes.empty}>
+                        <SvgFileToInline path={"/icons/camera.svg"} />
+                        <p className="semibold-text giga-text">No Posts Yet</p>
+                      </div>
+                    )}
                   </div>
                 ),
               },

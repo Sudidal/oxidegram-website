@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import PostOverview from "../../components/postOverview/postOverview.jsx";
+import PostOverViewList from "../../components/postOverViewList/postOverViewList.jsx";
 import api from "../../../api.js";
 import classes from "./explore.module.css";
 
@@ -20,15 +20,7 @@ function Explore() {
 
   return (
     <div className={`main-with-margin ${classes.container}`}>
-      <div className={classes.postsList}>
-        {posts.map((post) => {
-          return (
-            <div key={post.id} className={classes.postCard}>
-              <PostOverview post={post} />
-            </div>
-          );
-        })}
-      </div>
+      <PostOverViewList posts={posts} />
     </div>
   );
 }

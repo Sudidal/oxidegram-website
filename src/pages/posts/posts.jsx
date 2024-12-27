@@ -15,7 +15,7 @@ function Posts() {
     api.getOnePost(postId).then((res) => {
       setPost(res.post);
     });
-  });
+  }, [postId]);
 
   if (!post) return;
 

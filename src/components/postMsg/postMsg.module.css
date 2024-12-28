@@ -9,6 +9,8 @@
 
 .image {
   background-color: var(--tertiary-background-color);
+  max-height: 70vh;
+  overflow: hidden;
 }
 
 .details {

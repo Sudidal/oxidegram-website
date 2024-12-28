@@ -17,6 +17,7 @@ body {
   --secondary-background-color: rgb(38, 38, 38);
   --tertiary-background-color: rgb(18, 18, 18);
   --highlight-background-color: var(--secondary-background-color);
+  --input-background-color: var(--secondary-background-color);
   --primary-text-color: white;
   --secondary-text-color: rgb(168, 168, 168);
   --tertiary-text-color: rgb(115, 115, 115);
@@ -53,8 +54,8 @@ body.light {
   --primary-background-color: white;
   --secondary-background-color: white;
   --tertiary-background-color: rgb(230, 230, 230);
-  --tertiary-background-color: rgb(230, 230, 230);
   --highlight-background-color: rgb(239, 239, 239);
+  --input-background-color: white;
   --primary-text-color: black;
   --secondary-text-color: rgb(115, 115, 115);
   --reverse-text-color: white;
@@ -62,6 +63,8 @@ body.light {
 
   --hover-overlay: rgba(0, 0, 0, 0.05);
   --seperator-color: rgb(219, 219, 219);
+  --elevated-seperator-color: rgb(219, 219, 219);
+  --stroke-color: rgb(219, 219, 219);
 }
 body.collapsed-panel {
   --nav-width: var(--nav-collapsed-width);
@@ -186,7 +189,7 @@ body.collapsed-panel {
 .input {
   padding: 9px 0 7px 8px;
   color: var(--primary-text-color);
-  background-color: var(--secondary-background-color);
+  background-color: var(--input-background-color);
   border: 1px solid var(--stroke-color);
   border-radius: 3px;
 }

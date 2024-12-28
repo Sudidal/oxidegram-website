@@ -1,4 +1,30 @@
 .container {
-  padding: 2px;
+  position: relative;
   aspect-ratio: 1 / 1;
+}
+.container:hover .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.info {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  user-select: none;
+  color: white;
+  fill: white;
+}
+
+.container:hover .info {
+  visibility: visible;
 }

@@ -1,14 +1,16 @@
-
 .list {
+  --gap: 4px;
+
   width: 100%;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  line-height: 0;
+  gap: var(--gap);
+  line-height: var(--gap);
 }
 
 .card {
-  width: calc(100% / 3);
+  width: calc((100% / 3) - var(--gap) * 3);
 }
 
 .empty {

@@ -4,7 +4,7 @@ import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import { isInViewPort } from "../../utils/isInViewPort.js";
 import classes from "./coolVideo.module.css";
 
-function CoolVideo({ src, className }) {
+function CoolVideo({ src, className, maxHeight }) {
   const [stopped, setStopped] = useState(false);
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef(null);
@@ -50,7 +50,11 @@ function CoolVideo({ src, className }) {
   }
 
   return (
-    <div onClick={toggle} className={classes.container}>
+    <div
+      onClick={toggle}
+      className={classes.container}
+      style={{ maxHeight: maxHeight }}
+    >
       <video
         ref={videoRef}
         onEnded={reset}
@@ -72,6 +76,7 @@ function CoolVideo({ src, className }) {
 CoolVideo.propTypes = {
   src: PropTypes.string,
   className: PropTypes.string,
+  maxHeight: PropTypes.string,
 };
 
 export default CoolVideo;

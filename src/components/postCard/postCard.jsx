@@ -50,7 +50,11 @@ function PostCard({ post }) {
       </div>
       <div className={classes.middle}>
         {isVideo ? (
-          <CoolVideo src={post.imageUrl} className={classes.img} />
+          <CoolVideo
+            src={post.imageUrl}
+            className={classes.img}
+            maxHeight={"95vh"}
+          />
         ) : (
           <img className={classes.img} src={post.imageUrl} />
         )}

@@ -58,11 +58,13 @@ function CoolVideo({ src, className }) {
         className={className}
         src={src}
       ></video>
-      {stopped && (
-        <div className={classes.pauseIcon}>
-          <SvgFileToInline path={"/icons/play.svg"} />
-        </div>
-      )}
+      <div className={classes.overlay}>
+        {stopped && (
+          <div className={classes.pauseIcon}>
+            <SvgFileToInline path={"/icons/play.svg"} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

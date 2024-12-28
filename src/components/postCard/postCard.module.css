@@ -4,38 +4,51 @@
   max-width: 100%;
   width: min(470px, 100vw);
   height: min-content;
+
   border-bottom: 1px solid var(--seperator-color);
 }
 
-.top, .left, .right {
+.top,
+.left,
+.right {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
 .top {
-  justify-content: space-between;
+  height: 44px;
   padding-left: 4px;
   padding-bottom: 12px;
+  justify-content: space-between;
 }
 
 .profileCard {
   margin-right: -12px;
 }
 
+.middle {
+  max-height: 95vh;
+  display: flex;
+  justify-content: center;
+}
+
 .img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .card p {
   margin: 0;
 }
 
-.bottom {
-  margin: 12px 0 12px 0;
+.actions {
+  margin: 12px 0;
 }
 
-.details > p,
-.details > div {
-  margin-top: 8px;
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

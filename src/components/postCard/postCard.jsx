@@ -48,27 +48,31 @@ function PostCard({ post }) {
           </button>
         </div>
       </div>
-      {isVideo ? (
-        <CoolVideo src={post.imageUrl} className={classes.img} />
-      ) : (
-        <img className={classes.img} src={post.imageUrl} />
-      )}
-      <div className={classes.bottom}>
-        <PostActions post={post} onChange={change} />
+      <div className={classes.middle}>
+        {isVideo ? (
+          <CoolVideo src={post.imageUrl} className={classes.img} />
+        ) : (
+          <img className={classes.img} src={post.imageUrl} />
+        )}
       </div>
-      <div className={classes.details}>
-        <p className="semibold-text">{likes} Likes</p>
-        <div>
-          <p className="semibold-text inline-para">{post.author.username} </p>
-          <p className="inline-para">{post.content}</p>
+      <div className={classes.bottom}>
+        <div className={classes.actions}>
+          <PostActions post={post} onChange={change} />
         </div>
-        <div
-          onClick={() => {
-            modal.open(<PostView post={post} />);
-          }}
-          className="secon-text"
-        >
-          View all {post._count.comments} comments
+        <div className={classes.details}>
+          <p className="semibold-text">{likes} Likes</p>
+          <div>
+            <p className="semibold-text inline-para">{post.author.username} </p>
+            <p className="inline-para">{post.content}</p>
+          </div>
+          <div
+            onClick={() => {
+              modal.open(<PostView post={post} />);
+            }}
+            className="secon-text"
+          >
+            View all {post._count.comments} comments
+          </div>
         </div>
       </div>
     </div>

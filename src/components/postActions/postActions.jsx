@@ -43,7 +43,7 @@ function PostActions({ post, onChange = () => {} }) {
     <div className={classes.container}>
       <div className={classes.leftSide}>
         <div onClick={like} className={liked ? classes.liked : ""}>
-          <SvgFileToInline path={`/icons/${liked ? "liked" : "heart"}.svg`} />
+          <SvgFileToInline path={`/icons/${liked ? "heart-filled" : "heart"}.svg`} />
         </div>
         <div onClick={comment}>
           <SvgFileToInline path={"/icons/comment.svg"} />

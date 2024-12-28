@@ -21,6 +21,11 @@ function Tabs({ tabs = [], initTab, bottomBorder }) {
     }
   }, [initTab, tabs]);
 
+  if (!tabs[tabIndex]) {
+    setTabIndex(0);
+    return;
+  }
+
   return (
     <div className={classes.container}>
       <div className={`${classes.tabs} ${bottomBorder ? classes.bottom : ""}`}>
@@ -41,7 +46,7 @@ function Tabs({ tabs = [], initTab, bottomBorder }) {
           );
         })}
       </div>
-      <div className={classes.body}>{tabs[tabIndex]?.content}</div>
+      <div className={classes.body}>{tabs[tabIndex].content}</div>
     </div>
   );
 }

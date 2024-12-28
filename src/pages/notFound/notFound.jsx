@@ -1,4 +1,5 @@
 import classes from "./notFound.module.css"
+import Footer from "../../components/footer/footer.jsx";
 import { Link } from "react-router-dom";
 
 function NotFound() {
@@ -9,6 +10,7 @@ function NotFound() {
         The link you followed may be broken, or the page you followed may have
         been removed. <Link className="no-decoration" to={"/"}>Go back to Oxidegram.</Link>
       </p>
+      <Footer />
     </div>
   );
 }

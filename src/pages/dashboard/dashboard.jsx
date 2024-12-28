@@ -1,4 +1,5 @@
 import { useOutletContext } from "react-router-dom";
+import Footer from "../../components/footer/footer.jsx";
 
 function Dashboard() {
   const callback = useOutletContext();
@@ -20,6 +21,7 @@ function Dashboard() {
         also called a dashboard.
       </p>
       <p className="secon-text small-text">-Wikipedia</p>
+      <Footer />
     </div>
   );
 }

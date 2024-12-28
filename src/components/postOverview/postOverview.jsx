@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import modalContext from "../../contexts/modalContext.js";
 import PostView from "../postView/postView.jsx";
 import PostThumbnail from "../postThumbnail/postThumbnail.jsx";
-import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import InlineImageText from "../inlineImageText/inlineImageText.jsx";
 import classes from "./postOverview.module.css";
 

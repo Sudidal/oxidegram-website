@@ -8,6 +8,7 @@ import PostView from "../postView/postView.jsx";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import PostOptions from "../postOptions/postOptions.jsx";
 import ProfileCard from "../profileCard/profileCard.jsx";
+import LimitedText from "../limitedText./limitedText.jsx";
 import classes from "./postCard.module.css";
 
 function PostCard({ post }) {
@@ -67,7 +68,7 @@ function PostCard({ post }) {
           <p className="semibold-text">{likes} Likes</p>
           <div>
             <p className="semibold-text inline-para">{post.author.username} </p>
-            <p className="inline-para">{post.content}</p>
+            <LimitedText text={post.content} limit={40} />
           </div>
           <div
             onClick={() => {

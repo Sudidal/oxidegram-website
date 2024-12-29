@@ -5,6 +5,7 @@ import PostThumbnail from "../postThumbnail/postThumbnail.jsx";
 import api from "../../../api.js";
 import ProfileCard from "../profileCard/profileCard.jsx";
 import PostView from "../postView/postView.jsx";
+import LimitedText from "../limitedText./limitedText.jsx";
 import classes from "./postMsg.module.css";
 
 function PostMsg({ postId }) {
@@ -33,7 +34,9 @@ function PostMsg({ postId }) {
         <PostThumbnail post={post} />
       </div>
       <div className={classes.details}>
-        <span className="semibold-text small-text">{post.content}</span>
+        <div className="semibold-text small-text">
+          <LimitedText text={post.content} limit={50} extendable={false} />
+        </div>
       </div>
     </div>
   );

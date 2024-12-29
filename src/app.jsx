@@ -7,9 +7,11 @@ import alertContext from "./contexts/alertContext.js";
 import { Outlet } from "react-router-dom";
 import SidePanel from "./components/sidePanel/sidePanel.jsx";
 import api from "../api.js";
+import storageManager from "./utils/storageManager.js";
 import Modal from "./components/modal/modal.jsx";
 import Dialog from "./components/dialog/dialog.jsx";
 import Alert from "./components/alert/alert.jsx";
+import WelcomeMenu from "./components/welcomeMenu/welcomeMenu.jsx";
 import themeManager from "./utils/themeManager.js";
 
 function App() {
@@ -70,6 +72,17 @@ function App() {
   const alertCallback = (controls) => {
     alertRef.current = controls;
   };
+
+  function onFirstVisit() {
+    if (modalRef.current) {
+      if (!storageManager.getItem("first_visit")) {
+        storageManager.setItem("first_visit", true);
+        modalRef.current.open(<WelcomeMenu />);
+      }
+    }
+  }
+
+  onFirstVisit();
 
   return (
     <profileContext.Provider value={{ ...profile, login, logout }}>

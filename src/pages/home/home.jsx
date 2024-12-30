@@ -1,18 +1,44 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef, useCallback } from "react";
 import { useOutletContext } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
 import api from "../../../api.js";
 import PostsList from "../../components/postsList/postsList.jsx";
 import ProfileCard from "../../components/profileCard/profileCard.jsx";
+import { isNearScrollEnd } from "../../utils/isNearScrollEnd.js";
 import classes from "./home.module.css";
 
 function Home() {
   const [posts, setPosts] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [topProfiles, setTopProfiles] = useState(null);
   const profile = useContext(profileContext);
+  const curInterval = useRef();
   const onRender = useOutletContext();
 
   onRender();
+
+  const checkScroll = useCallback(() => {
+    if (loading || !posts) return;
+
+    if (isNearScrollEnd()) {
+      setLoading(true);
+      api.getTopPosts(posts.length).then((res) => {
+        setLoading(false);
+        if (res.ok) {
+          setPosts([...posts, ...res.posts]);
+        }
+      });
+    }
+  }, [posts, loading]);
+
+  useEffect(() => {
+    curInterval.current = setInterval(() => {
+      checkScroll();
+    }, 3000);
+    return () => {
+      clearInterval(curInterval.current);
+    };
+  }, [checkScroll]);
 
   useEffect(() => {
     api.getTopPosts().then((res) => {
@@ -51,7 +77,7 @@ function Home() {
                         title: "Follow",
                         onClick: (ev) => {
                           api.follow(prof.id);
-                          ev.target.remove()
+                          ev.target.remove();
                         },
                       };
                     }

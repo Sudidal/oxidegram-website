@@ -98,6 +98,7 @@ class Api {
   }
 
   async getTopPosts(offset = 0) {
+    if (offset > 0) offset++;
     const res = await fetchManager.getReq(
       this.#url + "/posts?sortByLikes=true&offset=" + offset
     );

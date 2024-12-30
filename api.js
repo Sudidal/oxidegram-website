@@ -113,9 +113,9 @@ class Api {
     const res = await fetchManager.getReq(this.#url + "/posts/" + postId);
     return await this.#result(res);
   }
-  async getTopVideos() {
+  async getTopVideos(offset = 0) {
     const res = await fetchManager.getReq(
-      this.#url + "/posts?sortByLikes=true&filter=videos"
+      this.#url + "/posts?sortByLikes=true&filter=videos&offset=" + offset
     );
     return await this.#result(res);
   }

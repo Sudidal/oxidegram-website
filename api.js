@@ -5,8 +5,7 @@ import wsClient from "./src/utils/wsClient.js";
 class Api {
   constructor() {
     wsClient.subscribe("chat msg", (msg) => {
-      if(this.#callback)
-      this.#callback(msg);
+      if (this.#callback) this.#callback(msg);
     });
   }
 
@@ -104,8 +103,10 @@ class Api {
     );
     return await this.#result(res);
   }
-  async getRandomPosts() {
-    const res = await fetchManager.getReq(this.#url + "/posts");
+  async getRandomPosts(offset = 0) {
+    const res = await fetchManager.getReq(
+      this.#url + "/posts?offset=" + offset
+    );
     return await this.#result(res);
   }
   async getOnePost(postId) {

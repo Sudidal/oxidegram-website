@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
 import modalContext from "../../contexts/modalContext.js";
@@ -13,39 +13,107 @@ import Notifications from "../notifications/notifications.jsx";
 import classes from "./sidePanel.module.css";
 
 function SidePanel({ state }) {
-  const profile = useContext(profileContext);
-  const modal = useContext(modalContext);
-  const dialog = useContext(dialogContext);
+  const profile = React.useContext(profileContext);
+  const modal = React.useContext(modalContext);
+  const dialog = React.useContext(dialogContext);
   const nav = useNavigate();
 
   const collapsed = state === "collapse";
   const hidden = state === "hide";
 
-  const textItems = [
-    "Home",
-    "Search",
-    "Explore",
-    "Reels",
-    "Messages",
-    "Notifications",
-    "Create",
-    "Dashboard",
-    "Profile",
-    "More",
+  let buttons = [
+    {
+      title: "Home",
+      icon: "/icons/home.svg",
+      onClick: () => {
+        nav("/");
+      },
+    },
+    {
+      title: "Search",
+      icon: "/icons/search.svg",
+      onClick: () => {
+        modal.open(<SearchMenu />);
+      },
+    },
+    {
+      title: "Explore",
+      icon: "/icons/explore.svg",
+      onClick: () => {
+        nav("/explore");
+      },
+    },
+    {
+      title: "Reels",
+      icon: "/icons/reels.svg",
+      onClick: () => {
+        nav("/reels");
+      },
+    },
+    {
+      title: "Messages",
+      icon: "/icons/messenger.svg",
+      onClick: () => {
+        nav("/messages");
+      },
+    },
+    {
+      title: "Notifications",
+      icon: "/icons/heart.svg",
+      onClick: () => {
+        modal.open(<Notifications />);
+      },
+    },
+    {
+      title: "Create",
+      icon: "/icons/create.svg",
+      onClick: () => {
+        modal.open(<CreatePost />);
+      },
+    },
+    {
+      title: "Dashboard",
+      icon: "/icons/dashboard.svg",
+      onClick: () => {
+        nav("/dashboard");
+      },
+    },
+    {
+      title: "Profile",
+      elem: <AvatarImg url={profile.avatarUrl} width={24} />,
+      onClick: () => {
+        nav("/profiles/" + profile.id);
+      },
+    },
+    {
+      title: "More",
+      icon: "/icons/more.svg",
+      onClick: (ev) => {
+        dialog.open({
+          x: ev.currentTarget.offsetLeft,
+          y: ev.currentTarget.offsetTop,
+        });
+      },
+    },
   ];
 
   if (collapsed) {
     document.body.classList.add("collapsed-panel");
 
-    for (let i = 0; i < textItems.length; i++) {
-      textItems[i] = "";
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].title = "";
     }
   } else {
     document.body.classList.remove("collapsed-panel");
   }
-  let counter = 0;
+
+  if (profile.id === undefined) {
+    buttons = buttons.filter((i) => i.title !== "Profile");
+  }
 
   if (hidden) return;
+
+  let counter = 0;
 
   return (
     <aside className={`${classes.aside} ${collapsed ? classes.collapsed : ""}`}>
@@ -65,81 +133,17 @@ function SidePanel({ state }) {
       </div>
 
       <div className={classes.btnsList}>
-        <FullSizeBtn
-          iconUrl={"/icons/home.svg"}
-          text={textItems[counter++]}
-          onClick={() => {
-            nav("/");
-          }}
-        />
-        <FullSizeBtn
-          iconUrl={"/icons/search.svg"}
-          text={textItems[counter++]}
-          onClick={() => {
-            modal.open(<SearchMenu />);
-          }}
-        />
-        <FullSizeBtn
-          iconUrl={"/icons/explore.svg"}
-          text={textItems[counter++]}
-          onClick={() => {
-            nav("/explore");
-          }}
-        />
-        <FullSizeBtn
-          iconUrl={"/icons/reels.svg"}
-          text={textItems[counter++]}
-          onClick={() => {
-            nav("/reels");
-          }}
-        />
-        <FullSizeBtn
-          iconUrl={"/icons/messenger.svg"}
-          text={textItems[counter++]}
-          onClick={() => {
-            nav("/messages");
-          }}
-        />
-        <FullSizeBtn
-          iconUrl={"/icons/heart.svg"}
-          text={textItems[counter++]}
-          onClick={() => {
-            modal.open(<Notifications />);
-          }}
-        />
-        <FullSizeBtn
-          iconUrl={"/icons/create.svg"}
-          text={textItems[counter++]}
-          onClick={() => {
-            modal.open(<CreatePost />);
-          }}
-        />
-        <FullSizeBtn
-          iconUrl={"/icons/dashboard.svg"}
-          text={textItems[counter++]}
-          onClick={() => {
-            nav("/dashboard");
-          }}
-        />
-        {profile && (
-          <FullSizeBtn
-            icon={<AvatarImg url={profile.avatarUrl} width={24} />}
-            text={textItems[counter++]}
-            onClick={() => {
-              nav("/profiles/" + profile.id);
-            }}
-          />
-        )}
-        <FullSizeBtn
-          iconUrl={"/icons/more.svg"}
-          text={textItems[counter++]}
-          onClick={(ev) => {
-            dialog.open({
-              x: ev.currentTarget.offsetLeft,
-              y: ev.currentTarget.offsetTop,
-            });
-          }}
-        />
+        {buttons.map((btn) => {
+          return (
+            <FullSizeBtn
+              key={counter++}
+              text={btn.title}
+              iconUrl={btn.icon}
+              icon={btn.elem}
+              onClick={btn.onClick}
+            />
+          );
+        })}
       </div>
     </aside>
   );

@@ -5,6 +5,7 @@ import Tabs from "../../components/tabs/tabs.jsx";
 import api from "../../../api.js";
 import ContactsList from "../../components/contactsList/contactsList.jsx";
 import Chat from "../../components/chat/chat.jsx";
+import RequiresAccount from "../../components/requiresAccount/requiresAccount.jsx";
 import classes from "./messages.module.css";
 
 function Messages() {
@@ -53,7 +54,12 @@ function Messages() {
     });
   }
 
-  if (!detailedProfile) return;
+  if (!detailedProfile)
+    return (
+      <div className="main-with-margin">
+        <RequiresAccount />
+      </div>
+    );
 
   return (
     <div className={classes.container}>

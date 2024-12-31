@@ -46,7 +46,6 @@ function App() {
 
   function reqProfile() {
     api.getMyProfile().then((res) => {
-      alertRef.current.show(res.msg);
       if (res.ok) {
         setProfile(res.profile);
       }

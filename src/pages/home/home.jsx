@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
+import alertContext from "../../contexts/alertContext.js";
 import api from "../../../api.js";
 import PostsList from "../../components/postsList/postsList.jsx";
 import ProfileCard from "../../components/profileCard/profileCard.jsx";
@@ -12,7 +14,9 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [topProfiles, setTopProfiles] = useState(null);
   const profile = useContext(profileContext);
+  const alert = useContext(alertContext);
   const curInterval = useRef();
+  const nav = useNavigate()
   const onRender = useOutletContext();
 
   onRender();
@@ -57,7 +61,7 @@ function Home() {
         </div>
         <div className={classes.rightSide}>
           <div className={classes.content}>
-            {profile && (
+            {profile.id ? (
               <ProfileCard
                 profile={profile}
                 sideBtn={{
@@ -65,6 +69,16 @@ function Home() {
                   onClick: profile.logout,
                 }}
               />
+            ) : (
+              <button
+                className="primary-btn"
+                style={{ width: "100%" }}
+                onClick={() => {
+                  nav("/accounts");
+                }}
+              >
+                Log in
+              </button>
             )}
             <div className={classes.suggested}>
               <p className="secon-text-semibold">Suggested for you</p>
@@ -76,7 +90,9 @@ function Home() {
                       btn = {
                         title: "Follow",
                         onClick: (ev) => {
-                          api.follow(prof.id);
+                          api.follow(prof.id).then((res) => {
+                            if (!res.ok) alert.show(res.msg);
+                          });
                           ev.target.remove();
                         },
                       };

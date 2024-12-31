@@ -10,7 +10,7 @@ import classes from "./dialog.module.css";
 function Dialog({ callback }) {
   const [openState, setOpenState] = useState(false);
   const profile = useContext(profileContext);
-  const dialog = useContext(dialogContext)
+  const dialog = useContext(dialogContext);
   const ref = useRef(null);
   const nav = useNavigate();
 
@@ -44,14 +44,16 @@ function Dialog({ callback }) {
 
   return (
     <dialog className={classes.dialog} ref={ref} onMouseDown={click}>
-      <FullSizeBtn
-        text={"Saved"}
-        iconUrl={"/icons/save.svg"}
-        onClick={() => {
-          nav(`/profiles/${profile.id}/SAVED`);
-          dialog.close()
-        }}
-      />
+      {profile.id && (
+        <FullSizeBtn
+          text={"Saved"}
+          iconUrl={"/icons/save.svg"}
+          onClick={() => {
+            nav(`/profiles/${profile.id}/SAVED`);
+            dialog.close();
+          }}
+        />
+      )}
       <FullSizeBtn
         text={"Switch appearance"}
         iconUrl={"/icons/crescent.svg"}
@@ -59,13 +61,23 @@ function Dialog({ callback }) {
           themeManager.switch();
         }}
       />
-      <FullSizeBtn
-        text={"Log out"}
-        onClick={() => {
-          profile.logout()
-          dialog.close()
-        }}
-      />
+      {profile.id ? (
+        <FullSizeBtn
+          text={"Log out"}
+          onClick={() => {
+            profile.logout();
+            dialog.close();
+          }}
+        />
+      ) : (
+        <FullSizeBtn
+          text={"Log in"}
+          onClick={() => {
+            nav("/accounts");
+            dialog.close();
+          }}
+        />
+      )}
     </dialog>
   );
 }

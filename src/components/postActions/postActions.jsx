@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useContext } from "react";
 import modalContext from "../../contexts/modalContext.js";
+import alertContext from "../../contexts/alertContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import PostView from "../postView/postView.jsx";
 import ShareMenu from "../shareMenu/shareMenu.jsx";
@@ -11,14 +12,23 @@ function PostActions({ post, onChange = () => {} }) {
   const [liked, setLiked] = useState(post.liked);
   const [saved, setSaved] = useState(post.saved);
   const modal = useContext(modalContext);
+  const alert = useContext(alertContext);
 
   function like() {
     if (liked) {
       onChange("unlike");
-      api.unlikePost(post.id);
+      api.unlikePost(post.id).then((res) => {
+        if (!res.ok) {
+          alert.show(res.msg);
+        }
+      });
     } else {
       onChange("like");
-      api.likePost(post.id);
+      api.likePost(post.id).then((res) => {
+        if (!res.ok) {
+          alert.show(res.msg);
+        }
+      });
     }
     setLiked(!liked);
   }
@@ -32,10 +42,18 @@ function PostActions({ post, onChange = () => {} }) {
   function save() {
     if (saved) {
       setSaved(false);
-      api.unsave(post.id);
+      api.unsave(post.id).then((res) => {
+        if (!res.ok) {
+          alert.show(res.msg);
+        }
+      });
     } else {
       setSaved(true);
-      api.save(post.id);
+      api.save(post.id).then((res) => {
+        if (!res.ok) {
+          alert.show(res.msg);
+        }
+      });
     }
   }
 
@@ -43,7 +61,9 @@ function PostActions({ post, onChange = () => {} }) {
     <div className={classes.container}>
       <div className={classes.leftSide}>
         <div onClick={like} className={liked ? classes.liked : ""}>
-          <SvgFileToInline path={`/icons/${liked ? "heart-filled" : "heart"}.svg`} />
+          <SvgFileToInline
+            path={`/icons/${liked ? "heart-filled" : "heart"}.svg`}
+          />
         </div>
         <div onClick={comment}>
           <SvgFileToInline path={"/icons/comment.svg"} />

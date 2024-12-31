@@ -2,6 +2,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import api from "../../../api.js";
 import PropTypes from "prop-types";
 import modalContext from "../../contexts/modalContext.js";
+import alertContext from "../../contexts/alertContext.js";
 import PostActions from "../postActions/postActions.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import Comment from "../comment/comment.jsx";
@@ -16,6 +17,7 @@ function PostView({ post, fullScreen = false }) {
   const [comments, setComments] = useState(null);
   const [likes, setLikes] = useState(post._count.likers);
   const modal = useContext(modalContext);
+  const alert = useContext(alertContext);
   const commentInputRef = useRef(null);
 
   useEffect(() => {
@@ -27,8 +29,11 @@ function PostView({ post, fullScreen = false }) {
   function postComment() {
     const content = commentInputRef.current.value;
     commentInputRef.current.value = "";
-    api.makeComment(content, post.id).then(() => {
+    api.makeComment(content, post.id).then((res) => {
       setUpdate(!update);
+      if (!res.ok) {
+        alert.show(res.msg);
+      }
     });
   }
 

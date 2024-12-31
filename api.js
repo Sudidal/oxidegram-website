@@ -241,7 +241,7 @@ class Api {
         case 404:
           return "Not Found";
         case 401:
-          return "You are not allowed to do this action";
+          return "Account required for this action";
         case 500:
           return "Internal server error";
         case 400:

@@ -1,48 +1,73 @@
-import { useState, useRef } from "react";
+import React from "react";
+import modalContext from "../../contexts/modalContext.js";
 import PropTypes from "prop-types";
 import classes from "./modal.module.css";
 
 function Modal({ callback }) {
-  const [content, setContent] = useState(null);
-  const dialogRef = useRef(null);
-  const [openState, setOpenState] = useState(false);
+  const [menues, setMenues] = React.useState([]);
 
   callback({
     open: open,
-    close: close,
   });
 
-  function open(inputCont) {
-    setContent(inputCont);
-    setOpenState(true);
-  }
-  function close() {
-    setOpenState(false);
+  function open(input) {
+    const menuObj = {
+      element: input,
+      open: open,
+      close: () => {
+        setMenues((curMenues) => curMenues.filter((val) => val !== menuObj));
+      },
+    };
+    setMenues((curMenues) => [...curMenues, menuObj]);
   }
 
-  if (openState) {
-    if (dialogRef.current) dialogRef.current.showModal();
-  } else {
-    if (dialogRef.current) dialogRef.current.close();
-  }
+  let count = 0;
+
+  return (
+    <div>
+      {menues.map((menu) => {
+        return <RealModal key={count} menu={menu} />;
+      })}
+    </div>
+  );
+}
+
+function RealModal({ menu }) {
+  const ref = React.useRef();
+
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.showModal();
+    }
+  }, [ref]);
 
   return (
     <dialog
+      ref={ref}
       className={classes.dialog}
-      ref={dialogRef}
       onClick={(ev) => {
-        if (ev.target === dialogRef.current) {
-          close();
+        if (ev.target === ev.currentTarget) {
+          menu.close();
         }
       }}
     >
-      {openState && content}
+      <modalContext.Provider
+        value={{
+          open: menu.open,
+          close: menu.close,
+        }}
+      >
+        {menu.element}
+      </modalContext.Provider>
     </dialog>
   );
 }
 
 Modal.propTypes = {
   callback: PropTypes.func,
+};
+RealModal.propTypes = {
+  menu: PropTypes.object,
 };
 
 export default Modal;

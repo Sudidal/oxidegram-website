@@ -47,6 +47,7 @@ function PostOptions({ post }) {
       <StackingBtn
         content={"Go to post"}
         onClick={() => {
+          modal.close()
           nav(relativeUrl);
         }}
       />
@@ -54,6 +55,7 @@ function PostOptions({ post }) {
         content={"Share"}
         onClick={() => {
           modal.open(<ShareMenu post={post} />);
+          modal.close()
         }}
       />
       <StackingBtn

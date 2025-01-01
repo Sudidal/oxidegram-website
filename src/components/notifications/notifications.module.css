@@ -1,6 +1,6 @@
 .container {
-  width: 400px;
-  height: 482px;
+  height: 75vh;
+  width: max(400px, 30vw);
   padding: 16px 32px;
   display: flex;
   flex-direction: column;
@@ -21,6 +21,6 @@
 }
 
 .card {
-  display: flex; 
+  display: flex;
   gap: 10px;
 }

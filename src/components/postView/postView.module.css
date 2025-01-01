@@ -36,15 +36,9 @@
   flex-direction: column;
 }
 
-.top,
-.topRight,
-.topLeft {
+.top {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.top {
   justify-content: space-between;
   padding: 0 var(--padding-sides);
   height: 60px;

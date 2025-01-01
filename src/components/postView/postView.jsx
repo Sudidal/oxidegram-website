@@ -54,7 +54,7 @@ function PostView({ post, fullScreen = false }) {
       {!fullScreen && (
         <div className={classes.closeBtn}>
           <button
-            className="unstyled-btn"
+            className="icon-btn"
             onClick={() => {
               modal.close();
             }}

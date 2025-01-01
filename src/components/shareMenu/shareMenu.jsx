@@ -9,7 +9,7 @@ import classes from "./shareMenu.module.css";
 
 function ShareMenu({ post }) {
   const profile = useContext(profileContext);
-  const modal = useContext(modalContext)
+  const modal = useContext(modalContext);
   const [contacts, setContacts] = useState(null);
 
   useEffect(() => {
@@ -27,12 +27,15 @@ function ShareMenu({ post }) {
       <div className={classes.top}>
         <div className={classes.headBlock}></div>
         <h1 className={classes.header}>Share</h1>
-        <button className={`unstyled-btn ${classes.headBlock}`} onClick={modal.close}>
+        <button
+          className={`unstyled-btn ${classes.headBlock}`}
+          onClick={modal.close}
+        >
           <SvgFileToInline path={"/icons/cross.svg"} />
         </button>
       </div>
       <div className={classes.list}>
-        {contacts &&
+        {contacts?.length > 0 ? (
           contacts.map((contact) => {
             return (
               <ProfileCard
@@ -46,14 +49,17 @@ function ShareMenu({ post }) {
                 }}
               />
             );
-          })}
+          })
+        ) : (
+          <div className="semibold-text middle-text">You don&apos;t have any contacts yet.</div>
+        )}
       </div>
     </div>
   );
 }
 
 ShareMenu.propTypes = {
-  post: PropTypes.object
-}
+  post: PropTypes.object,
+};
 
 export default ShareMenu;

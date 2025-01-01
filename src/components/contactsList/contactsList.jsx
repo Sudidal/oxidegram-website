@@ -17,7 +17,7 @@ function ContactsList({ contacts, onSelect }) {
 
   return (
     <div ref={parentRef} className={classes.container}>
-      {contacts.length > 0 ? (
+      {contacts?.length > 0 ? (
         contacts.map((contact) => {
           const lastMessage =
             contact.chat.messages[contact.chat.messages.length - 1];

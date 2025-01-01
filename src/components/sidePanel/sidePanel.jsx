@@ -25,17 +25,24 @@ function SidePanel({ state }) {
     setCollapsed(state === "collapse");
   }, [state]);
 
-  const mediaQuery = window.matchMedia("(max-width: 1263px)");
-  mediaQuery.removeEventListener("change", handleResolutionChange);
-  mediaQuery.addEventListener("change", handleResolutionChange);
+  const handleResolutionChange = React.useCallback(
+    (e) => {
+      if (e.matches) {
+        setCollapsed(true);
+      } else {
+        setCollapsed(state === "collapse");
+      }
+    },
+    [state]
+  );
 
-  function handleResolutionChange(e) {
-    if (e.matches) {
-      setCollapsed(true);
-    } else {
-      setCollapsed(state === "collapse");
-    }
-  }
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1263px)");
+    mediaQuery.addEventListener("change", handleResolutionChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleResolutionChange);
+    };
+  }, [handleResolutionChange]);
 
   let buttons = [
     {

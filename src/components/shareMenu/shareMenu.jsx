@@ -43,7 +43,8 @@ function ShareMenu({ post }) {
                 profile={contact.contacted}
                 sideBtn={{
                   title: "Send",
-                  onClick: () => {
+                  onClick: (ev) => {
+                    ev.currentTarget.remove();
                     share(contact);
                   },
                 }}
@@ -51,7 +52,9 @@ function ShareMenu({ post }) {
             );
           })
         ) : (
-          <div className="semibold-text middle-text">You don&apos;t have any contacts yet.</div>
+          <div className="semibold-text middle-text">
+            You don&apos;t have any contacts yet.
+          </div>
         )}
       </div>
     </div>

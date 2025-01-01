@@ -29,12 +29,12 @@ function Messages() {
     contactsArr.forEach((cont) => {
       if (cont.chat.id === msg.chatId) {
         cont.chat.messages.push(msg);
-        if (msg.senderId !== profile.id) {
-          new window.Notification(`Message from ${cont.contacted.fullName}`, {
-            body: msg.content,
-            icon: cont.contacted.avatarUrl,
-          });
-        }
+        // if (msg.senderId !== profile.id) {
+        //   new window.Notification(`Message from ${cont.contacted.fullName}`, {
+        //     body: msg.content,
+        //     icon: cont.contacted.avatarUrl,
+        //   });
+        // }
       }
     });
 

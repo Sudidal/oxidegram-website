@@ -4,7 +4,7 @@ import classes from "./stackingBtn.module.css";
 function StackingBtn({ content, onClick, danger = false }) {
   return (
     <button
-      className={`${classes.btn} ${danger ? "danger" : ""}`}
+      className={`unstyled-btn ${classes.btn} ${danger ? "danger" : ""}`}
       onClick={onClick}
     >
       {content}

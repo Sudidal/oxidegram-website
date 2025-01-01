@@ -12,5 +12,5 @@
 }
 
 .liked {
-  color: var(--badge-color);
+  color: var(--badge-color) !important;
 }

@@ -60,22 +60,22 @@ function PostActions({ post, onChange = () => {} }) {
   return (
     <div className={classes.container}>
       <div className={classes.leftSide}>
-        <div onClick={like} className={liked ? classes.liked : ""}>
+        <button className={`icon-btn ${liked ? classes.liked : ""}`} onClick={like}>
           <SvgFileToInline
             path={`/icons/${liked ? "heart-filled" : "heart"}.svg`}
           />
-        </div>
-        <div onClick={comment}>
+        </button>
+        <button className="icon-btn" onClick={comment}>
           <SvgFileToInline path={"/icons/comment.svg"} />
-        </div>
-        <div onClick={share}>
+        </button>
+        <button className="icon-btn" onClick={share}>
           <SvgFileToInline path={"/icons/share.svg"} />
-        </div>
+        </button>
       </div>
       <div className={classes.rightSide}>
-        <div onClick={save}>
+        <button className="icon-btn" onClick={save}>
           <SvgFileToInline path={`/icons/${saved ? "saved" : "save"}.svg`} />
-        </div>
+        </button>
       </div>
     </div>
   );

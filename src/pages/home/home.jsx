@@ -18,6 +18,7 @@ function Home() {
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 1160px)");
     mediaQuery.addEventListener("change", resolutionChange);
+    resolutionChange(mediaQuery);
     return () => {
       mediaQuery.removeEventListener("change", resolutionChange);
     };

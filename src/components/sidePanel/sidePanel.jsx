@@ -39,6 +39,7 @@ function SidePanel({ state }) {
   React.useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 1263px)");
     mediaQuery.addEventListener("change", handleResolutionChange);
+    handleResolutionChange(mediaQuery);
     return () => {
       mediaQuery.removeEventListener("change", handleResolutionChange);
     };

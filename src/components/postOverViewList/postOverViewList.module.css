@@ -10,7 +10,7 @@
 }
 
 .card {
-  width: calc((100% / 3) - var(--gap) * 3);
+  width: calc((100% / 3) - var(--gap));
 }
 
 .empty {

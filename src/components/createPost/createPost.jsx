@@ -1,7 +1,6 @@
 import React from "react";
 import api from "../../../api.js";
 import profileContext from "../../contexts/profileContext.js";
-import modalContext from "../../contexts/modalContext.js";
 import alertContext from "../../contexts/alertContext.js";
 import SvgFileToInline from "../svgFileToInline/svgFileToInline.jsx";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
@@ -13,7 +12,6 @@ function CreatePost() {
   const [demoUrl, setDemoUrl] = React.useState(null);
   const [isVideo, setIsVideo] = React.useState(null);
   const profile = React.useContext(profileContext);
-  const modal = React.useContext(modalContext);
   const alert = React.useContext(alertContext);
   const fileInputRef = React.useRef(null);
   const contentInputRef = React.useRef(null);

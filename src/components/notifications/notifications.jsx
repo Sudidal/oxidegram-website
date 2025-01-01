@@ -37,8 +37,6 @@ function Notifications() {
     return result;
   }
 
-  let count = 0;
-
   return (
     <div className={classes.container}>
       <div className={classes.header}>

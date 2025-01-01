@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
 import api from "../../../api.js";
@@ -8,7 +8,6 @@ import classes from "./notifications.module.css";
 function Notifications() {
   const [notifs, setNotifs] = useState(null);
   const profile = useContext(profileContext);
-  const nav = useNavigate();
 
   useEffect(() => {
     api.getNotifications(profile.id).then((res) => {
@@ -45,16 +44,10 @@ function Notifications() {
         <div className={classes.list}>
           {notifs.map((notif) => {
             return (
-              <div
-                key={notif.id}
-                className={classes.card}
-                onClick={() => {
-                  nav(notif.link);
-                }}
-              >
+              <Link to={notif.link} key={notif.id} className={`unstyled-link ${classes.card}`}>
                 <AvatarImg url={notif.icon} width={46} />
                 <p className="semibold-text">{notif.content}</p>
-              </div>
+              </Link>
             );
           })}
         </div>

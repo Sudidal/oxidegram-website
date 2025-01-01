@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import React from "react";
 import api from "../../../api.js";
 import profileContext from "../../contexts/profileContext.js";
 import modalContext from "../../contexts/modalContext.js";
@@ -8,21 +8,21 @@ import AvatarImg from "../avatarImg/avatarImg.jsx";
 import classes from "./createPost.module.css";
 
 function CreatePost() {
-  const [step, setStep] = useState(0);
-  const [file, setFile] = useState(null);
-  const [demoUrl, setDemoUrl] = useState(null);
-  const [isVideo, setIsVideo] = useState(null);
-  const profile = useContext(profileContext);
-  const modal = useContext(modalContext);
-  const alert = useContext(alertContext);
-  const fileInputRef = useRef(null);
-  const contentInputRef = useRef(null);
+  const [step, setStep] = React.useState(0);
+  const [file, setFile] = React.useState(null);
+  const [demoUrl, setDemoUrl] = React.useState(null);
+  const [isVideo, setIsVideo] = React.useState(null);
+  const profile = React.useContext(profileContext);
+  const modal = React.useContext(modalContext);
+  const alert = React.useContext(alertContext);
+  const fileInputRef = React.useRef(null);
+  const contentInputRef = React.useRef(null);
 
   function stepOn() {
-    setStep(step + 1);
+    setStep((val) => val + 1);
   }
   function stepBack() {
-    setStep(step - 1);
+    setStep((val) => val - 1);
   }
 
   function share() {
@@ -34,7 +34,8 @@ function CreatePost() {
       })
       .then((res) => {
         alert.show(res.msg);
-        if (res.ok) modal.close();
+        if (res.ok) stepOn();
+        else stepBack();
       });
   }
 
@@ -58,7 +59,7 @@ function CreatePost() {
         </div>
         <div className={classes.body}>
           <SvgFileToInline path={"/icons/media.svg"} />
-          <p className={classes.text}>Select only photos not videos</p>
+          <p className={classes.text}>Select photos and videos</p>
           <form action="" encType="multipart/form-data">
             <input
               ref={fileInputRef}
@@ -111,6 +112,33 @@ function CreatePost() {
             </div>
             <textarea ref={contentInputRef} className={classes.contentInput} />
           </div>
+        </div>
+      </div>
+    );
+  } else if (step === 2) {
+    return (
+      <div className={classes.container}>
+        <div className={classes.header}>
+          <h1 className={classes.headerText}>Sharing</h1>
+        </div>
+        <div className={classes.body3}>
+          <img
+            style={{ width: "96px" }}
+            src="/gifs/instagram-spinner.gif"
+            alt=""
+          />
+        </div>
+      </div>
+    );
+  } else if (step === 3) {
+    return (
+      <div className={classes.container}>
+        <div className={classes.header}>
+          <h1 className={classes.headerText}>Post shared</h1>
+        </div>
+        <div className={classes.body3}>
+          <img src="/gifs/instagram-success.gif" alt="" />
+          <p className="huge-text">Your post has been shared.</p>
         </div>
       </div>
     );

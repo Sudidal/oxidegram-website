@@ -14,12 +14,13 @@
   border-bottom: 1px solid var(--seperator-color);
 }
 
-.header .headerText {
+.headerText {
   font-size: var(--big-text-size);
 }
 
 .body,
-.body2 {
+.body2,
+.body3 {
   height: calc(100% - var(--header-height));
   display: flex;
   justify-content: center;
@@ -34,6 +35,10 @@
 
 .body2 {
   width: 779px;
+}
+.body3 {
+  width: 439px;
+  flex-direction: column;
 }
 
 .text {

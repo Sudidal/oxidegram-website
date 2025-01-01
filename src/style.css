@@ -35,6 +35,8 @@ body {
 
   --hover-overlay: rgb(255, 255, 255, 0.1);
   --hover-overlay: rgb(255, 255, 255, 0.1);
+  --secondary-btn-hover-color: rgb(38, 38, 38);
+  --no-border-btn-hover-color: white;
 
   --font-semibold: 600;
   --giga-text-size: 30px;
@@ -65,6 +67,9 @@ body.light {
   --seperator-color: rgb(219, 219, 219);
   --elevated-seperator-color: rgb(219, 219, 219);
   --stroke-color: rgb(219, 219, 219);
+
+  --secondary-btn-hover-color: rgb(219, 219, 219);
+  --link-color: rgb(0, 55, 107);
 }
 body.collapsed-panel {
   --nav-width: var(--nav-collapsed-width);
@@ -169,10 +174,14 @@ body.collapsed-panel {
   color: white;
   background-color: var(--primary-btn-color);
 }
+
 .secondary-btn {
   height: 32px;
   padding: 0 16px;
   background-color: var(--secondary-btn-color);
+}
+.secondary-btn:hover {
+  background-color: var(--secondary-btn-hover-color);
 }
 
 .no-border-btn {
@@ -182,11 +191,17 @@ body.collapsed-panel {
   color: var(--primary-btn-color);
   text-decoration: none;
 }
+.no-border-btn:hover {
+  color: var(--link-color);
+}
 
 .icon-btn {
   background: none;
   border: none;
   color: var(--primary-text-color);
+}
+.icon-btn:hover {
+  opacity: 0.4;
 }
 
 .unstyled-btn {

@@ -13,13 +13,29 @@ import Notifications from "../notifications/notifications.jsx";
 import classes from "./sidePanel.module.css";
 
 function SidePanel({ state }) {
+  const [collapsed, setCollapsed] = React.useState(false);
+  const [hidden, setHidden] = React.useState(false);
   const profile = React.useContext(profileContext);
   const modal = React.useContext(modalContext);
   const dialog = React.useContext(dialogContext);
   const nav = useNavigate();
 
-  const collapsed = state === "collapse";
-  const hidden = state === "hide";
+  React.useEffect(() => {
+    setHidden(state === "hide");
+    setCollapsed(state === "collapse");
+  }, [state]);
+
+  const mediaQuery = window.matchMedia("(max-width: 1263px)");
+  mediaQuery.removeEventListener("change", handleResolutionChange);
+  mediaQuery.addEventListener("change", handleResolutionChange);
+
+  function handleResolutionChange(e) {
+    if (e.matches) {
+      setCollapsed(true);
+    } else {
+      setCollapsed(state === "collapse");
+    }
+  }
 
   let buttons = [
     {

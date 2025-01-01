@@ -2,6 +2,8 @@
   width: 400px;
   height: 482px;
   padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
   background-color: var(--primary-background-color);
 }
 
@@ -12,11 +14,10 @@
 }
 
 .list {
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  overflow: scroll;
-  min-height: 50%;
 }
 
 .card {

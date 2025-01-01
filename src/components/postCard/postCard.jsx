@@ -70,14 +70,15 @@ function PostCard({ post }) {
             <p className="semibold-text inline-para">{post.author.username} </p>
             <LimitedText text={post.content} limit={40} />
           </div>
-          <div
+          <button
             onClick={() => {
               modal.open(<PostView post={post} />);
             }}
-            className="secon-text"
+            style={{textAlign: "left", color: "var(--secondary-text-color)"}}
+            className="unstyled-btn"
           >
             View all {post._count.comments} comments
-          </div>
+          </button>
         </div>
       </div>
     </div>

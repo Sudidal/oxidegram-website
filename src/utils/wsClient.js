@@ -3,9 +3,8 @@ import storageManager from "./storageManager.js";
 
 class WSClient {
   #socket = io();
-  #checkCooldown = 1000; //ms
-  #intervalId = null;
   #AUTH_HEADER = "authorization";
+  #checkDuration = 2000; //ms
   #subscriptions = [];
 
   constructor() {
@@ -23,7 +22,7 @@ class WSClient {
 
   #connect() {
     console.log("Connecting to WebSocket server");
-    this.#socket.disconnect();
+    this.#socket?.disconnect();
     this.#socket = io(import.meta.env.VITE_WS_URL, {
       path: "/direct",
       extraHeaders: {
@@ -31,12 +30,16 @@ class WSClient {
       },
     });
 
+    this.#subscriptions.push({
+      event: "connect_error",
+      callback: (err) => {
+        console.log(err.message);
+      },
+    });
+
     this.setSubscriptions();
 
-    clearInterval(this.#intervalId);
-    this.#intervalId = setInterval(() => {
-      this.checkForInfoUpdates();
-    }, this.#checkCooldown);
+    this.checkForInfoUpdatesLoop();
   }
 
   setSubscriptions() {
@@ -46,11 +49,15 @@ class WSClient {
     });
   }
 
-  checkForInfoUpdates() {
+  checkForInfoUpdatesLoop() {
     const curAuthKey = storageManager.getAuthenticationKey();
     if (curAuthKey !== this.#socket.io.opts.extraHeaders[this.#AUTH_HEADER]) {
       this.#connect();
     }
+
+    setTimeout(() => {
+      this.checkForInfoUpdatesLoop();
+    }, this.#checkDuration);
   }
 }
 

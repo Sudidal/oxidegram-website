@@ -239,6 +239,11 @@ body.collapsed-panel {
   border: none;
 }
 
+.unstyled-link {
+  text-decoration: none;
+  color: var(--primary-text-color);
+}
+
 .flexbox {
   display: flex;
   gap: 5px;

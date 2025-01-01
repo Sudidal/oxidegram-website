@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classes from "./profileCard.module.css";
 import AvatarImg from "../avatarImg/avatarImg.jsx";
@@ -11,21 +11,18 @@ function ProfileCard({
   fullName = true,
   primFullName = false,
 }) {
-  const nav = useNavigate();
-
   return (
-    <div
-      className={classes.card}
-      onClick={() => {
-        nav("/profiles/" + profile.id);
-      }}
-    >
+    <Link to={"/profiles/" + profile.id} className={`unstyled-link ${classes.card}`}>
       <div className={classes.left}>
         <AvatarImg url={profile.avatarUrl} width={imgSize} />
         <div>
           {username && <p className="semibold-text">{profile.username}</p>}
           {fullName && (
-            <p className={primFullName ? "prim-text semibold-text" : "secon-text"}>
+            <p
+              className={
+                primFullName ? "prim-text semibold-text" : "secon-text"
+              }
+            >
               {profile.fullName}
             </p>
           )}
@@ -44,7 +41,7 @@ function ProfileCard({
           </button>
         )}
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -54,7 +51,7 @@ ProfileCard.propTypes = {
   imgSize: PropTypes.number,
   username: PropTypes.bool,
   fullName: PropTypes.bool,
-  primFullName: PropTypes.bool
+  primFullName: PropTypes.bool,
 };
 
 export default ProfileCard;

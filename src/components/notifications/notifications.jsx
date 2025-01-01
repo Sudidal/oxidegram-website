@@ -20,7 +20,6 @@ function Notifications() {
 
   async function notifsContent(input) {
     const result = [];
-    console.log(input);
     for (let i = 0; i < input.length; i++) {
       const notif = input[i].notification;
       if (notif.type === "POST") {

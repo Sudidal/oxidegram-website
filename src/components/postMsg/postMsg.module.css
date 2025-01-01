@@ -1,6 +1,7 @@
 .container {
   background-color: var(--highlight-background-color);
   border-radius: 18px;
+  cursor: pointer;
 }
 
 .top {

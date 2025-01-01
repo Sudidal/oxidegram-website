@@ -82,9 +82,9 @@ function CreatePost() {
     return (
       <div className={classes.container}>
         <div className={classes.header}>
-          <div onClick={stepBack}>
+          <button className="icon-btn" onClick={stepBack}>
             <SvgFileToInline path={"/icons/leftArrow.svg"} />
-          </div>
+          </button>
           <h2 className={classes.headerText}>Create new post</h2>
           <button className="no-border-btn" onClick={share}>
             Share

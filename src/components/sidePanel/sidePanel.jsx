@@ -141,8 +141,8 @@ function SidePanel({ state }) {
 
   return (
     <aside className={`${classes.aside} ${collapsed ? classes.collapsed : ""}`}>
-      <div
-        className={classes.logo}
+      <button
+        className={`unstyled-btn ${classes.logo}`}
         onClick={() => {
           nav("/");
         }}
@@ -154,7 +154,7 @@ function SidePanel({ state }) {
             <SvgFileToInline path={"/icons/instagram-text-logo.svg"} />
           </div>
         )}
-      </div>
+      </button>
 
       <div className={classes.btnsList}>
         {buttons.map((btn) => {

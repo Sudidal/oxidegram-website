@@ -25,9 +25,10 @@ function ContactsList({ contacts, onSelect }) {
             ? "Sent an attachment"
             : lastMessage.content;
           return (
-            <div
+            <button
               key={contact.id}
-              className={classes.contactCard}
+              style={{textAlign: "left"}}
+              className={`unstyled-btn ${classes.contactCard}`}
               onClick={(ev) => {
                 cardClicked(contact.id, ev);
               }}
@@ -42,7 +43,7 @@ function ContactsList({ contacts, onSelect }) {
                   </div>
                 )}
               </div>
-            </div>
+            </button>
           );
         })
       ) : (

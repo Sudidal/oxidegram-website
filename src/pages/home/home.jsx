@@ -1,25 +1,36 @@
-import { useState, useEffect, useContext, useRef, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useOutletContext } from "react-router-dom";
-import profileContext from "../../contexts/profileContext.js";
-import alertContext from "../../contexts/alertContext.js";
 import api from "../../../api.js";
 import PostsList from "../../components/postsList/postsList.jsx";
-import ProfileCard from "../../components/profileCard/profileCard.jsx";
 import { isNearScrollEnd } from "../../utils/isNearScrollEnd.js";
+import SuggestionsPanel from "../../components/suggestionsPanel/suggestionsPanel.jsx";
 import classes from "./home.module.css";
 
 function Home() {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [topProfiles, setTopProfiles] = useState(null);
-  const profile = useContext(profileContext);
-  const alert = useContext(alertContext);
+  const [smallScreen, setSmallScreen] = useState(false);
   const curInterval = useRef();
-  const nav = useNavigate()
   const onRender = useOutletContext();
 
   onRender();
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1160px)");
+    mediaQuery.addEventListener("change", resolutionChange);
+    return () => {
+      mediaQuery.removeEventListener("change", resolutionChange);
+    };
+  }, []);
+
+  function resolutionChange(ev) {
+    console.log("media change", ev);
+    if (ev.matches) {
+      setSmallScreen(true);
+    } else {
+      setSmallScreen(false);
+    }
+  }
 
   const checkScroll = useCallback(() => {
     if (loading || !posts) return;
@@ -48,9 +59,6 @@ function Home() {
     api.getTopPosts().then((res) => {
       setPosts(res.posts);
     });
-    api.getTopProfiles().then((res) => {
-      setTopProfiles(res.profiles);
-    });
   }, []);
 
   return (
@@ -59,76 +67,11 @@ function Home() {
         <div className={classes.middle}>
           <PostsList posts={posts} />
         </div>
-        <div className={classes.rightSide}>
-          <div className={classes.content}>
-            {profile.id ? (
-              <ProfileCard
-                profile={profile}
-                sideBtn={{
-                  title: "Log out",
-                  onClick: profile.logout,
-                }}
-              />
-            ) : (
-              <button
-                className="primary-btn"
-                style={{ width: "100%" }}
-                onClick={() => {
-                  nav("/accounts");
-                }}
-              >
-                Log in
-              </button>
-            )}
-            <div className={classes.suggested}>
-              <p className="secon-text-semibold">Suggested for you</p>
-              <div className={classes.profileList}>
-                {topProfiles &&
-                  topProfiles.map((prof) => {
-                    let btn = null;
-                    if (!prof.followed) {
-                      btn = {
-                        title: "Follow",
-                        onClick: (ev) => {
-                          api.follow(prof.id).then((res) => {
-                            if (!res.ok) alert.show(res.msg);
-                          });
-                          ev.target.remove();
-                        },
-                      };
-                    }
-                    if (prof.id !== profile.id) {
-                      return (
-                        <ProfileCard
-                          key={prof.id}
-                          profile={prof}
-                          sideBtn={btn}
-                        />
-                      );
-                    }
-                  })}
-              </div>
-            </div>
-            <div>
-              <nav className={classes.nav}>
-                <ul>
-                  <li className="tertiary-text">About</li>
-                  <li className="tertiary-text">Help</li>
-                  <li className="tertiary-text">Press</li>
-                  <li className="tertiary-text">API</li>
-                  <li className="tertiary-text">Jobs</li>
-                  <li className="tertiary-text">Privacy</li>
-                  <li className="tertiary-text">Terms</li>
-                  <li className="tertiary-text">Locations</li>
-                  <li className="tertiary-text">Language</li>
-                  <li className="tertiary-text">Oxide</li>
-                  <li className="tertiary-text">Verified</li>
-                </ul>
-              </nav>
-              <p className="tertiary-text">© 2024 OXIDEGRAM FROM OXIDE</p>
-            </div>
+        {!smallScreen && (
+          <div className={classes.rightSide}>
+            <SuggestionsPanel />
           </div>
-        </div>
+        )}
       </main>
     </div>
   );

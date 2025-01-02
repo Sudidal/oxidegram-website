@@ -12,8 +12,11 @@ function ProfileCard({
   primFullName = false,
 }) {
   return (
-    <Link to={"/profiles/" + profile.id} className={`unstyled-link ${classes.card}`}>
-      <div className={classes.left}>
+    <div className={classes.card}>
+      <Link
+        to={"/profiles/" + profile.id}
+        className={`unstyled-link ${classes.left}`}
+      >
         <AvatarImg url={profile.avatarUrl} width={imgSize} />
         <div>
           {username && <p className="semibold-text">{profile.username}</p>}
@@ -27,7 +30,7 @@ function ProfileCard({
             </p>
           )}
         </div>
-      </div>
+      </Link>
       <div>
         {sideBtn && (
           <button
@@ -41,7 +44,7 @@ function ProfileCard({
           </button>
         )}
       </div>
-    </Link>
+    </div>
   );
 }
 

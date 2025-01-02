@@ -19,10 +19,10 @@ function PostCard({ post }) {
   function change(ev) {
     switch (ev) {
       case "like":
-        setLikes(likes + 1);
+        setLikes((val) => val + 1);
         break;
       case "unlike":
-        setLikes(likes - 1);
+        setLikes((val) => val - 1);
     }
   }
 
@@ -74,7 +74,7 @@ function PostCard({ post }) {
             onClick={() => {
               modal.open(<PostView post={post} />);
             }}
-            style={{textAlign: "left", color: "var(--secondary-text-color)"}}
+            style={{ textAlign: "left", color: "var(--secondary-text-color)" }}
             className="unstyled-btn"
           >
             View all {post._count.comments} comments

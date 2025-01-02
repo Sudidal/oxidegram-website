@@ -15,22 +15,22 @@ function PostActions({ post, onChange = () => {} }) {
   const alert = useContext(alertContext);
 
   function like() {
+    updateLikeVisual(!liked);
     if (liked) {
-      onChange("unlike");
       api.unlikePost(post.id).then((res) => {
         if (!res.ok) {
           alert.show(res.msg);
+          updateLikeVisual(true);
         }
       });
     } else {
-      onChange("like");
       api.likePost(post.id).then((res) => {
         if (!res.ok) {
           alert.show(res.msg);
+          updateLikeVisual(false);
         }
       });
     }
-    setLiked(!liked);
   }
 
   function comment() {
@@ -40,27 +40,40 @@ function PostActions({ post, onChange = () => {} }) {
     modal.open(<ShareMenu post={post} />);
   }
   function save() {
+    updateSaveVisual(!saved);
     if (saved) {
-      setSaved(false);
       api.unsave(post.id).then((res) => {
         if (!res.ok) {
           alert.show(res.msg);
+          updateSaveVisual(true)
         }
       });
     } else {
-      setSaved(true);
       api.save(post.id).then((res) => {
         if (!res.ok) {
           alert.show(res.msg);
+          updateSaveVisual(false)
         }
       });
     }
   }
 
+  function updateLikeVisual(state) {
+    setLiked(state);
+    if (state) onChange("like");
+    else onChange("unlike");
+  }
+  function updateSaveVisual(state) {
+    setSaved(state);
+  }
+
   return (
     <div className={classes.container}>
       <div className={classes.leftSide}>
-        <button className={`icon-btn ${liked ? classes.liked : ""}`} onClick={like}>
+        <button
+          className={`icon-btn ${liked ? classes.liked : ""}`}
+          onClick={like}
+        >
           <SvgFileToInline
             path={`/icons/${liked ? "heart-filled" : "heart"}.svg`}
           />

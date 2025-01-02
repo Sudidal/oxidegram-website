@@ -25,7 +25,7 @@ function MessagesList({ msgs }) {
         return (
           <>
             {(!prevMessage || !sameDate) && (
-              <p className={classes.date} key={message.id}>
+              <p className={classes.date} key={message.id+"date"}>
                 {date}
               </p>
             )}

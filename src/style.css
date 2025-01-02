@@ -203,6 +203,7 @@ body.collapsed-panel {
   background: none;
   border: none;
   color: var(--primary-text-color);
+  padding: 0;
 }
 .icon-btn:hover {
   opacity: 0.4;

@@ -28,7 +28,6 @@ class DateOps {
 
   isoToBeautyDateAndTime(isoString) {
     const date = new Date(isoString);
-    console.log(date);
     const hour = this.to12HoursFormat(date.getHours());
     let result = "";
 
@@ -45,13 +44,11 @@ class DateOps {
       " " +
       hour[1];
 
-    console.log(result);
 
     return result;
   }
 
   to12HoursFormat(hours24) {
-    console.log(hours24);
     if (hours24 === 0) hours24 = 12;
     if (hours24 > 12) {
       return [hours24 - 12, "PM"];

@@ -26,7 +26,7 @@ function Modal({ callback }) {
   return (
     <div>
       {menues.map((menu) => {
-        return <RealModal key={count} menu={menu} />;
+        return <RealModal key={count++} menu={menu} />;
       })}
     </div>
   );

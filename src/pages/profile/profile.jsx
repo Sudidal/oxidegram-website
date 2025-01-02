@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../../../api.js";
 import profileContext from "../../contexts/profileContext.js";
 import alertContext from "../../contexts/alertContext.js";
@@ -145,10 +146,10 @@ function Profile() {
                 <p className="semibold-text">{reqProfile.fullName}</p>
                 <p>{reqProfile.bio}</p>
                 {reqProfile.websiteUrl && (
-                  <div className="semibold-text flexbox">
+                  <Link target="_blank" referrerPolicy="no-referrer" to={reqProfile.websiteUrl} className="semibold-text flexbox unstyled-link">
                     <SvgFileToInline path={"/icons/link.svg"} />{" "}
                     {reqProfile.websiteUrl}
-                  </div>
+                  </Link>
                 )}
               </div>
             </div>

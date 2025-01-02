@@ -5,6 +5,7 @@ function getVideoThumbnail(src, callback) {
 
   video.src = src;
   video.crossOrigin = "anonymous";
+  video.muted = true;
   video.play();
 
   video.onloadeddata = () => {
@@ -22,6 +23,7 @@ function getVideoThumbnail(src, callback) {
   };
 
   function cleanUp() {
+    video.pause();
     video.src = "";
     video.load();
     video.onloadeddata = null;

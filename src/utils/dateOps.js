@@ -28,6 +28,7 @@ class DateOps {
 
   isoToBeautyDateAndTime(isoString) {
     const date = new Date(isoString);
+    console.log(date);
     const hour = this.to12HoursFormat(date.getHours());
     let result = "";
 
@@ -40,14 +41,18 @@ class DateOps {
       ", " +
       hour[0] +
       ":" +
-      date.getMinutes() +
+      this.alwaysTwoChars(date.getMinutes()) +
       " " +
       hour[1];
+
+    console.log(result);
 
     return result;
   }
 
   to12HoursFormat(hours24) {
+    console.log(hours24);
+    if (hours24 === 0) hours24 = 12;
     if (hours24 > 12) {
       return [hours24 - 12, "PM"];
     } else {
@@ -71,7 +76,20 @@ class DateOps {
       "Dec",
     ];
 
-    return shortNames[parseInt(monthNumber) - 1];
+    return shortNames[parseInt(monthNumber)];
+  }
+
+  alwaysTwoChars(input) {
+    let result = input
+
+    if (typeof result !== "string") {
+      result = result.toString();
+    }
+    if (result.length === 1) {
+      return "0" + result;
+    }
+    
+    return result;
   }
 }
 

@@ -4,6 +4,10 @@
   font-size: inherit;
 }
 
+html {
+  scrollbar-color: grey transparent;
+}
+
 body {
   --nav-medium-width: 244px;
   --nav-collapsed-width: 72px;

@@ -121,6 +121,10 @@ function SidePanel({ state }) {
     },
   ];
 
+  if (profile.id === undefined) {
+    buttons = buttons.filter((i) => i.title !== "Profile");
+  }
+
   if (collapsed) {
     document.body.classList.add("collapsed-panel");
 
@@ -129,10 +133,6 @@ function SidePanel({ state }) {
     }
   } else {
     document.body.classList.remove("collapsed-panel");
-  }
-
-  if (profile.id === undefined) {
-    buttons = buttons.filter((i) => i.title !== "Profile");
   }
 
   if (hidden) return;

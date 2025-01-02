@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import profileContext from "../../contexts/profileContext.js";
+import alertContext from "../../contexts/alertContext.js";
 import ProfileCard from "../profileCard/profileCard.jsx";
 import api from "../../../api.js";
 import classes from "./suggestionsPanel.module.css";
@@ -8,6 +9,7 @@ import classes from "./suggestionsPanel.module.css";
 function SuggestionsPanel() {
   const [topProfiles, setTopProfiles] = React.useState(null);
   const profile = React.useContext(profileContext);
+  const alert = React.useContext(alertContext);
   const nav = useNavigate();
 
   React.useEffect(() => {

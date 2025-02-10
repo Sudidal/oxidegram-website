@@ -33,7 +33,12 @@ function WelcomeMenu() {
         </ul>
       </section>
       <section className={classes.bottom}>
-        <button className="secondary-btn" onClick={{modal.close() nav("/")}}>
+        <button className="secondary-btn" 
+          onClick={() => {
+            modal.close();
+            nav("/")
+          }}
+        >
           Continue as a guest
         </button>
         <button

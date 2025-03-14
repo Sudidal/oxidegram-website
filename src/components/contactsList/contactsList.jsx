@@ -21,13 +21,13 @@ function ContactsList({ contacts, onSelect }) {
         contacts.map((contact) => {
           const lastMessage =
             contact.chat.messages[contact.chat.messages.length - 1];
-          const content = lastMessage.content.match(/^POST_ID_*/)
+          const content = lastMessage?.content.match(/^POST_ID_*/)
             ? "Sent an attachment"
-            : lastMessage.content;
+            : lastMessage?.content;
           return (
             <button
               key={contact.id}
-              style={{textAlign: "left"}}
+              style={{ textAlign: "left" }}
               className={`unstyled-btn ${classes.contactCard}`}
               onClick={(ev) => {
                 cardClicked(contact.id, ev);
